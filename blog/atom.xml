@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://jamiemason.github.io/ts-lib/blog</id>
     <title>ts-lib Blog</title>
-    <updated>2023-03-05T01:18:34.000Z</updated>
+    <updated>2023-03-05T23:03:10.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://jamiemason.github.io/ts-lib/blog"/>
     <subtitle>ts-lib Blog</subtitle>
@@ -11,6 +11,6 @@
         <title type="html"><![CDATA[Blog]]></title>
         <id>https://jamiemason.github.io/ts-lib/blog/index</id>
         <link href="https://jamiemason.github.io/ts-lib/blog/index"/>
-        <updated>2023-03-05T01:18:34.000Z</updated>
+        <updated>2023-03-05T23:03:10.000Z</updated>
     </entry>
 </feed>
