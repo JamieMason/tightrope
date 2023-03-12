@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <rss version="2.0">
     <channel>
-        <title>ts-lib Blog</title>
-        <link>https://jamiemason.github.io/ts-lib/blog</link>
-        <description>ts-lib Blog</description>
-        <lastBuildDate>Sun, 12 Mar 2023 17:53:57 GMT</lastBuildDate>
+        <title>tightrope Blog</title>
+        <link>https://jamiemason.github.io/tightrope/blog</link>
+        <description>tightrope Blog</description>
+        <lastBuildDate>Sun, 12 Mar 2023 18:07:46 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
         <item>
             <title><![CDATA[Blog]]></title>
-            <link>https://jamiemason.github.io/ts-lib/blog/index</link>
-            <guid>https://jamiemason.github.io/ts-lib/blog/index</guid>
-            <pubDate>Sun, 12 Mar 2023 17:53:57 GMT</pubDate>
+            <link>https://jamiemason.github.io/tightrope/blog/index</link>
+            <guid>https://jamiemason.github.io/tightrope/blog/index</guid>
+            <pubDate>Sun, 12 Mar 2023 18:07:46 GMT</pubDate>
         </item>
     </channel>
 </rss>
