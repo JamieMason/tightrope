@@ -4,7 +4,7 @@
         <title>ts-lib Blog</title>
         <link>https://jamiemason.github.io/ts-lib/blog</link>
         <description>ts-lib Blog</description>
-        <lastBuildDate>Sun, 12 Mar 2023 14:47:08 GMT</lastBuildDate>
+        <lastBuildDate>Sun, 12 Mar 2023 15:48:31 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -12,7 +12,7 @@
             <title><![CDATA[Blog]]></title>
             <link>https://jamiemason.github.io/ts-lib/blog/index</link>
             <guid>https://jamiemason.github.io/ts-lib/blog/index</guid>
-            <pubDate>Sun, 12 Mar 2023 14:47:08 GMT</pubDate>
+            <pubDate>Sun, 12 Mar 2023 15:48:31 GMT</pubDate>
         </item>
     </channel>
 </rss>
