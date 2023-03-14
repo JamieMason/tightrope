@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunksite=self.webpackChunksite||[]).push([[1099],{5774:e=>{e.exports=JSON.parse('{"label":"regexp","permalink":"/tightrope/tags/regexp","allTagsPath":"/tightrope/tags","count":1,"items":[{"id":"api/guard/is-reg-exp","title":"isRegExp","description":"Asserts that a value is a RegExp.","permalink":"/tightrope/api/guard/is-reg-exp"}]}')}}]);
