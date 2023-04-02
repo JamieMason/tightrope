@@ -1,0 +1,43 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "args": [
+        "${workspaceFolder}/${relativeFileDirname}/${fileBasenameNoExtension}.spec.ts"
+      ],
+      "command": "scripts/add-test.sh",
+      "group": "test",
+      "label": "Add test for current file",
+      "presentation": {
+        "panel": "dedicated",
+        "reveal": "silent"
+      },
+      "problemMatcher": [],
+      "type": "shell"
+    },
+    {
+      "args": ["run"],
+      "command": "${workspaceFolder}/node_modules/.bin/vitest",
+      "group": "test",
+      "label": "Vitest run",
+      "presentation": {
+        "panel": "dedicated",
+        "reveal": "always"
+      },
+      "problemMatcher": [],
+      "type": "shell"
+    },
+    {
+      "args": ["watch", "--no-coverage"],
+      "command": "${workspaceFolder}/node_modules/.bin/vitest",
+      "group": "test",
+      "label": "Vitest watch",
+      "presentation": {
+        "panel": "dedicated",
+        "reveal": "always"
+      },
+      "problemMatcher": [],
+      "type": "shell"
+    }
+  ]
+}

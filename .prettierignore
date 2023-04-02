@@ -1,0 +1,9 @@
+CHANGELOG.md
+coverage
+DEPENDENCIES.md
+dist
+site/.docusaurus
+site/build
+site/docs/api
+src/fn/pipe.ts
+test/fixtures/large.json
