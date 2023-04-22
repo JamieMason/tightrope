@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunksite=self.webpackChunksite||[]).push([[1206],{7977:e=>{e.exports=JSON.parse('{"label":"read","permalink":"/tightrope/tags/read","allTagsPath":"/tightrope/tags","count":1,"items":[{"id":"api/fn/get","title":"get","description":"Return an Ok containing a deeply nested value from an object, or an Err.","permalink":"/tightrope/api/fn/get"}]}')}}]);
