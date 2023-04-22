@@ -1,0 +1,25 @@
+import { expect, it } from 'vitest';
+import { Err, Ok } from '.';
+import { pipe } from '../fn/pipe';
+import { map } from './map';
+
+it('map an Ok for another when Ok', () => {
+  const a = 100;
+  expect(
+    pipe(
+      Ok.create<number>(a),
+      map((num) => num * 2),
+      map((str) => `${str}!`),
+    ),
+  ).toEqual(Ok.create(`200!`));
+});
+
+it('leave Err untouched', () => {
+  const a = Err.create(new Error('Error'));
+  expect(
+    pipe(
+      a,
+      map(() => 'never gonna'),
+    ),
+  ).toBe(a);
+});

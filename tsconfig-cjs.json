@@ -5,5 +5,5 @@
     "outDir": "./dist/cjs",
     "target": "es2021"
   },
-  "exclude": ["./src/**/*.spec.ts"]
+  "exclude": ["./src/**/*.spec.ts", "./test/**/*.ts"]
 }

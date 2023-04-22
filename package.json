@@ -1,6 +1,6 @@
 {
   "name": "tightrope",
-  "description": "",
+  "description": "Point-free functional utility library",
   "version": "0.0.0",
   "author": "Jamie Mason <jamie@foldleft.io> (https://github.com/JamieMason)",
   "bugs": "https://github.com/JamieMason/tightrope/issues",
@@ -15,6 +15,7 @@
     "eslint-plugin-jest": "27.2.1",
     "expect-more-jest": "5.5.0",
     "fast-check": "3.8.1",
+    "glob": "10.2.1",
     "jest": "29.5.0",
     "organize-imports-cli": "0.10.0",
     "prettier": "2.8.7",
@@ -28,26 +29,25 @@
   "engines": {
     "node": ">=14"
   },
-  "files": [
-    "dist"
-  ],
   "homepage": "https://github.com/JamieMason/tightrope#readme",
   "license": "MIT",
   "repository": "JamieMason/tightrope",
   "scripts": {
-    "build": "rm -rf ./dist && yarn build:esm && yarn build:cjs",
-    "build:cjs": "tsc --project ./tsconfig-cjs.json",
-    "build:esm": "tsc --project ./tsconfig-esm.json",
+    "build": "rm -rf dist && yarn build:esm && yarn build:cjs && yarn build:copy",
+    "build:cjs": "tsc --project tsconfig-cjs.json",
+    "build:esm": "tsc --project tsconfig-esm.json",
+    "build:copy": "ts-node scripts/copy.ts",
     "find-curried-functions-without-arity": "ts-node scripts/find-curried-functions-without-arity.ts",
     "format": "yarn format:imports && yarn format:lint && yarn format:source",
     "format:imports": "organize-imports-cli {scripts,src,test}/**/*.ts",
     "format:lint": "yarn lint --fix",
     "format:source": "prettier --write .",
-    "generate-curried-types/index": "ts-node scripts/generate-curried-types/index.ts",
+    "generate-curried-types": "ts-node scripts/generate-curried-types/index.ts",
     "generate-types-for-get": "ts-node scripts/generate-types-for-get.ts",
     "generate-types-for-pipe": "ts-node scripts/generate-types-for-pipe.ts",
     "lint": "eslint --ext .ts .",
-    "prepack": "yarn build",
+    "prepack": "echo 'Publish from ./dist'; exit 1",
+    "package": "yarn build && cd dist && npm pack",
     "test": "vitest run --coverage src",
     "test:watch": "vitest run --no-coverage --watch"
   }
