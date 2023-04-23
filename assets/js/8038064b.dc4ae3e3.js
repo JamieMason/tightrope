@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunksite=self.webpackChunksite||[]).push([[5997],{5262:e=>{e.exports=JSON.parse('{"title":"Console","description":" ","slug":"/api/console","permalink":"/tightrope/api/console","navigation":{"previous":{"title":"API","permalink":"/tightrope/api"},"next":{"title":"createTimer","permalink":"/tightrope/api/console/create-timer"}}}')}}]);
