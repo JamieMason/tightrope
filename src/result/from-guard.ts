@@ -10,11 +10,18 @@ export type FromGuard = {
     error: ErrT,
     value: OkT,
   ): Result<OkT, ErrT>;
-  <OkT, ErrT, Fn extends UnaryGuard<any>>(guard: Fn, error: ErrT): {
+  <OkT, ErrT, Fn extends UnaryGuard<any>>(
+    guard: Fn,
+    error: ErrT,
+  ): {
     (value: OkT): Result<OkT, ErrT>;
   };
-  <Fn extends UnaryGuard<any>>(guard: Fn): {
-    <OkT, ErrT>(error: ErrT): {
+  <Fn extends UnaryGuard<any>>(
+    guard: Fn,
+  ): {
+    <OkT, ErrT>(
+      error: ErrT,
+    ): {
       (value: OkT): Result<OkT, ErrT>;
     };
     <OkT, ErrT>(error: ErrT, value: OkT): Result<OkT, ErrT>;

@@ -2,7 +2,9 @@ import { curry } from '../fn/curry';
 import type { Gen, GenYield } from '../fn/types';
 
 export type Map = {
-  <F extends (input: GenYield<T>) => any, T extends Gen<any>>(fn: F): {
+  <F extends (input: GenYield<T>) => any, T extends Gen<any>>(
+    fn: F,
+  ): {
     (gen: T): Gen<ReturnType<F>>;
   };
   <F extends (input: GenYield<T>) => any, T extends Gen<any>>(
@@ -90,5 +92,4 @@ export const map: Map = curry(function* map<
   for (const value of gen) {
     yield fn(value);
   }
-},
-2);
+}, 2);

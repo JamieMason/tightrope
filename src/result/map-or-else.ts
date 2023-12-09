@@ -13,8 +13,12 @@ export type MapOrElse = {
     mapErrFn: (err: ResErr<Res>) => Next,
     mapOkFn: (value: ResOk<Res>) => Next,
   ): { (result: Res): Next };
-  <Res extends AnyResult, Next>(mapErrFn: (err: ResErr<Res>) => Next): {
-    <Res extends AnyResult, Next>(mapOkFn: (value: ResOk<Res>) => Next): {
+  <Res extends AnyResult, Next>(
+    mapErrFn: (err: ResErr<Res>) => Next,
+  ): {
+    <Res extends AnyResult, Next>(
+      mapOkFn: (value: ResOk<Res>) => Next,
+    ): {
       (result: Res): Next;
     };
     <Res extends AnyResult, Next>(

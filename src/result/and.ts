@@ -4,7 +4,9 @@ import { isErr } from './is-err';
 import { isOk } from './is-ok';
 
 export type And = {
-  <ResultB extends AnyResult>(b: ResultB): {
+  <ResultB extends AnyResult>(
+    b: ResultB,
+  ): {
     <ResultA extends AnyResult>(a: ResultA): ResultUnion<ResultB, ResultA>;
   };
   <ResultB extends AnyResult, ResultA extends AnyResult>(

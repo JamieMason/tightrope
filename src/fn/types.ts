@@ -47,19 +47,19 @@ export type Reducer<I, O> = (acc: O, value: I) => O;
 export type ResOk<R> = R extends Ok<infer T>
   ? T
   : R extends Err
-  ? never
-  : R extends Result<infer X>
-  ? X
-  : never;
+    ? never
+    : R extends Result<infer X>
+      ? X
+      : never;
 
 /** Get the Err value type from a Result */
 export type ResErr<R> = R extends Err<infer T>
   ? T
   : R extends Ok<any>
-  ? never
-  : R extends Result<infer X>
-  ? X
-  : never;
+    ? never
+    : R extends Result<infer X>
+      ? X
+      : never;
 
 /** A Result containing anything */
 export type AnyResult = Result<any, any>;

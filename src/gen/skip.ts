@@ -59,5 +59,4 @@ export const skip: Skip = curry(function* skip<T extends Gen<any>>(
       yield value;
     }
   }
-},
-2);
+}, 2);

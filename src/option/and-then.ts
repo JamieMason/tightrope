@@ -4,7 +4,9 @@ import { curry } from '../fn/curry';
 import { isSome } from './is-some';
 
 export type AndThen = {
-  <T, NextT>(mapFn: (value: T) => Option<NextT>): {
+  <T, NextT>(
+    mapFn: (value: T) => Option<NextT>,
+  ): {
     (opt: Option<T>): Option<NextT>;
   };
   <T, NextT>(mapFn: (value: T) => Option<NextT>, opt: Option<T>): Option<NextT>;

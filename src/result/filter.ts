@@ -11,10 +11,15 @@ export type Filter = {
     msg: string,
     res: Res,
   ): Result<GuardType<G>, Error>;
-  <G extends UnaryGuard>(guard: G, msg: string): {
+  <G extends UnaryGuard>(
+    guard: G,
+    msg: string,
+  ): {
     <Res extends AnyResult>(res: Res): Result<GuardType<G>, Error>;
   };
-  <G extends UnaryGuard>(guard: G): {
+  <G extends UnaryGuard>(
+    guard: G,
+  ): {
     (msg: string): {
       <Res extends AnyResult>(res: Res): Result<GuardType<G>, Error>;
     };

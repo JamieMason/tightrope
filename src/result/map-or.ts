@@ -14,7 +14,9 @@ export type MapOr = {
     mapOkFn: (value: ResOk<Res>) => Next,
   ): { (result: Res): Next };
   <Next>(defaultValue: Next): {
-    <Res extends AnyResult>(mapOkFn: (value: ResOk<Res>) => Next): {
+    <Res extends AnyResult>(
+      mapOkFn: (value: ResOk<Res>) => Next,
+    ): {
       (result: Res): Next;
     };
     <Res extends AnyResult>(

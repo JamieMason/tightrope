@@ -28,5 +28,4 @@ export const split: Split = curry(function* split(
   if (previous.length > 0) {
     yield previous;
   }
-},
-2);
+}, 2);

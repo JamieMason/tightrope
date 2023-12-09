@@ -4,7 +4,9 @@ import { curry } from '../fn/curry';
 import type { UnaryGuard } from '../fn/types';
 
 export type FromGuard = {
-  <SomeT, Fn extends UnaryGuard<any>>(guard: Fn): {
+  <SomeT, Fn extends UnaryGuard<any>>(
+    guard: Fn,
+  ): {
     (value: SomeT): Option<SomeT>;
   };
   <SomeT, Fn extends UnaryGuard<any>>(guard: Fn, value: SomeT): Option<SomeT>;
@@ -16,5 +18,4 @@ export const fromGuard: FromGuard = curry(function fromGuard<
   Fn extends UnaryGuard<any>,
 >(guard: Fn, value: SomeT): Option<SomeT> {
   return guard(value) ? new Some<SomeT>(value) : none;
-},
-2);
+}, 2);

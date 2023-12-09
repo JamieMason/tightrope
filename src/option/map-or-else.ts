@@ -5,7 +5,9 @@ import { isSome } from './is-some';
 export type MapOrElse = {
   <T, U>(mapFn: (value: T) => U, defaultFn: () => U, opt: Option<T>): U;
   <T, U>(mapFn: (value: T) => U, defaultFn: () => U): { (opt: Option<T>): U };
-  <T, U>(mapFn: (value: T) => U): {
+  <T, U>(
+    mapFn: (value: T) => U,
+  ): {
     <T, U>(defaultFn: () => U): { (opt: Option<T>): U };
     <T, U>(defaultFn: () => U, opt: Option<T>): U;
   };

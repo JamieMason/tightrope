@@ -13,5 +13,4 @@ export const tap: Tap = curry(function tap<T, Fn extends AnyFn>(
 ): T {
   fn(value);
   return value;
-},
-2);
+}, 2);

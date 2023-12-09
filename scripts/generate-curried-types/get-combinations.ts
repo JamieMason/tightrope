@@ -135,10 +135,10 @@ export function getCombinations({
       ${generics}(${p0}, ${p1}, ${p2}, ${p3}, ${p4}, ${p5}, ${p6}): ${r}
       ${generics}(${p0}, ${p1}, ${p2}, ${p3}, ${p4}, ${p5}): {(${p6}): ${r}}
       ${generics}(${p0}, ${p1}, ${p2}, ${p3}, ${p4}): ${curry2Generic(
-      p5,
-      p6,
-      r,
-    )}
+        p5,
+        p6,
+        r,
+      )}
       ${generics}(${p0}, ${p1}, ${p2}, ${p3}): ${curry3Generic(p4, p5, p6, r)}
       ${generics}(${p0}, ${p1}, ${p2}): ${curry4Generic(p3, p4, p5, p6, r)}
       ${generics}(${p0}, ${p1}): ${curry5Generic(p2, p3, p4, p5, p6, r)}
