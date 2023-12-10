@@ -5,7 +5,7 @@ import { getAllCurriedFunctions } from './get-all-curried-functions';
 import { getCombinations } from './get-combinations';
 
 const project = new Project({
-  tsConfigFilePath: resolve(__dirname, '../../tsconfig.json'),
+  tsConfigFilePath: resolve(process.cwd(), './tsconfig.json'),
   skipAddingFilesFromTsConfig: true,
 });
 

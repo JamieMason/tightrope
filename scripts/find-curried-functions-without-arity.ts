@@ -5,7 +5,7 @@ import { Project } from 'ts-morph';
 import { getCallExpressionsByName } from './lib/get-call-expressions-by-name';
 
 const project = new Project({
-  tsConfigFilePath: resolve(__dirname, '../tsconfig.json'),
+  tsConfigFilePath: resolve(process.cwd(), './tsconfig.json'),
   skipAddingFilesFromTsConfig: true,
 });
 
