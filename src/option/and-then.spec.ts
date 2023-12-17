@@ -1,6 +1,6 @@
 import { expect, it } from 'vitest';
 import type { Option } from '.';
-import { Some, none } from '.';
+import { none, Some } from '.';
 import { andThen } from './and-then';
 
 it('andThen applies mapFn when input is Some', () => {

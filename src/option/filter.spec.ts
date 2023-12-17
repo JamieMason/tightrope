@@ -1,6 +1,6 @@
 import { expect, it } from 'vitest';
 import type { Option } from '.';
-import { Some, none } from '.';
+import { none, Some } from '.';
 import { filter } from './filter';
 
 it('filter returns Some when predicate is true', () => {

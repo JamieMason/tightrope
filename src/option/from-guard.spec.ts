@@ -1,6 +1,6 @@
 import { expect, it } from 'vitest';
 import type { Option } from '.';
-import { Some, none } from '.';
+import { none, Some } from '.';
 import { pipe } from '../fn/pipe';
 import { isNumber } from '../guard/is-number';
 import { fromGuard } from './from-guard';

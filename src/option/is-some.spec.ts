@@ -1,5 +1,5 @@
 import { expect, it } from 'vitest';
-import { Some, none } from '.';
+import { none, Some } from '.';
 import { isSome } from './is-some';
 
 it('isSome should return true when Some is provided', () => {
