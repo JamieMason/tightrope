@@ -11,10 +11,7 @@ export type AnyFn = (...args: any[]) => any;
 export type AnyGuard = (...args: any[]) => boolean;
 
 /** A guard/isFoo function which accepts one argument */
-export type UnaryGuard<T = unknown> = (value: T) => boolean;
-
-/** A guard/isFoo function which accepts two arguments */
-export type BinaryGuard = (b: any, a: any) => boolean;
+export type UnaryGuard<T = unknown> = (value: T) => value is any;
 
 /** Get type of a type guard if it passes */
 export type GuardType<T> = T extends (o: any, ...rest: any) => o is infer A
