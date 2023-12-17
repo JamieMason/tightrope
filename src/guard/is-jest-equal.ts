@@ -1,16 +1,16 @@
 import { curry } from '../fn/curry';
+import type { AsymmetricMatcher } from '../fn/types';
 import { isAsymmetricMatcher } from './is-asymmetric-matcher';
 
-type IsJestEqual = {
-  <T>(value: T): { (other: unknown): boolean };
-  <T>(value: T, other: unknown): boolean;
-};
-
 /** ... */
-export const isJestEqual: IsJestEqual = curry(
-  <T>(value: T, other: unknown): other is T =>
-    value === other ||
-    (isAsymmetricMatcher(value) && value.asymmetricMatch(other)) ||
+export const isJestEqual = curry(
+  (
+    other: unknown,
+    value: unknown,
+  ): value is typeof other extends AsymmetricMatcher<infer T>
+    ? T
+    : typeof other =>
+    other === value ||
     (isAsymmetricMatcher(other) && other.asymmetricMatch(value)),
   2,
 );

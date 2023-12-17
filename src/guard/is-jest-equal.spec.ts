@@ -14,10 +14,10 @@ it('negative case - unequal primitives', () => {
 });
 
 it('positive case - equal objects', () => {
-  const obj1 = expect.objectContaining({ a: 1 });
-  const obj2 = { a: 1, b: 2 };
-  expect(isJestEqual(obj1, obj2)).toBe(true);
-  expect(isJestEqual(obj2, obj1)).toBe(true);
+  const other = expect.objectContaining({ a: 1 });
+  const value = { a: 1, b: 2 };
+  expect(isJestEqual(other, value)).toBe(true);
+  expect(isJestEqual(other)(value)).toBe(true);
 });
 
 it('negative case - unequal objects', () => {
