@@ -1,11 +1,11 @@
-import type { Option } from '.';
 import { none } from '.';
 import { curry } from '../fn/curry';
+import type { AnyOption } from '../fn/types';
 import { isSome } from './is-some';
 
 export type And = {
-  <A, B>(b: Option<B>): { (a: Option<A>): Option<B> };
-  <A, B>(b: Option<B>, a: Option<A>): Option<B>;
+  <A extends AnyOption, B extends AnyOption>(b: B): { (a: A): B };
+  <A extends AnyOption, B extends AnyOption>(b: B, a: A): B;
 };
 
 /**
@@ -14,6 +14,7 @@ export type And = {
  * @tags option, transform, transform-option
  */
 export const and: And = curry(
-  <A, B>(b: Option<B>, a: Option<A>): Option<B> => (isSome(a) ? b : none),
+  <A extends AnyOption, B extends AnyOption>(b: B, a: A): B =>
+    isSome(a) ? b : (none as B),
   2,
 );

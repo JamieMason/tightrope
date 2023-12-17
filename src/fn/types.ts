@@ -1,3 +1,4 @@
+import type { Option } from '../option';
 import type { Err, Ok, Result } from '../result';
 
 /** Misc Object */
@@ -62,6 +63,9 @@ export type ResErr<R> = R extends Err<infer T>
     : R extends Result<infer X>
       ? X
       : never;
+
+/** An Option containing anything */
+export type AnyOption = Option<any>;
 
 /** A Result containing anything */
 export type AnyResult = Result<any, any>;
