@@ -4,13 +4,22 @@ import { curry } from '../fn/curry';
 import { isSome } from './is-some';
 
 export type Filter = {
-  <I>(predicate: (value: I) => boolean): { (opt: Option<I>): Option<I> };
-  <I>(predicate: (value: I) => boolean, opt: Option<I>): Option<I>;
+  <
+    Fn extends (value: any) => value is any,
+    I extends Option<any>,
+    O = Fn extends (value: any) => value is infer O ? O : never,
+  >(
+    predicate: Fn,
+  ): { (opt: I): Option<O> };
+  <
+    Fn extends (value: any) => value is any,
+    I extends Option<any>,
+    O = Fn extends (value: any) => value is infer O ? O : never,
+  >(
+    predicate: Fn,
+    opt: I,
+  ): Option<O>;
 };
-
-type GuardType<I> = I extends (x: any, ...rest: any) => x is infer U
-  ? U
-  : never;
 
 /**
  * Calls the provided predicate function on the contained value I if the `Option` is `Some(I)`, and returns `Some(I)` if
@@ -18,13 +27,14 @@ type GuardType<I> = I extends (x: any, ...rest: any) => x is infer U
  *
  * @tags option, filter, right-biased
  */
-export const filter = curry(
-  <Fn extends (value: any) => value is O, O>(
+export const filter: Filter = curry(
+  <
+    Fn extends (value: any) => value is any,
+    I extends Option<any>,
+    O = Fn extends (value: any) => value is infer O ? O : never,
+  >(
     predicate: Fn,
-    opt: Option<GuardType<Fn>>,
+    opt: I,
   ): Option<O> => (isSome<O>(opt) && predicate(opt.value) ? opt : none),
   2,
 );
-
-// GuardType<typeof predicate>
-/*: Filter*/

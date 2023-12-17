@@ -16,7 +16,9 @@ export type UnaryGuard<T = unknown> = (value: T) => boolean;
 export type BinaryGuard = (b: any, a: any) => boolean;
 
 /** Get type of a type guard if it passes */
-export type GuardType<T> = T extends (o: any) => o is infer A ? A : never;
+export type GuardType<T> = T extends (o: any, ...rest: any) => o is infer A
+  ? A
+  : never;
 
 /** Get type of members of an array */
 export type ArrayElement<ArrayType extends readonly unknown[]> =
