@@ -1,19 +1,20 @@
 import type { Option } from '.';
 import { none } from '.';
 import { curry } from '../fn/curry';
+import type { AnyOption } from '../fn/types';
 import { isSome } from './is-some';
 
 export type Filter = {
   <
     Fn extends (value: any) => value is any,
-    I extends Option<any>,
+    I extends AnyOption,
     O = Fn extends (value: any) => value is infer O ? O : never,
   >(
     predicate: Fn,
   ): { (opt: I): Option<O> };
   <
     Fn extends (value: any) => value is any,
-    I extends Option<any>,
+    I extends AnyOption,
     O = Fn extends (value: any) => value is infer O ? O : never,
   >(
     predicate: Fn,
@@ -30,7 +31,7 @@ export type Filter = {
 export const filter: Filter = curry(
   <
     Fn extends (value: any) => value is any,
-    I extends Option<any>,
+    I extends AnyOption,
     O = Fn extends (value: any) => value is infer O ? O : never,
   >(
     predicate: Fn,

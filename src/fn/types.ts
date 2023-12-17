@@ -81,3 +81,6 @@ export type AnyOk = Ok<any>;
 
 /** An Err containing anything */
 export type AnyErr = Err<any>;
+
+/** Get value type of an Option */
+export type OptionType<T> = T extends Option<infer V> ? V : never;

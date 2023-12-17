@@ -1,15 +1,27 @@
 import type { Option } from '.';
 import { none } from '.';
 import { curry } from '../fn/curry';
+import type { AnyOption, OptionType } from '../fn/types';
 import { isSome } from './is-some';
 
 export type AndThen = {
-  <I, O>(
-    mapFn: (value: I) => Option<O>,
-  ): {
-    (option: Option<I>): Option<O>;
-  };
-  <I, O>(mapFn: (value: I) => Option<O>, option: Option<I>): Option<O>;
+  <
+    Fn extends (value: any) => AnyOption,
+    I extends AnyOption,
+    V = OptionType<I>,
+    O = Fn extends (value: V) => Option<infer O> ? Option<O> : never,
+  >(
+    mapFn: Fn,
+  ): { (option: I): O };
+  <
+    Fn extends (value: any) => AnyOption,
+    I extends AnyOption,
+    V = OptionType<I>,
+    O = Fn extends (value: V) => Option<infer O> ? Option<O> : never,
+  >(
+    mapFn: Fn,
+    option: I,
+  ): O;
 };
 
 /**
@@ -19,7 +31,14 @@ export type AndThen = {
  * @tags option, transform, transform-option, right-biased
  */
 export const andThen: AndThen = curry(
-  <I, O>(mapFn: (value: I) => Option<O>, option: Option<I>): Option<O> =>
-    isSome<I>(option) ? mapFn(option.value) : none,
+  <
+    Fn extends (value: any) => AnyOption,
+    I extends AnyOption,
+    V = OptionType<I>,
+    O = Fn extends (value: V) => Option<infer O> ? Option<O> : never,
+  >(
+    mapFn: Fn,
+    option: I,
+  ): O => (isSome<V>(option) ? (mapFn(option.value) as O) : (none as O)),
   2,
 );
