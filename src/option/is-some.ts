@@ -17,6 +17,6 @@ import { Some } from '.';
  * @returns `true` if the value is a `Some`, `false` otherwise.
  * @tags option, guard
  */
-export function isSome<SomeT>(value: unknown): value is Some<SomeT> {
+export function isSome<Value>(value: unknown): value is Some<Value> {
   return value instanceof Some && value._tag === 'Some';
 }

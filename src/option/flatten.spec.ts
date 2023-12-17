@@ -1,22 +1,29 @@
 import { expect, it } from 'vitest';
-import { none, Some } from '.';
+import type { Option } from '.';
+import { Some, none } from '.';
 import { flatten } from './flatten';
 
 it('flatten returns inner Some when input is Some(Some)', () => {
   const opt = new Some(new Some(2));
-  expect(flatten(opt)).toEqual(new Some(2));
+  const output = flatten(opt);
+  expect<Option<number>>(output).toEqual(new Some(2));
 });
 
 it('flatten returns None when input is Some(None)', () => {
-  const opt = new Some(none);
-  expect(flatten(opt)).toEqual(none);
+  const inner = none;
+  const opt = new Some(inner);
+  const output = flatten(opt);
+  expect<Option<unknown>>(output).toEqual(none);
 });
 
 it('flatten returns None when input is None', () => {
-  expect(flatten(none)).toEqual(none);
+  const output = flatten(none);
+  expect<Option<unknown>>(output).toEqual(none);
 });
 
 it('flatten handles complex types', () => {
+  type Obj = { value: number };
   const opt = new Some(new Some({ value: 2 }));
-  expect(flatten(opt)).toEqual(new Some({ value: 2 }));
+  const output = flatten(opt);
+  expect<Option<Obj>>(output).toEqual(new Some({ value: 2 }));
 });
