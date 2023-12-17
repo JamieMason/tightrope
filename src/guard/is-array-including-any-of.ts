@@ -18,7 +18,7 @@ export const isArrayIncludingAnyOf: IsArrayIncludingAnyOf = curry(
     isArray(allowedValues) &&
     isArray(value) &&
     some(
-      (allowedValue: unknown) => some(isJestEqual(allowedValue), value),
+      (allowedValue) => some(isJestEqual(allowedValue), value),
       allowedValues,
     ),
   2,
