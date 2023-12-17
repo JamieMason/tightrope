@@ -1,10 +1,22 @@
 import { curry } from '../fn/curry';
-import type { UnaryGuard } from '../fn/types';
 import { isNonEmptyArray } from './is-non-empty-array';
 
 type Every = {
-  (guard: UnaryGuard): { (value: unknown): boolean };
-  (guard: UnaryGuard, value: unknown): boolean;
+  <Fn extends (value: any) => value is any>(
+    guard: Fn,
+  ): {
+    (
+      value: unknown,
+    ): value is Fn extends (value: any) => value is infer T
+      ? Array<T>
+      : unknown[];
+  };
+  <Fn extends (value: any) => value is any>(
+    guard: Fn,
+    value: unknown,
+  ): value is Fn extends (value: any) => value is infer T
+    ? Array<T>
+    : unknown[];
 };
 
 /**
@@ -24,8 +36,12 @@ type Every = {
  *
  * @tags guard, multiple-conditions
  */
-export const every: Every = curry(
-  (guard: UnaryGuard, value: unknown): boolean =>
-    isNonEmptyArray(value) && value.every(guard),
+export const every = curry(
+  <Fn extends (value: any) => value is any>(
+    guard: Fn,
+    value: unknown,
+  ): value is Fn extends (value: any) => value is infer T
+    ? Array<T>
+    : unknown[] => isNonEmptyArray(value) && value.every(guard),
   2,
-);
+) as Every;
