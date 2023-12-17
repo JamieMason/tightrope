@@ -1,8 +1,8 @@
 import { hasType } from './has-type';
 
-type IsArray = <T>(
-  value: T | NonNullable<unknown>,
-) => value is T extends Array<infer V>
+type IsArray = (
+  value: unknown,
+) => value is typeof value extends Array<infer V>
   ? unknown extends V
     ? unknown[]
     : V[]

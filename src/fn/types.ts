@@ -18,6 +18,21 @@ export type GuardType<T> = T extends (o: any, ...rest: any) => o is infer A
   ? A
   : never;
 
+/** A Jasmine-like asymmetric matcher */
+export type AsymmetricMatcher<T> = {
+  asymmetricMatch(value: unknown): value is T;
+};
+
+/** A Jasmine-like asymmetric matcher */
+export type AnyAsymmetricMatcher = AsymmetricMatcher<any>;
+
+/** Get type of a Jasmine-like asymmetric matcher */
+export type AsymmetricMatcherType<T> = T extends {
+  asymmetricMatch(value: any): value is infer V;
+}
+  ? V
+  : never;
+
 /** Get type of members of an array */
 export type ArrayElement<ArrayType extends readonly unknown[]> =
   ArrayType extends readonly (infer ElementType)[] ? ElementType : never;
