@@ -39,9 +39,9 @@ type Every = {
 export const every = curry(
   <Fn extends (value: any) => value is any>(
     guard: Fn,
-    value: unknown,
-  ): value is Fn extends (value: any) => value is infer T
+    array: unknown,
+  ): array is Fn extends (value: any) => value is infer T
     ? Array<T>
-    : unknown[] => isNonEmptyArray(value) && value.every(guard),
+    : unknown[] => isNonEmptyArray(array) && array.every(guard),
   2,
 ) as Every;
