@@ -4,9 +4,9 @@ import { isArray } from './is-array';
 import { isJestEqual } from './is-jest-equal';
 import { some } from './some';
 
-type IsArrayIncludingOnly = {
-  <T extends any[]>(allowedValues: T): { (value: unknown): boolean };
-  <T extends any[]>(allowedValues: T, value: unknown): boolean;
+export type IsArrayIncludingOnly = {
+  <T extends any[]>(allowedValues: T): { (value: unknown): value is T };
+  <T extends any[]>(allowedValues: T, value: unknown): value is T;
 };
 
 /**
@@ -20,6 +20,9 @@ export const isArrayIncludingOnly = curry(
   <T extends any[]>(allowedValues: T, value: unknown): value is T =>
     isArray(allowedValues) &&
     isArray(value) &&
-    every((member) => some(isJestEqual(member), allowedValues), value),
+    every(
+      (member): member is T[number] => some(isJestEqual(member), allowedValues),
+      value,
+    ),
   2,
-);
+) as IsArrayIncludingOnly;
