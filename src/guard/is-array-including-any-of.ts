@@ -4,8 +4,8 @@ import { isJestEqual } from './is-jest-equal';
 import { some } from './some';
 
 type IsArrayIncludingAnyOf = {
-  (allowedValues: unknown[]): { (value: unknown): boolean };
-  (allowedValues: unknown[], value: unknown): boolean;
+  <T extends any[]>(allowedValues: T): { (value: unknown): value is T };
+  <T extends any[]>(allowedValues: T, value: unknown): value is T;
 };
 
 /**
@@ -13,13 +13,13 @@ type IsArrayIncludingAnyOf = {
  *
  * @tags guard, arrays, multiple-conditions
  */
-export const isArrayIncludingAnyOf: IsArrayIncludingAnyOf = curry(
-  (allowedValues: unknown[], value: unknown): boolean =>
+export const isArrayIncludingAnyOf = curry(
+  <T extends any[]>(allowedValues: T, value: unknown): value is T =>
     isArray(allowedValues) &&
     isArray(value) &&
     some(
-      (allowedValue) => some(isJestEqual(allowedValue), value),
+      (member): member is T[number] => some(isJestEqual(member), value),
       allowedValues,
     ),
   2,
-);
+) as IsArrayIncludingAnyOf;
