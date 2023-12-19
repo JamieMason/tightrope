@@ -3,27 +3,47 @@ type maybe<'a> =
   | Just('a)
   | Nothing(int)
 
-// type branch = {
-//   onJust: 'a => 'b,
-//   onNothing: unit => 'b,
-// }
-
-@genType
-let mapOrElse = (onJust, onNothing, val) =>
-  switch val {
-  | Just(value) => onJust(value)
-  | Nothing(_) => onNothing()
-  }
-
-@genType
-let andThen = (onJust, onNothing, val) =>
-  switch val {
-  | Just(value) => onJust(value)
-  | Nothing(_) => onNothing()
-  }
-
 @genType
 let just = value => Just(value)
 
 @genType
 let nothing = Nothing(0)
+
+@genType
+type onMaybe<'a, 'b> = {
+  map: 'a => 'b,
+  orElse: unit => 'b,
+}
+
+/** A function used in .map() */
+@genType
+type mapFn<'a, 'b> = 'a => 'b
+
+/** A function used in .flatMap()/.chain()/.andThen() */
+@genType
+type andThenFn<'a, 'b> = mapFn<'a, maybe<'b>>
+
+/**
+ * Applies a mapping function to the value of an `Maybe`, returning a new `Maybe`. If the input `Maybe` is `Nothing`,
+ * the function immediately returns `Nothing` without calling the mapping function.
+ *
+ * @tags maybe, transform, transform-maybe, right-biased
+ */
+@genType
+let andThen = (map: mapFn<'a, maybe<'b>>) => (val: maybe<'a>) =>
+  switch val {
+  | Just(value) => map(value)
+  | _ => nothing
+  }
+
+/**
+ * Unwraps a `Maybe`, yielding the content of a `Just` or the return value of the provided function in case of a `Nothing`.
+ *
+ * @tags maybe, transform, transform-maybe, right-biased, unwrap, result
+ */
+@genType
+let mapOrElse = (branch: onMaybe<'a, 'b>) => (val: maybe<'a>) =>
+  switch val {
+  | Just(value) => branch.map(value)
+  | Nothing(_) => branch.orElse()
+  }

@@ -19,7 +19,7 @@
       "subdirs": true
     }
   ],
-  "uncurried": false,
+  "uncurried": true,
   "package-specs": {
     "module": "es6",
     "in-source": true
