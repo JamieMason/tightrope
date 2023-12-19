@@ -1,9 +1,9 @@
 import { expect, it } from 'vitest';
 import { Err, Ok } from '.';
-import { ok } from './ok';
+import { isNothing } from '../maybe/IsNothing.gen';
 import { isJust } from '../maybe/is-just';
 import { unwrap } from '../maybe/unwrap';
-import { isNothing } from '../maybe/is-nothing';
+import { ok } from './ok';
 
 it('transforms an Ok to a Just', () => {
   const result = new Ok(42);
