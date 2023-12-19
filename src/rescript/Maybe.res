@@ -35,15 +35,3 @@ let andThen = (map: mapFn<'a, maybe<'b>>) => (val: maybe<'a>) =>
   | Just(value) => map(value)
   | _ => nothing
   }
-
-/**
- * Unwraps a `Maybe`, yielding the content of a `Just` or the return value of the provided function in case of a `Nothing`.
- *
- * @tags maybe, transform, transform-maybe, right-biased, unwrap, result
- */
-@genType
-let mapOrElse = (branch: onMaybe<'a, 'b>) => (val: maybe<'a>) =>
-  switch val {
-  | Just(value) => branch.map(value)
-  | Nothing(_) => branch.orElse()
-  }
