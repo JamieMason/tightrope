@@ -1,12 +1,12 @@
 import { expect, it } from 'vitest';
-import { nothing, just } from './Maybe.gen';
+import { just, nothing } from './Maybe.gen';
 import { isJust } from './is-just';
 
 it('isJust should return true when Just is provided', () => {
   expect.assertions(1);
-  const someValue: unknown = new just(5);
+  const someValue: unknown = just(5);
   if (isJust(someValue)) {
-    expect<just<unknown>>(someValue).toEqual(new just(5));
+    expect<typeof just<unknown>>(someValue).toEqual(just(5));
   }
 });
 

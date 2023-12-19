@@ -4,9 +4,4 @@
  * @tags maybe, guard, errors
  */
 @genType
-let isNothing = value => {
-  switch value {
-  | Maybe.Nothing(_) => true
-  | _ => false
-  }
-}
+let isNothing = %raw("value => value?.TAG === 'Nothing'")
