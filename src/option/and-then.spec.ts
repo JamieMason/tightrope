@@ -1,5 +1,6 @@
 import { expect, it } from 'vitest';
-import { type maybe, andThen, just, nothing } from '../rescript/Maybe.gen';
+import { andThen } from '../rescript/AndThen.gen';
+import { type maybe, just, nothing } from '../rescript/Maybe.gen';
 
 it('andThen applies mapFn when input is Some', () => {
   const opt = just(2);
