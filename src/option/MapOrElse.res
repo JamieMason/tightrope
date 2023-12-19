@@ -10,8 +10,8 @@ type onMaybe<'a, 'b> = {
  * @tags maybe, transform, transform-maybe, right-biased, unwrap, result
  */
 @genType
-let mapOrElse = ({map, orElse}: onMaybe<'a, 'b>) => (val: Maybe.maybe<'a>) =>
+let mapOrElse = (on: onMaybe<'a, 'b>) => (val: Maybe.maybe<'a>) =>
   switch val {
-  | Maybe.Just(value) => map(value)
-  | Maybe.Nothing(_) => orElse()
+  | Maybe.Just(value) => on.map(value)
+  | Maybe.Nothing(_) => on.orElse()
   }

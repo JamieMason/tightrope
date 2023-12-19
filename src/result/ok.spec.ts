@@ -2,7 +2,7 @@ import { expect, it } from 'vitest';
 import { isNone } from '../option/is-none';
 import { isSome } from '../option/is-some';
 import { unwrap } from '../option/unwrap';
-import { Err, Ok } from '../result';
+import { Err, Ok } from '.';
 import { ok } from './ok';
 
 it('transforms an Ok to a Some', () => {

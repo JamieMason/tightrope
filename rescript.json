@@ -1,4 +1,13 @@
 {
+  "name": "tightrope",
+  "bs-dependencies": ["@rescript/core"],
+  "bsc-flags": ["-open RescriptCore"],
+  "suffix": ".bs.js",
+  "uncurried": true,
+  "package-specs": {
+    "module": "es6",
+    "in-source": true
+  },
   "gentypeconfig": {
     "language": "typescript",
     "module": "es6",
@@ -10,19 +19,10 @@
     },
     "exportInterfaces": true
   },
-  "name": "tightrope",
-  "bsc-flags": ["-open RescriptCore"],
-  "bs-dependencies": ["@rescript/core"],
   "sources": [
     {
-      "dir": "src/rescript",
+      "dir": "src",
       "subdirs": true
     }
-  ],
-  "uncurried": true,
-  "package-specs": {
-    "module": "es6",
-    "in-source": true
-  },
-  "suffix": ".bs.js"
+  ]
 }

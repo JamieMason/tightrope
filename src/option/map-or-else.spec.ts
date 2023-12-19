@@ -1,6 +1,6 @@
 import { expect, it } from 'vitest';
-import { just, nothing } from '../rescript/Maybe.gen';
-import { mapOrElse } from '../rescript/MapOrElse.gen';
+import { just, nothing } from './Maybe.gen';
+import { mapOrElse } from './MapOrElse.gen';
 
 it('mapOrElse applies map when input is Some', () => {
   const opt = just(2);
