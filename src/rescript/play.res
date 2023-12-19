@@ -1,5 +1,5 @@
-let a = Maybe.Just(35)
-let b = Maybe.Nothing(0)
+let maybeNumber = Maybe.Just(35)
+let none = Maybe.Nothing(0)
 
 let fn = val => {
   switch val {
@@ -8,7 +8,11 @@ let fn = val => {
   }
 }
 
-fn(a)
-fn(b)
+fn(maybeNumber)
+fn(none)
 
-Js.log(Maybe.mapOrElse(val => val + 1, () => 0, a))
+let full = Maybe.mapOrElse(val => val + 1, () => 0, maybeNumber)
+
+let mapper = Maybe.mapOrElse(val => val + 1, () => 0)
+
+Js.log(mapper(maybeNumber))
