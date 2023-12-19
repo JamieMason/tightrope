@@ -1,15 +1,15 @@
-import type { Maybe } from '.';
+import type { maybe } from './Maybe.gen';
 import { curry } from '../fn/curry';
 import { isJust } from './is-just';
 
 export type MapOrElse = {
-  <T, U>(mapFn: (value: T) => U, defaultFn: () => U, opt: Maybe<T>): U;
-  <T, U>(mapFn: (value: T) => U, defaultFn: () => U): { (opt: Maybe<T>): U };
+  <T, U>(mapFn: (value: T) => U, defaultFn: () => U, opt: maybe<T>): U;
+  <T, U>(mapFn: (value: T) => U, defaultFn: () => U): { (opt: maybe<T>): U };
   <T, U>(
     mapFn: (value: T) => U,
   ): {
-    <T, U>(defaultFn: () => U): { (opt: Maybe<T>): U };
-    <T, U>(defaultFn: () => U, opt: Maybe<T>): U;
+    <T, U>(defaultFn: () => U): { (opt: maybe<T>): U };
+    <T, U>(defaultFn: () => U, opt: maybe<T>): U;
   };
 };
 
@@ -57,7 +57,7 @@ export type MapOrElse = {
  * @tags maybe, transform, transform-maybe, right-biased, unwrap, result
  */
 export const mapOrElse: MapOrElse = curry(
-  <T, U>(mapFn: (value: T) => U, defaultFn: () => U, opt: Maybe<T>): U => {
+  <T, U>(mapFn: (value: T) => U, defaultFn: () => U, opt: maybe<T>): U => {
     return isJust<T>(opt) ? mapFn(opt.value) : defaultFn();
   },
   3,

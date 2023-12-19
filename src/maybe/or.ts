@@ -1,12 +1,12 @@
-import type { Maybe } from '.';
+import type { maybe } from './Maybe.gen';
 import { curry } from '../fn/curry';
 import { isJust } from './is-just';
 
 export type Or = {
-  <T>(defaultOption: Maybe<T>): {
-    (maybe: Maybe<T>): Maybe<T>;
+  <T>(defaultOption: maybe<T>): {
+    (maybe: maybe<T>): maybe<T>;
   };
-  <T>(defaultOption: Maybe<T>, maybe: Maybe<T>): Maybe<T>;
+  <T>(defaultOption: maybe<T>, maybe: maybe<T>): maybe<T>;
 };
 
 /**
@@ -50,7 +50,7 @@ export type Or = {
  * @tags maybe, transform, transform-maybe, recover, errors, left-biased
  */
 export const or: Or = curry(
-  <T>(defaultOption: Maybe<T>, maybe: Maybe<T>): Maybe<T> => {
+  <T>(defaultOption: maybe<T>, maybe: maybe<T>): maybe<T> => {
     return isJust(maybe) ? maybe : defaultOption;
   },
   2,

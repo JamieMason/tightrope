@@ -1,11 +1,11 @@
 import { expect, it } from 'vitest';
-import { nothing, Just } from '.';
+import { nothing, just } from './Maybe.gen';
 import { map } from './map';
 
 it('map should map a Just value using the provided function', () => {
-  const someValue = new Just(5);
+  const someValue = new just(5);
   const result = map((x: number) => x * 2, someValue);
-  expect(result).toEqual(new Just(10));
+  expect(result).toEqual(new just(10));
 });
 
 it('map should return Nothing when Nothing is provided', () => {

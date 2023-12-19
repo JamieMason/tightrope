@@ -1,5 +1,5 @@
-import type { Maybe } from '.';
-import { nothing } from '.';
+import type { maybe } from './Maybe.gen';
+import { nothing } from './Maybe.gen';
 import type { AnyOption } from '../fn/types';
 import { isJust } from './is-just';
 
@@ -9,9 +9,9 @@ import { isJust } from './is-just';
  * @tags maybe, transform, transform-maybe
  */
 export function flatten<
-  Opt extends Maybe<AnyOption>,
-  Value = Opt extends Maybe<Maybe<infer Value>> ? Value : never,
->(opt: Opt): Maybe<Value> {
-  if (isJust<Maybe<Value>>(opt)) return opt.value;
+  Opt extends maybe<AnyOption>,
+  Value = Opt extends maybe<maybe<infer Value>> ? Value : never,
+>(opt: Opt): maybe<Value> {
+  if (isJust<maybe<Value>>(opt)) return opt.value;
   return nothing;
 }

@@ -1,10 +1,10 @@
 import { expect, it } from 'vitest';
-import { nothing, Just } from '.';
+import { nothing, just } from './Maybe.gen';
 import { Err, Ok } from '../result';
 import { okOrElse } from './ok-or-else';
 
 it('okOrElse should return Ok with the value of Just when Just is provided', () => {
-  const someValue = new Just(5);
+  const someValue = new just(5);
   const result = okOrElse(() => 'error', someValue);
   expect(result).toEqual(new Ok(5));
 });

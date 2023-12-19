@@ -1,10 +1,10 @@
-import type { Maybe } from '.';
+import type { maybe } from './Maybe.gen';
 import { curry } from '../fn/curry';
 import { isJust } from './is-just';
 
 export type Expect = {
-  <T>(msg: string): { (maybe: Maybe<T>): T };
-  <T>(msg: string, maybe: Maybe<T>): T;
+  <T>(msg: string): { (maybe: maybe<T>): T };
+  <T>(msg: string, maybe: maybe<T>): T;
 };
 
 /**
@@ -13,7 +13,7 @@ export type Expect = {
  *
  * @tags maybe, unwrap, unsafe, right-biased
  */
-export const expect: Expect = curry(<T>(msg: string, maybe: Maybe<T>): T => {
+export const expect: Expect = curry(<T>(msg: string, maybe: maybe<T>): T => {
   if (isJust<T>(maybe)) return maybe.value;
   throw new Error(msg);
 }, 2);

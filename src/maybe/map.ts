@@ -1,11 +1,11 @@
-import type { Maybe } from '.';
-import { nothing, Just } from '.';
+import type { maybe } from './Maybe.gen';
+import { nothing, just } from './Maybe.gen';
 import { curry } from '../fn/curry';
 import { isJust } from './is-just';
 
 export type Map = {
-  <T, U>(mapFn: (value: T) => U): { (maybe: Maybe<T>): Maybe<U> };
-  <T, U>(mapFn: (value: T) => U, maybe: Maybe<T>): Maybe<U>;
+  <T, U>(mapFn: (value: T) => U): { (maybe: maybe<T>): maybe<U> };
+  <T, U>(mapFn: (value: T) => U, maybe: maybe<T>): maybe<U>;
 };
 
 /**
@@ -49,8 +49,8 @@ export type Map = {
  * @tags maybe, transform, transform-value, right-biased
  */
 export const map: Map = curry(
-  <T, U>(mapFn: (value: T) => U, maybe: Maybe<T>): Maybe<U> => {
-    return isJust<T>(maybe) ? new Just(mapFn(maybe.value)) : nothing;
+  <T, U>(mapFn: (value: T) => U, maybe: maybe<T>): maybe<U> => {
+    return isJust<T>(maybe) ? new just(mapFn(maybe.value)) : nothing;
   },
   2,
 );

@@ -1,4 +1,4 @@
-import type { Maybe } from '.';
+import type { maybe } from './Maybe.gen';
 import { isJust } from './is-just';
 
 /**
@@ -37,7 +37,7 @@ import { isJust } from './is-just';
  *
  * @tags maybe, unwrap, right-biased, unsafe
  */
-export function unwrap<T>(maybe: Maybe<T>): T {
+export function unwrap<T>(maybe: maybe<T>): T {
   if (isJust<T>(maybe)) return maybe.value;
   throw new Error('Called `Maybe.unwrap()` on a `Nothing` value');
 }

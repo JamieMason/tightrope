@@ -1,12 +1,12 @@
-import type { Maybe } from '.';
+import type { maybe } from './Maybe.gen';
 import { curry } from '../fn/curry';
 import type { Result } from '../result';
 import { Err, Ok } from '../result';
 import { isJust } from './is-just';
 
 export type OkOrElse = {
-  <T, E>(orElseFn: () => E): { (maybe: Maybe<T>): Result<T, E> };
-  <T, E>(orElseFn: () => E, maybe: Maybe<T>): Result<T, E>;
+  <T, E>(orElseFn: () => E): { (maybe: maybe<T>): Result<T, E> };
+  <T, E>(orElseFn: () => E, maybe: maybe<T>): Result<T, E>;
 };
 
 /**
@@ -54,7 +54,7 @@ export type OkOrElse = {
  * @tags maybe, transform, result
  */
 export const okOrElse: OkOrElse = curry(
-  <T, E>(orElseFn: () => E, maybe: Maybe<T>): Result<T, E> => {
+  <T, E>(orElseFn: () => E, maybe: maybe<T>): Result<T, E> => {
     return isJust<T>(maybe) ? new Ok(maybe.value) : new Err(orElseFn());
   },
   2,

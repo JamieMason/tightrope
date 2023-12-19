@@ -1,4 +1,4 @@
-import { nothing } from '.';
+import { nothing } from './Maybe.gen';
 import { curry } from '../fn/curry';
 import type { AnyOption } from '../fn/types';
 import { isJust } from './is-just';

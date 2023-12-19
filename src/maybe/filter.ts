@@ -1,5 +1,5 @@
-import type { Maybe } from '.';
-import { nothing } from '.';
+import type { maybe } from './Maybe.gen';
+import { nothing } from './Maybe.gen';
 import { curry } from '../fn/curry';
 import type { AnyOption } from '../fn/types';
 import { isJust } from './is-just';
@@ -11,7 +11,7 @@ export type Filter = {
     O = Fn extends (value: any) => value is infer O ? O : never,
   >(
     predicate: Fn,
-  ): { (opt: I): Maybe<O> };
+  ): { (opt: I): maybe<O> };
   <
     Fn extends (value: any) => value is any,
     I extends AnyOption,
@@ -19,7 +19,7 @@ export type Filter = {
   >(
     predicate: Fn,
     opt: I,
-  ): Maybe<O>;
+  ): maybe<O>;
 };
 
 /**
@@ -36,6 +36,6 @@ export const filter: Filter = curry(
   >(
     predicate: Fn,
     opt: I,
-  ): Maybe<O> => (isJust<O>(opt) && predicate(opt.value) ? opt : nothing),
+  ): maybe<O> => (isJust<O>(opt) && predicate(opt.value) ? opt : nothing),
   2,
 );

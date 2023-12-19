@@ -1,9 +1,9 @@
 import { expect, it } from 'vitest';
-import { nothing, Just } from '.';
+import { nothing, just } from './Maybe.gen';
 import { unwrapOr } from './unwrap-or';
 
 it('unwrapOr should return the value when Just is provided', () => {
-  const someValue = new Just(5);
+  const someValue = new just(5);
   const result = unwrapOr(10, someValue);
   expect(result).toEqual(5);
 });

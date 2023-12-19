@@ -1,5 +1,5 @@
 import { expect, it } from 'vitest';
-import { nothing, Just } from '.';
+import { nothing, just } from './Maybe.gen';
 import { isNothing } from './is-nothing';
 
 it('positive case - Nothing object', () => {
@@ -7,7 +7,7 @@ it('positive case - Nothing object', () => {
 });
 
 it('negative case - Just object', () => {
-  expect(isNothing(new Just(false))).toBe(false);
+  expect(isNothing(new just(false))).toBe(false);
 });
 
 it('negative case - non-maybe object', () => {

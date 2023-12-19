@@ -1,10 +1,10 @@
-import type { Maybe } from '.';
+import type { maybe } from './Maybe.gen';
 import { curry } from '../fn/curry';
 import { isJust } from './is-just';
 
 export type UnwrapOr = {
-  <T>(defaultValue: T): { (maybe: Maybe<T>): T };
-  <T>(defaultValue: T, maybe: Maybe<T>): T;
+  <T>(defaultValue: T): { (maybe: maybe<T>): T };
+  <T>(defaultValue: T, maybe: maybe<T>): T;
 };
 
 /**
@@ -47,7 +47,7 @@ export type UnwrapOr = {
  * @tags maybe, unwrap, transform, transform-maybe, recover, errors, left-biased
  */
 export const unwrapOr: UnwrapOr = curry(
-  <T>(defaultValue: T, maybe: Maybe<T>): T => {
+  <T>(defaultValue: T, maybe: maybe<T>): T => {
     return isJust<T>(maybe) ? maybe.value : defaultValue;
   },
   2,

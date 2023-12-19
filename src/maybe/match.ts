@@ -1,4 +1,4 @@
-import type { Maybe } from '.';
+import type { maybe } from './Maybe.gen';
 import { isNothing } from './is-nothing';
 import { isJust } from './is-just';
 
@@ -46,7 +46,7 @@ export const match = <JustT, Next>(cases: {
   Just(value: JustT): Next;
   Nothing(): Next;
 }) => {
-  return (maybe: Maybe<JustT>): Next => {
+  return (maybe: maybe<JustT>): Next => {
     for (const key in cases) {
       if (key === 'Just' && isJust<JustT>(maybe)) {
         return cases[key](maybe.value);

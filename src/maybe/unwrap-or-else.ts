@@ -1,10 +1,10 @@
-import type { Maybe } from '.';
+import type { maybe } from './Maybe.gen';
 import { curry } from '../fn/curry';
 import { isJust } from './is-just';
 
 export type UnwrapOrElse = {
-  <T>(orElseFn: () => T): { (maybe: Maybe<T>): T };
-  <T>(orElseFn: () => T, maybe: Maybe<T>): T;
+  <T>(orElseFn: () => T): { (maybe: maybe<T>): T };
+  <T>(orElseFn: () => T, maybe: maybe<T>): T;
 };
 
 /**
@@ -50,7 +50,7 @@ export type UnwrapOrElse = {
  * @tags maybe, unwrap, transform, transform-maybe, errors, left-biased
  */
 export const unwrapOrElse: UnwrapOrElse = curry(
-  <T>(orElseFn: () => T, maybe: Maybe<T>): T => {
+  <T>(orElseFn: () => T, maybe: maybe<T>): T => {
     return isJust<T>(maybe) ? maybe.value : orElseFn();
   },
   2,
