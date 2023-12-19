@@ -1,19 +1,19 @@
 import { expect, it } from 'vitest';
-import { isNone } from '../option/is-none';
-import { isSome } from '../option/is-some';
-import { unwrap } from '../option/unwrap';
 import { Err, Ok } from '.';
 import { ok } from './ok';
+import { isJust } from '../maybe/is-just';
+import { unwrap } from '../maybe/unwrap';
+import { isNothing } from '../maybe/is-nothing';
 
-it('transforms an Ok to a Some', () => {
+it('transforms an Ok to a Just', () => {
   const result = new Ok(42);
-  const option = ok(result);
-  expect(isSome(option)).toBe(true);
-  expect(unwrap(option)).toBe(42);
+  const maybe = ok(result);
+  expect(isJust(maybe)).toBe(true);
+  expect(unwrap(maybe)).toBe(42);
 });
 
-it('transforms an Err to a None', () => {
+it('transforms an Err to a Nothing', () => {
   const result = new Err('error message');
-  const option = ok(result);
-  expect(isNone(option)).toBe(true);
+  const maybe = ok(result);
+  expect(isNothing(maybe)).toBe(true);
 });

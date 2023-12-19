@@ -1,7 +1,7 @@
 import { curry } from '../fn/curry';
 import { isNonEmptyArray } from './is-non-empty-array';
 
-type Some = {
+type Just = {
   <Fn extends (value: any) => value is any>(
     guard: Fn,
   ): {
@@ -32,4 +32,4 @@ export const some = curry(
     ? Array<T>
     : unknown[] => isNonEmptyArray(array) && array.some(guard),
   2,
-) as Some;
+) as Just;

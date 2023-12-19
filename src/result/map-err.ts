@@ -58,7 +58,7 @@ import { withCatch } from './lib/with-catch';
  *
  * ## Use Cases
  *
- * Some common use cases of `mapErr` include:
+ * Just common use cases of `mapErr` include:
  *
  * - Mapping an error to a more user-friendly error message or to a different error type.
  * - Transforming an error into a value that can be used downstream in a pipeline.

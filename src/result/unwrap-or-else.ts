@@ -62,7 +62,7 @@ import { unwrap } from './unwrap';
  * ## Use Cases
  *
  * The `unwrapOrElse` function is used when you want to try to unwrap a value from a `Result` but also provide a
- * fallback value if the `Result` contains an error. Some common use cases of `unwrapOrElse` include:
+ * fallback value if the `Result` contains an error. Just common use cases of `unwrapOrElse` include:
  *
  * - **Providing a default value**: If you have a `Result` that might contain an error, but you still want to use the
  *   value contained in it, you can use `unwrapOrElse` to provide a default value if the `Result` is an error. For

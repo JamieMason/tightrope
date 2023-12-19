@@ -1,4 +1,4 @@
-import type { Option } from '../option';
+import type { Maybe } from '../maybe';
 import type { Err, Ok, Result } from '../result';
 
 /** Misc Object */
@@ -76,8 +76,8 @@ export type ResErr<R> = R extends Err<infer T>
       ? X
       : never;
 
-/** An Option containing anything */
-export type AnyOption = Option<any>;
+/** An Maybe containing anything */
+export type AnyOption = Maybe<any>;
 
 /** A Result containing anything */
 export type AnyResult = Result<any, any>;
@@ -94,5 +94,5 @@ export type AnyOk = Ok<any>;
 /** An Err containing anything */
 export type AnyErr = Err<any>;
 
-/** Get value type of an Option */
-export type OptionType<T> = T extends Option<infer V> ? V : never;
+/** Get value type of an Maybe */
+export type OptionType<T> = T extends Maybe<infer V> ? V : never;
