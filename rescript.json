@@ -1,0 +1,28 @@
+{
+  "gentypeconfig": {
+    "language": "typescript",
+    "module": "es6",
+    "importPath": "relative",
+    "generatedFileExtension": ".gen.ts",
+    "shims": {},
+    "debug": {
+      "all": false
+    },
+    "exportInterfaces": true
+  },
+  "name": "tightrope",
+  "bsc-flags": ["-open RescriptCore"],
+  "bs-dependencies": ["@rescript/core"],
+  "sources": [
+    {
+      "dir": "src/rescript",
+      "subdirs": true
+    }
+  ],
+  "uncurried": true,
+  "package-specs": {
+    "module": "es6",
+    "in-source": true
+  },
+  "suffix": ".bs.js"
+}

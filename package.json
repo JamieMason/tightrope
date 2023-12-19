@@ -12,10 +12,12 @@
     "eslint": "8.56.0",
     "eslint-plugin-import": "2.29.1",
     "fast-check": "3.15.0",
+    "gentype": "4.5.0",
     "glob": "10.3.10",
     "organize-imports-cli": "0.10.0",
     "prettier": "3.1.1",
     "prettier-plugin-jsdoc": "1.1.1",
+    "rescript": "11.0.0-rc.7",
     "terser": "5.26.0",
     "ts-morph": "21.0.1",
     "tsx": "4.6.2",
@@ -34,8 +36,8 @@
   "repository": "JamieMason/tightrope",
   "scripts": {
     "build": "rm -rf dist && npm run build:esm && npm run build:compress",
-    "build:esm": "tsc --project tsconfig-esm.json",
     "build:compress": "node ./scripts/compress.js",
+    "build:esm": "tsc --project tsconfig-esm.json",
     "find-curried-functions-without-arity": "tsx scripts/find-curried-functions-without-arity.ts",
     "format": "npm run format:imports && npm run format:lint && npm run format:source",
     "format:imports": "organize-imports-cli {scripts,src,test}/**/*.ts",
@@ -47,8 +49,13 @@
     "lint": "eslint --ext .ts .",
     "package": "npm run build && cd dist && npm pack",
     "prepack": "echo 'Publish from ./dist'; exit 1",
+    "res:build": "rescript",
+    "res:dev": "rescript build -w",
     "test": "vitest run --coverage src",
     "test:watch": "vitest run --no-coverage --watch"
   },
-  "type": "module"
+  "type": "module",
+  "dependencies": {
+    "@rescript/core": "0.6.0"
+  }
 }
