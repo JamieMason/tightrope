@@ -1,6 +1,6 @@
-import type { Result } from '.';
-import { Err } from '.';
-import { isOk } from './is-ok';
+import type { Result } from './index.js';
+import { Err } from './index.js';
+import { isOk } from './is-ok.js';
 
 /**
  * Same as `flatMap` or `chain`, transform a `Result` with the value of another.

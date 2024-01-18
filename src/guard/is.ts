@@ -1,4 +1,4 @@
-import { curry } from '../fn/curry';
+import { curry } from '../fn/curry.js';
 
 export type Is = {
   <T>(b: T): { (a: unknown): boolean };

@@ -1,10 +1,12 @@
-import { curry } from '../fn/curry';
-import type { AnyResult, ResErr, ResOk, ResultUnion } from '../fn/types';
-import { isErr } from './is-err';
-import { isOk } from './is-ok';
+import { curry } from '../fn/curry.js';
+import type { AnyResult, ResErr, ResOk, ResultUnion } from '../fn/types.js';
+import { isErr } from './is-err.js';
+import { isOk } from './is-ok.js';
 
 export type And = {
-  <ResultB extends AnyResult>(b: ResultB): {
+  <ResultB extends AnyResult>(
+    b: ResultB,
+  ): {
     <ResultA extends AnyResult>(a: ResultA): ResultUnion<ResultB, ResultA>;
   };
   <ResultB extends AnyResult, ResultA extends AnyResult>(

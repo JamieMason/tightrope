@@ -1,4 +1,4 @@
-import type { Gen, GenYield } from '../fn/types';
+import type { Gen, GenYield } from '../fn/types.js';
 
 /**
  * Consume a generator and `yield` only the final result.

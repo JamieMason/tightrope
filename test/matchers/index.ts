@@ -1,4 +1,4 @@
-import type { AnyGuard } from '../../src/fn/types';
+import type { AnyGuard } from '../../src/fn/types.js';
 import './to-be-err-of';
 import './to-be-ok-of';
 import './to-pass-guard';

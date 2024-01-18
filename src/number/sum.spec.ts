@@ -1,5 +1,5 @@
 import { expect, it } from 'vitest';
-import { sum } from './sum';
+import { sum } from './sum.js';
 
 it('returns the sum of two positive numbers', () => {
   const addFive = sum(5);

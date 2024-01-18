@@ -1,5 +1,5 @@
 import { expect, it } from 'vitest';
-import { square } from './square';
+import { square } from './square.js';
 
 it('returns the square of a positive number', () => {
   expect(square(3)).toBe(9);

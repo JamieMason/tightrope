@@ -1,5 +1,5 @@
-import { curry } from '../fn/curry';
-import type { Gen, GenYield } from '../fn/types';
+import { curry } from '../fn/curry.js';
+import type { Gen, GenYield } from '../fn/types.js';
 
 export type Skip = {
   <T extends Gen<any>>(num: number): { (gen: T): Gen<GenYield<T>> };
@@ -59,5 +59,4 @@ export const skip: Skip = curry(function* skip<T extends Gen<any>>(
       yield value;
     }
   }
-},
-2);
+}, 2);

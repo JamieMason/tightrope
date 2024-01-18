@@ -11,10 +11,10 @@ import type {
   TypeParameterDeclaration,
 } from 'ts-morph';
 import { SyntaxKind } from 'ts-morph';
-import { isCalculable } from '../../src/guard/is-calculable';
-import { getCallExpressionsByName } from '../lib/get-call-expressions-by-name';
-import { getExportedName } from '../lib/get-exported-name';
-import { getJsDocs } from '../lib/get-js-docs';
+import { isCalculable } from '../../src/guard/is-calculable.js';
+import { getCallExpressionsByName } from '../lib/get-call-expressions-by-name.js';
+import { getExportedName } from '../lib/get-exported-name.js';
+import { getJsDocs } from '../lib/get-js-docs.js';
 
 export interface CurriedFunction {
   args: ParameterDeclaration[];

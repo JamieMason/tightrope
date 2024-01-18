@@ -1,5 +1,5 @@
 import { expect, it } from 'vitest';
-import { hasType } from './has-type';
+import { hasType } from './has-type.js';
 
 it('positive case for string', () => {
   expect(hasType('String', 'hello')).toBe(true);

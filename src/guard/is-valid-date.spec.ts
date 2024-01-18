@@ -1,5 +1,5 @@
 import { expect, it } from 'vitest';
-import { isValidDate } from './is-valid-date';
+import { isValidDate } from './is-valid-date.js';
 
 it('positive case', () => {
   expect(isValidDate(new Date())).toBe(true);

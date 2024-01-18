@@ -1,5 +1,5 @@
-import type { Result } from '.';
-import { isResult } from './is-result';
+import type { Result } from './index.js';
+import { isResult } from './is-result.js';
 
 /**
  * Replace nested Results with one `Result` of the innermost value.

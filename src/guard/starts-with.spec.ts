@@ -1,5 +1,5 @@
 import { expect, it } from 'vitest';
-import { startsWith } from './starts-with';
+import { startsWith } from './starts-with.js';
 
 it('positive case', () => {
   expect(startsWith('start', 'start-example')).toBe(true);

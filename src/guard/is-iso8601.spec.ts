@@ -1,5 +1,5 @@
 import { expect, it } from 'vitest';
-import { isIso8601 } from './is-iso8601';
+import { isIso8601 } from './is-iso8601.js';
 
 it('positive case - date', () => {
   expect(isIso8601('1999-12-31')).toBe(true);

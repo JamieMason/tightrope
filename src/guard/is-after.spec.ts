@@ -1,5 +1,5 @@
 import { expect, it } from 'vitest';
-import { isAfter } from './is-after';
+import { isAfter } from './is-after.js';
 
 const date1 = new Date(2023, 3, 1);
 const date2 = new Date(2023, 3, 2);

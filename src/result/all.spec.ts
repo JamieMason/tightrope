@@ -1,7 +1,7 @@
 import { expect, it } from 'vitest';
-import type { Result } from '.';
-import { Err, Ok } from '.';
-import { all } from './all';
+import type { Result } from './index.js';
+import { Err, Ok } from './index.js';
+import { all } from './all.js';
 
 it('all returns Ok with an array of values when all input Results are Ok', () => {
   const results = [new Ok(1), new Ok(2), new Ok(3)];

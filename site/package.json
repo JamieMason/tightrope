@@ -26,7 +26,7 @@
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "ts-morph": "17.0.1",
-    "ts-node": "10.9.1",
+    "tsx": "4.6.2",
     "typescript": "4.7.4"
   },
   "engines": {
@@ -38,7 +38,7 @@
     "clear": "docusaurus clear",
     "deploy": "docusaurus deploy",
     "docusaurus": "docusaurus",
-    "prebuild": "rm -rf docs/api && ts-node scripts/generate-api-docs.ts",
+    "prebuild": "rm -rf docs/api && tsx scripts/generate-api-docs.ts",
     "serve": "docusaurus serve",
     "start": "docusaurus start",
     "swizzle": "docusaurus swizzle",

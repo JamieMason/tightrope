@@ -1,4 +1,4 @@
-import type { AnyFn } from './types';
+import type { AnyFn } from './types.js';
 
 /**
  * Creates a function which pipes its input through a sequence of functions in left-to-right order.

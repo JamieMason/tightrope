@@ -1,5 +1,5 @@
-import { isCalculable } from './is-calculable';
-import { isString } from './is-string';
+import { isCalculable } from './is-calculable.js';
+import { isString } from './is-string.js';
 
 /**
  * Asserts that a value is a `String` of valid JSON.

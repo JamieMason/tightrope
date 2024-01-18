@@ -1,7 +1,7 @@
 import { expect, it } from 'vitest';
-import { Err, Ok } from '.';
-import { pipe } from '../fn/pipe';
-import { unwrapOrElse } from './unwrap-or-else';
+import { Err, Ok } from './index.js';
+import { pipe } from '../fn/pipe.js';
+import { unwrapOrElse } from './unwrap-or-else.js';
 
 it('returns wrapped value when Ok', () => {
   expect(

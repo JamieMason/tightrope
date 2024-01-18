@@ -1,11 +1,11 @@
 import { expect, it, vi } from 'vitest';
 import '../../test/matchers';
-import { pipe } from '../fn/pipe';
-import { isEvenNumber } from '../guard/is-even-number';
-import { multiply } from '../number/multiply';
-import { filter } from './filter';
-import { map } from './map';
-import { range } from './range';
+import { pipe } from '../fn/pipe.js';
+import { isEvenNumber } from '../guard/is-even-number.js';
+import { multiply } from '../number/multiply.js';
+import { filter } from './filter.js';
+import { map } from './map.js';
+import { range } from './range.js';
 
 it('filters values and short-circuits on values failing guard', () => {
   const $isEvenNumber = vi.fn(isEvenNumber);

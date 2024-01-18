@@ -1,5 +1,5 @@
-import { curry } from '../fn/curry';
-import { isDate } from './is-date';
+import { curry } from '../fn/curry.js';
+import { isDate } from './is-date.js';
 
 type IsAfter = {
   (otherDate: Date): { (date: Date): boolean };

@@ -1,8 +1,8 @@
 import { expect, it } from 'vitest';
 import '../../test/matchers';
-import { pipe } from '../fn/pipe';
-import type { Gen } from '../fn/types';
-import { split } from './split';
+import { pipe } from '../fn/pipe.js';
+import type { Gen } from '../fn/types.js';
+import { split } from './split.js';
 
 it('collects a string yielded by a generator and yields split portions of it', () => {
   function* stringOverTime(): Gen<string> {

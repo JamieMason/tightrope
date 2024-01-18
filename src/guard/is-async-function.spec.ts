@@ -1,5 +1,5 @@
 import { expect, it } from 'vitest';
-import { isAsyncFunction } from './is-async-function';
+import { isAsyncFunction } from './is-async-function.js';
 
 it('positive case - async function', () => {
   const asyncFn = async () => undefined;

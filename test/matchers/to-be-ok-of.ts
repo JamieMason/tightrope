@@ -1,6 +1,6 @@
 import { expect } from 'vitest';
-import { Ok } from '../../src/result';
-import { isOk } from '../../src/result/is-ok';
+import { Ok } from '../../src/result/index.js';
+import { isOk } from '../../src/result/is-ok.js';
 
 expect.extend({
   toBeOkOf(actual: any, expected: any) {

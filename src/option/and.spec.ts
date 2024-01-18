@@ -1,24 +1,30 @@
 import { expect, it } from 'vitest';
-import { none, Some } from '.';
-import { pipe } from '../fn/pipe';
-import { and } from './and';
+import type { Option } from './index.js';
+import { none, Some } from './index.js';
+import { pipe } from '../fn/pipe.js';
+import { and } from './and.js';
 
 it('returns None when Some && None', () => {
   const a = new Some(1);
-  expect(pipe(a, and(none))).toEqual(none);
+  const b = none;
+  expect(pipe(a, and(b))).toEqual(none);
 });
 
 it('returns None when None && Some', () => {
+  const a = none;
   const b = new Some(1);
-  expect(pipe(none, and(b))).toEqual(none);
+  expect(pipe(a, and(b))).toEqual(none);
 });
 
 it('returns None when None && None', () => {
-  expect(pipe(none, and(none))).toEqual(none);
+  const a = none;
+  const b = none;
+  expect(pipe(a, and(b))).toEqual(none);
 });
 
 it('returns Some when Some && Some', () => {
   const a = new Some(1);
-  const b = new Some(2);
-  expect(pipe(a, and(b))).toEqual(b);
+  const b = new Some('hello');
+  const output = pipe(a, and(b));
+  expect<Option<string>>(output).toEqual(b);
 });

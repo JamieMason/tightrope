@@ -1,5 +1,5 @@
 import { expect, it } from 'vitest';
-import { isFunction } from './is-function';
+import { isFunction } from './is-function.js';
 
 it('positive case - regular function', () => {
   const fn = function () {

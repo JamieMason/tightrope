@@ -1,5 +1,5 @@
-import type { Option } from '.';
-import { isSome } from './is-some';
+import type { Option } from './index.js';
+import { isSome } from './is-some.js';
 
 /**
  * Transforms `Some(v)` to `v`, or throws an error on a `None`.

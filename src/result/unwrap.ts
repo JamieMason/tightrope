@@ -1,5 +1,5 @@
-import type { Result } from '.';
-import { isOk } from './is-ok';
+import type { Result } from './index.js';
+import { isOk } from './is-ok.js';
 
 /**
  * Extract value from an `Ok` or throw on an `Err`.

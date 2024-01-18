@@ -1,7 +1,7 @@
 import { expect, it } from 'vitest';
-import { none, Some } from '.';
-import { Err, Ok } from '../result';
-import { okOrElse } from './ok-or-else';
+import { none, Some } from './index.js';
+import { Err, Ok } from '../result/index.js';
+import { okOrElse } from './ok-or-else.js';
 
 it('okOrElse should return Ok with the value of Some when Some is provided', () => {
   const someValue = new Some(5);

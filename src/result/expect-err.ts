@@ -1,5 +1,5 @@
-import type { Result } from '.';
-import { isOk } from './is-ok';
+import type { Result } from './index.js';
+import { isOk } from './is-ok.js';
 
 /**
  * A higher-order function that takes a message and returns a function that can be used to assert that a given `Result`

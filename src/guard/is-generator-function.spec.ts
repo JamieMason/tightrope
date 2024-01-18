@@ -1,5 +1,5 @@
 import { expect, it } from 'vitest';
-import { isGeneratorFunction } from './is-generator-function';
+import { isGeneratorFunction } from './is-generator-function.js';
 
 function* generatorExample() {
   yield 1;

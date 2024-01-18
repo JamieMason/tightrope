@@ -1,4 +1,4 @@
-import type { Gen } from '../fn/types';
+import type { Gen } from '../fn/types.js';
 
 /**
  * Create a generator which will `yield` a sequence of numbers.

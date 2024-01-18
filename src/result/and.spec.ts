@@ -1,7 +1,7 @@
 import { expect, it } from 'vitest';
-import { Err, Ok } from '.';
-import { pipe } from '../fn/pipe';
-import { and } from './and';
+import { Err, Ok } from './index.js';
+import { pipe } from '../fn/pipe.js';
+import { and } from './and.js';
 
 it('returns Err when Ok && Err', () => {
   const a = new Ok(1);

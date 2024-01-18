@@ -1,8 +1,8 @@
 import { expect, it } from 'vitest';
-import type { Result } from '.';
-import { Err, Ok } from '.';
-import { pipe } from '../fn/pipe';
-import { match } from './match';
+import type { Result } from './index.js';
+import { Err, Ok } from './index.js';
+import { pipe } from '../fn/pipe.js';
+import { match } from './match.js';
 
 it('returns the first case which is true', () => {
   (

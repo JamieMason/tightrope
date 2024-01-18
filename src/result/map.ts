@@ -1,7 +1,7 @@
-import type { Result } from '.';
-import { Ok } from '.';
-import { isOk } from './is-ok';
-import { withCatch } from './lib/with-catch';
+import type { Result } from './index.js';
+import { Ok } from './index.js';
+import { isOk } from './is-ok.js';
+import { withCatch } from './lib/with-catch.js';
 
 /**
  * Transform the value inside the `Ok` variant of a `Result`.

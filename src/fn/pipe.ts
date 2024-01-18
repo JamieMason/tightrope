@@ -1,4 +1,4 @@
-import type { AnyFn } from './types';
+import type { AnyFn } from './types.js';
 
 /**
  * Takes a value and passes it through a sequence of functions in left-to-right order.

@@ -1,5 +1,5 @@
 import { expect, it } from 'vitest';
-import { isFalse } from './is-false';
+import { isFalse } from './is-false.js';
 
 it('positive case', () => {
   expect(isFalse(false)).toBe(true);

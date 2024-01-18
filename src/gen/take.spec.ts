@@ -1,10 +1,10 @@
 import { expect, it, vi } from 'vitest';
 import '../../test/matchers';
-import { pipe } from '../fn/pipe';
-import { multiply } from '../number/multiply';
-import { map } from './map';
-import { range } from './range';
-import { take } from './take';
+import { pipe } from '../fn/pipe.js';
+import { multiply } from '../number/multiply.js';
+import { map } from './map.js';
+import { range } from './range.js';
+import { take } from './take.js';
 
 it('takes the first n elements of a generator and short-circuits', () => {
   const $double = vi.fn(multiply(2));

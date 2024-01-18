@@ -1,7 +1,7 @@
-import type { Result } from '.';
-import { Err } from '.';
-import { isErr } from './is-err';
-import { withCatch } from './lib/with-catch';
+import type { Result } from './index.js';
+import { Err } from './index.js';
+import { isErr } from './is-err.js';
+import { withCatch } from './lib/with-catch.js';
 
 /**
  * Transform the value inside the `Err` variant of a `Result`.

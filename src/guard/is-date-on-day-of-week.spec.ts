@@ -1,5 +1,5 @@
 import { expect, it } from 'vitest';
-import { isDateOnDayOfWeek } from './is-date-on-day-of-week';
+import { isDateOnDayOfWeek } from './is-date-on-day-of-week.js';
 
 it('positive case', () => {
   const date = new Date('2023-04-02'); // Sunday

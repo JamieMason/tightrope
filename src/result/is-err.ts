@@ -1,4 +1,4 @@
-import { Err } from '.';
+import { Err } from './index.js';
 
 /**
  * Check if value is an instance of the `Err` class.

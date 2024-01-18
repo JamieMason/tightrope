@@ -1,5 +1,5 @@
-import { curry } from './curry';
-import type { AnyFn } from './types';
+import { curry } from './curry.js';
+import type { AnyFn } from './types.js';
 
 export type Tap = {
   <Fn extends AnyFn>(fn: Fn): { <T>(value: T): T };
@@ -13,5 +13,4 @@ export const tap: Tap = curry(function tap<T, Fn extends AnyFn>(
 ): T {
   fn(value);
   return value;
-},
-2);
+}, 2);

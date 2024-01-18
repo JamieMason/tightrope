@@ -1,5 +1,5 @@
 import { expect, it } from 'vitest';
-import { isJsonString } from './is-json-string';
+import { isJsonString } from './is-json-string.js';
 
 it('positive case - simple object', () => {
   expect(isJsonString('{"key": "value"}')).toBe(true);

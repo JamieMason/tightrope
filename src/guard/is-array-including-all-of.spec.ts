@@ -1,5 +1,5 @@
 import { expect, it } from 'vitest';
-import { isArrayIncludingAllOf } from './is-array-including-all-of';
+import { isArrayIncludingAllOf } from './is-array-including-all-of.js';
 
 const requiredValues = [1, 2, 3];
 const array1 = [1, 2, 3, 4, 5];

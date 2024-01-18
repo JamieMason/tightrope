@@ -1,5 +1,5 @@
 import { expect, it } from 'vitest';
-import { isDateInYear } from './is-date-in-year';
+import { isDateInYear } from './is-date-in-year.js';
 
 it('positive case', () => {
   const date = new Date('2021-01-15');

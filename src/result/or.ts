@@ -1,5 +1,5 @@
-import type { AnyResult, ResultUnion } from '../fn/types';
-import { isErr } from './is-err';
+import type { AnyResult, ResultUnion } from '../fn/types.js';
+import { isErr } from './is-err.js';
 
 /**
  * Like the `||` operator, but applied to `Result` types.

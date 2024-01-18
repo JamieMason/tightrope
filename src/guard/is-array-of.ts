@@ -1,6 +1,6 @@
-import { curry } from '../fn/curry';
-import type { UnaryGuard } from '../fn/types';
-import { isNonEmptyArray } from './is-non-empty-array';
+import { curry } from '../fn/curry.js';
+import type { UnaryGuard } from '../fn/types.js';
+import { isNonEmptyArray } from './is-non-empty-array.js';
 
 type IsArrayOf = {
   (guard: UnaryGuard): { (values: unknown): boolean };

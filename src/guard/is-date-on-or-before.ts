@@ -1,6 +1,6 @@
-import { curry } from '../fn/curry';
-import { isDate } from './is-date';
-import { isLessThanOrEqualTo } from './is-less-than-or-equal-to';
+import { curry } from '../fn/curry.js';
+import { isDate } from './is-date.js';
+import { isLessThanOrEqualTo } from './is-less-than-or-equal-to.js';
 
 type IsDateOnOrBefore = {
   (other: unknown): { (value: unknown): boolean };

@@ -1,8 +1,8 @@
 import type { JsonArray, JsonObject, JsonValue } from 'type-fest';
-import { isBoolean } from './is-boolean';
-import { isNil } from './is-nil';
-import { isNumber } from './is-number';
-import { isString } from './is-string';
+import { isBoolean } from './is-boolean.js';
+import { isNil } from './is-nil.js';
+import { isNumber } from './is-number.js';
+import { isString } from './is-string.js';
 
 type Primitive = null | undefined | number | string | boolean;
 

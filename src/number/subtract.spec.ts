@@ -1,5 +1,5 @@
 import { expect, it } from 'vitest';
-import { subtract } from './subtract';
+import { subtract } from './subtract.js';
 
 it('returns the difference of two positive numbers', () => {
   const subtractFive = subtract(5);

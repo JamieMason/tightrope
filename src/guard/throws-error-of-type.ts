@@ -1,7 +1,7 @@
-import { curry } from '../fn/curry';
-import type { AnyFn } from '../fn/types';
-import { hasType } from './has-type';
-import { isFunction } from './is-function';
+import { curry } from '../fn/curry.js';
+import type { AnyFn } from '../fn/types.js';
+import { hasType } from './has-type.js';
+import { isFunction } from './is-function.js';
 
 type ThrowsErrorOfType = {
   (typeName: string): { (value: AnyFn): boolean };

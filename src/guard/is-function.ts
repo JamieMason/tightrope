@@ -1,4 +1,4 @@
-import type { AnyFn } from '../fn/types';
+import type { AnyFn } from '../fn/types.js';
 
 /**
  * Asserts that a value is a `Function`.

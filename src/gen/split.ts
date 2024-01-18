@@ -1,5 +1,5 @@
-import { curry } from '../fn/curry';
-import type { Gen } from '../fn/types';
+import { curry } from '../fn/curry.js';
+import type { Gen } from '../fn/types.js';
 
 export type Split = {
   (char: string): { (chunks: Gen<string>): Gen<string> };
@@ -28,5 +28,4 @@ export const split: Split = curry(function* split(
   if (previous.length > 0) {
     yield previous;
   }
-},
-2);
+}, 2);

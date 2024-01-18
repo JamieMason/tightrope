@@ -1,5 +1,5 @@
 import { expect, it } from 'vitest';
-import { multiply } from './multiply';
+import { multiply } from './multiply.js';
 
 it('returns the product of two positive numbers', () => {
   const multiplyByFive = multiply(5);

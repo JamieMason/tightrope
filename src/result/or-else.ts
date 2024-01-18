@@ -1,7 +1,7 @@
-import { curry } from '../fn/curry';
-import type { AnyResult, ResErr, ResultUnion } from '../fn/types';
-import { isErr } from './is-err';
-import { withCatch } from './lib/with-catch';
+import { curry } from '../fn/curry.js';
+import type { AnyResult, ResErr, ResultUnion } from '../fn/types.js';
+import { isErr } from './is-err.js';
+import { withCatch } from './lib/with-catch.js';
 
 export type OrElse = {
   <Res extends AnyResult, NextRes extends AnyResult>(

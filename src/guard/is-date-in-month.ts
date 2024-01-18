@@ -1,6 +1,6 @@
-import { curry } from '../fn/curry';
-import { isDate } from './is-date';
-import { isNumber } from './is-number';
+import { curry } from '../fn/curry.js';
+import { isDate } from './is-date.js';
+import { isNumber } from './is-number.js';
 
 type IsDateInMonth = {
   (index: number): { (value: unknown): boolean };

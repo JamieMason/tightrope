@@ -1,7 +1,7 @@
-import { curry } from '../fn/curry';
-import type { AnyFn, AnyResult } from '../fn/types';
-import { isOk } from './is-ok';
-import { withCatch } from './lib/with-catch';
+import { curry } from '../fn/curry.js';
+import type { AnyFn, AnyResult } from '../fn/types.js';
+import { isOk } from './is-ok.js';
+import { withCatch } from './lib/with-catch.js';
 
 export type Tap = {
   <Fn extends AnyFn>(fn: Fn): { <T extends AnyResult>(value: T): T };

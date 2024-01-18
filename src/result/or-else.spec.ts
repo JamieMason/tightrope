@@ -1,7 +1,7 @@
 import { expect, it, vi } from 'vitest';
-import { Err, Ok } from '.';
-import { pipe } from '../fn/pipe';
-import { orElse } from './or-else';
+import { Err, Ok } from './index.js';
+import { pipe } from '../fn/pipe.js';
+import { orElse } from './or-else.js';
 
 it('returns original Ok when Ok', () => {
   expect(

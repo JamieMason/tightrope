@@ -1,5 +1,5 @@
-import type { AnyRecord } from '../fn/types';
-import { hasType } from './has-type';
+import type { AnyRecord } from '../fn/types.js';
+import { hasType } from './has-type.js';
 
 /**
  * Asserts that a value is an `Object`.

@@ -1,4 +1,5 @@
-import type { Err, Ok, Result } from '../result';
+import type { Option } from '../option/index.js';
+import type { Err, Ok, Result } from '../result/index.js';
 
 /** Misc Object */
 export type AnyRecord = Record<string | number | symbol, unknown>;
@@ -10,13 +11,27 @@ export type AnyFn = (...args: any[]) => any;
 export type AnyGuard = (...args: any[]) => boolean;
 
 /** A guard/isFoo function which accepts one argument */
-export type UnaryGuard<T = unknown> = (value: T) => boolean;
-
-/** A guard/isFoo function which accepts two arguments */
-export type BinaryGuard = (b: any, a: any) => boolean;
+export type UnaryGuard<T = unknown> = (value: T) => value is any;
 
 /** Get type of a type guard if it passes */
-export type GuardType<T> = T extends (o: any) => o is infer A ? A : never;
+export type GuardType<T> = T extends (o: any, ...rest: any) => o is infer A
+  ? A
+  : never;
+
+/** A Jasmine-like asymmetric matcher */
+export type AsymmetricMatcher<T> = {
+  asymmetricMatch(value: unknown): value is T;
+};
+
+/** A Jasmine-like asymmetric matcher */
+export type AnyAsymmetricMatcher = AsymmetricMatcher<any>;
+
+/** Get type of a Jasmine-like asymmetric matcher */
+export type AsymmetricMatcherType<T> = T extends {
+  asymmetricMatch(value: any): value is infer V;
+}
+  ? V
+  : never;
 
 /** Get type of members of an array */
 export type ArrayElement<ArrayType extends readonly unknown[]> =
@@ -47,19 +62,22 @@ export type Reducer<I, O> = (acc: O, value: I) => O;
 export type ResOk<R> = R extends Ok<infer T>
   ? T
   : R extends Err
-  ? never
-  : R extends Result<infer X>
-  ? X
-  : never;
+    ? never
+    : R extends Result<infer X>
+      ? X
+      : never;
 
 /** Get the Err value type from a Result */
 export type ResErr<R> = R extends Err<infer T>
   ? T
   : R extends Ok<any>
-  ? never
-  : R extends Result<infer X>
-  ? X
-  : never;
+    ? never
+    : R extends Result<infer X>
+      ? X
+      : never;
+
+/** An Option containing anything */
+export type AnyOption = Option<any>;
 
 /** A Result containing anything */
 export type AnyResult = Result<any, any>;
@@ -75,3 +93,6 @@ export type AnyOk = Ok<any>;
 
 /** An Err containing anything */
 export type AnyErr = Err<any>;
+
+/** Get value type of an Option */
+export type OptionType<T> = T extends Option<infer V> ? V : never;

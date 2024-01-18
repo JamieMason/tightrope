@@ -1,5 +1,5 @@
-import { every } from './every';
-import { isString } from './is-string';
+import { every } from './every.js';
+import { isString } from './is-string.js';
 
 /**
  * Asserts that a value is an `Array` containing only `String` values.

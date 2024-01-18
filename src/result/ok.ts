@@ -1,7 +1,7 @@
-import type { AnyResult, ResOk } from '../fn/types';
-import type { Option } from '../option';
-import { none, Some } from '../option';
-import { isOk } from './is-ok';
+import type { AnyResult, ResOk } from '../fn/types.js';
+import type { Option } from '../option/index.js';
+import { none, Some } from '../option/index.js';
+import { isOk } from './is-ok.js';
 
 /**
  * Transforms `Result<T, E>` into `Option<T>`, mapping `Ok(v)` to `Some(v)` and `Err(e)` to `None`.

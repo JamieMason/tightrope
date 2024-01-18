@@ -1,7 +1,7 @@
-import { curry } from '../fn/curry';
-import type { AnyResult, ResErr, ResOk } from '../fn/types';
-import { isOk } from './is-ok';
-import { withCatch } from './lib/with-catch';
+import { curry } from '../fn/curry.js';
+import type { AnyResult, ResErr, ResOk } from '../fn/types.js';
+import { isOk } from './is-ok.js';
+import { withCatch } from './lib/with-catch.js';
 
 export type MapOrElse = {
   <Res extends AnyResult, Next>(
@@ -13,8 +13,12 @@ export type MapOrElse = {
     mapErrFn: (err: ResErr<Res>) => Next,
     mapOkFn: (value: ResOk<Res>) => Next,
   ): { (result: Res): Next };
-  <Res extends AnyResult, Next>(mapErrFn: (err: ResErr<Res>) => Next): {
-    <Res extends AnyResult, Next>(mapOkFn: (value: ResOk<Res>) => Next): {
+  <Res extends AnyResult, Next>(
+    mapErrFn: (err: ResErr<Res>) => Next,
+  ): {
+    <Res extends AnyResult, Next>(
+      mapOkFn: (value: ResOk<Res>) => Next,
+    ): {
       (result: Res): Next;
     };
     <Res extends AnyResult, Next>(

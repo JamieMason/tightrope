@@ -1,5 +1,5 @@
 import { expect, it } from 'vitest';
-import { isDateOnOrBefore } from './is-date-on-or-before';
+import { isDateOnOrBefore } from './is-date-on-or-before.js';
 
 it('positive case - same date', () => {
   const date1 = new Date('2021-01-01T00:00:00.000Z');

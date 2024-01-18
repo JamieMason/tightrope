@@ -1,4 +1,4 @@
-import { isArrayOfSize } from './is-array-of-size';
+import { isArrayOfSize } from './is-array-of-size.js';
 
 /**
  * Asserts that a value is a valid `Array` containing no items.

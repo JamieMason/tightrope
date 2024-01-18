@@ -1,5 +1,5 @@
-import { isArrayOf } from './is-array-of';
-import { isBoolean } from './is-boolean';
+import { isArrayOf } from './is-array-of.js';
+import { isBoolean } from './is-boolean.js';
 
 /**
  * Asserts that a value is an `Array` containing only `Boolean` values.

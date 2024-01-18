@@ -1,5 +1,5 @@
 import { expect, it } from 'vitest';
-import { clamp } from './clamp';
+import { clamp } from './clamp.js';
 
 it('increments values below the floor', () => {
   expect(clamp(10, 20, 0)).toEqual(10);

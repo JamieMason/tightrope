@@ -1,5 +1,5 @@
-import { isDivisibleBy } from './is-divisible-by';
-import { isNumber } from './is-number';
+import { isDivisibleBy } from './is-divisible-by.js';
+import { isNumber } from './is-number.js';
 
 /**
  * Asserts that a value is an odd `Number`.

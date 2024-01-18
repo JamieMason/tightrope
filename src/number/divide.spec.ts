@@ -1,6 +1,6 @@
 import { expect, it } from 'vitest';
-import { Err, Ok } from '../result';
-import { divide } from './divide';
+import { Err, Ok } from '../result/index.js';
+import { divide } from './divide.js';
 
 it('returns the quotient of two positive numbers', () => {
   expect(divide(5, 15)).toEqual(new Ok(3));

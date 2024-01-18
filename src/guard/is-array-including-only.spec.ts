@@ -1,5 +1,5 @@
 import { expect, it } from 'vitest';
-import { isArrayIncludingOnly } from './is-array-including-only';
+import { isArrayIncludingOnly } from './is-array-including-only.js';
 
 const allowedValues = [1, 2, 3];
 const array1 = [1, 2, 3];

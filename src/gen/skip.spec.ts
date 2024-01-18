@@ -1,10 +1,10 @@
 import { expect, it, vi } from 'vitest';
 import '../../test/matchers';
-import { pipe } from '../fn/pipe';
-import { multiply } from '../number/multiply';
-import { map } from './map';
-import { range } from './range';
-import { skip } from './skip';
+import { pipe } from '../fn/pipe.js';
+import { multiply } from '../number/multiply.js';
+import { map } from './map.js';
+import { range } from './range.js';
+import { skip } from './skip.js';
 
 it('short-circuits the first n values in a series', () => {
   const $double = vi.fn(multiply(1));

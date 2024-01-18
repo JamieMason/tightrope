@@ -1,5 +1,5 @@
-import { curry } from '../fn/curry';
-import { isAfter } from './is-after';
+import { curry } from '../fn/curry.js';
+import { isAfter } from './is-after.js';
 
 type IsBefore = {
   (other: Date): { (value: Date): boolean };

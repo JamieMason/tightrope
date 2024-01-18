@@ -1,5 +1,5 @@
-import { curry } from '../fn/curry';
-import { isNumber } from './is-number';
+import { curry } from '../fn/curry.js';
+import { isNumber } from './is-number.js';
 
 type IsGreaterThanOrEqualTo = {
   (other: number): { (value: unknown): boolean };

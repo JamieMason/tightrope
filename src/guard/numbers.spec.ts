@@ -1,21 +1,21 @@
 import * as fc from 'fast-check';
 import { expect, test } from 'vitest';
 import '../../test/matchers';
-import { isArrayOfNumbers } from './is-array-of-numbers';
-import { isBoolean } from './is-boolean';
-import { isCalculable } from './is-calculable';
-import { isDecimalNumber } from './is-decimal-number';
-import { isEvenNumber } from './is-even-number';
-import { isGreaterThan } from './is-greater-than';
-import { isGreaterThanOrEqualTo } from './is-greater-than-or-equal-to';
-import { isLessThan } from './is-less-than';
-import { isLessThanOrEqualTo } from './is-less-than-or-equal-to';
-import { isNegativeNumber } from './is-negative-number';
-import { isNumber } from './is-number';
-import { isOddNumber } from './is-odd-number';
-import { isPositiveNumber } from './is-positive-number';
-import { isWholeNumber } from './is-whole-number';
-import { isWithinRange } from './is-within-range';
+import { isArrayOfNumbers } from './is-array-of-numbers.js';
+import { isBoolean } from './is-boolean.js';
+import { isCalculable } from './is-calculable.js';
+import { isDecimalNumber } from './is-decimal-number.js';
+import { isEvenNumber } from './is-even-number.js';
+import { isGreaterThan } from './is-greater-than.js';
+import { isGreaterThanOrEqualTo } from './is-greater-than-or-equal-to.js';
+import { isLessThan } from './is-less-than.js';
+import { isLessThanOrEqualTo } from './is-less-than-or-equal-to.js';
+import { isNegativeNumber } from './is-negative-number.js';
+import { isNumber } from './is-number.js';
+import { isOddNumber } from './is-odd-number.js';
+import { isPositiveNumber } from './is-positive-number.js';
+import { isWholeNumber } from './is-whole-number.js';
+import { isWithinRange } from './is-within-range.js';
 
 test('numbers', () => {
   fc.assert(

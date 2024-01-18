@@ -1,6 +1,6 @@
 import { expect, it } from 'vitest';
-import { none, Some } from '.';
-import { isNone } from './is-none';
+import { none, Some } from './index.js';
+import { isNone } from './is-none.js';
 
 it('positive case - None object', () => {
   expect(isNone(none)).toBe(true);

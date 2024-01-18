@@ -1,6 +1,6 @@
 import type { JsonValue } from 'fast-check';
-import { isNull } from './is-null';
-import { isUndefined } from './is-undefined';
+import { isNull } from './is-null.js';
+import { isUndefined } from './is-undefined.js';
 
 /**
  * Asserts that a value is safe to attempt to read property values from.

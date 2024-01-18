@@ -1,13 +1,13 @@
 import * as fc from 'fast-check';
 import { expect, test } from 'vitest';
 import '../../test/matchers';
-import { isBoolean } from './is-boolean';
-import { isEmptyString } from './is-empty-string';
-import { isJsonString } from './is-json-string';
-import { isNonEmptyString } from './is-non-empty-string';
-import { isString } from './is-string';
-import { isVisibleString } from './is-visible-string';
-import { isWhitespace } from './is-whitespace';
+import { isBoolean } from './is-boolean.js';
+import { isEmptyString } from './is-empty-string.js';
+import { isJsonString } from './is-json-string.js';
+import { isNonEmptyString } from './is-non-empty-string.js';
+import { isString } from './is-string.js';
+import { isVisibleString } from './is-visible-string.js';
+import { isWhitespace } from './is-whitespace.js';
 
 test('strings', () => {
   fc.assert(

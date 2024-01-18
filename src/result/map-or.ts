@@ -1,7 +1,7 @@
-import { curry } from '../fn/curry';
-import type { AnyResult, ResOk } from '../fn/types';
-import { isOk } from './is-ok';
-import { withCatch } from './lib/with-catch';
+import { curry } from '../fn/curry.js';
+import type { AnyResult, ResOk } from '../fn/types.js';
+import { isOk } from './is-ok.js';
+import { withCatch } from './lib/with-catch.js';
 
 export type MapOr = {
   <Next, Res extends AnyResult>(
@@ -14,7 +14,9 @@ export type MapOr = {
     mapOkFn: (value: ResOk<Res>) => Next,
   ): { (result: Res): Next };
   <Next>(defaultValue: Next): {
-    <Res extends AnyResult>(mapOkFn: (value: ResOk<Res>) => Next): {
+    <Res extends AnyResult>(
+      mapOkFn: (value: ResOk<Res>) => Next,
+    ): {
       (result: Res): Next;
     };
     <Res extends AnyResult>(

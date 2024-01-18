@@ -1,5 +1,5 @@
 import { expect, it } from 'vitest';
-import { isEvenNumber } from './is-even-number';
+import { isEvenNumber } from './is-even-number.js';
 
 it('positive case - even number', () => {
   expect(isEvenNumber(4)).toBe(true);

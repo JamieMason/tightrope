@@ -1,7 +1,7 @@
 import { expect, it } from 'vitest';
-import { Err, Ok } from '.';
-import { pipe } from '../fn/pipe';
-import { map } from './map';
+import { Err, Ok } from './index.js';
+import { pipe } from '../fn/pipe.js';
+import { map } from './map.js';
 
 it('map an Ok for another when Ok', () => {
   const a = 100;

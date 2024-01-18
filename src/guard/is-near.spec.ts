@@ -1,5 +1,5 @@
 import { expect, it } from 'vitest';
-import { isNear } from './is-near';
+import { isNear } from './is-near.js';
 
 it('positive case', () => {
   expect(isNear(5, 0.1, 5.05)).toBe(true);

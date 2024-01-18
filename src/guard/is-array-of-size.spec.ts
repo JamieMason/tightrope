@@ -1,5 +1,5 @@
 import { expect, it } from 'vitest';
-import { isArrayOfSize } from './is-array-of-size';
+import { isArrayOfSize } from './is-array-of-size.js';
 
 it('returns true when value is array of the given length', () => {
   expect(isArrayOfSize(2, [1, 2])).toEqual(true);

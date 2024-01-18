@@ -1,5 +1,5 @@
 import { expect, it } from 'vitest';
-import { isEmptyObject } from './is-empty-object';
+import { isEmptyObject } from './is-empty-object.js';
 
 it('positive case - empty object', () => {
   expect(isEmptyObject({})).toBe(true);

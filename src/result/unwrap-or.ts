@@ -1,19 +1,11 @@
-import type { Result } from '.';
-import { pipe } from '../fn/pipe';
-import { or } from './or';
-import { unwrap } from './unwrap';
+import type { AnyResult, ResOk } from '../fn/types.js';
+import { isOk } from './is-ok.js';
 
 /**
- * Extract value from an `Ok` or from a fallback `Ok` if an `Err`.
+ * Extract value from an `Ok` or use a fallback value if an `Err`.
  *
  * The `unwrapOr` function takes in a `Result` as its argument, and returns the inner `Ok` value if the input `Result`
- * is an `Ok`, or the provided fallback `Result` if the input is an `Err`.
- *
- * :::warning
- *
- * `unwrapOr` will throw if the fallback `Result` is an `Err`.
- *
- * :::
+ * is an `Ok`, or the provided fallback value if the input is an `Err`.
  *
  * ## Example
  *
@@ -29,11 +21,11 @@ import { unwrap } from './unwrap';
  *   return index === -1 ? new Err(`Could not find ${item}`) : new Ok(array[index] as T);
  * }
  *
- * const result1 = pipe(findInArray([1, 2, 3], 2), unwrapOr(new Ok(10)));
+ * const result1 = pipe(findInArray([1, 2, 3], 2), unwrapOr(10));
  * console.log(result1);
  * // Output: 2
  *
- * const result2 = pipe(findInArray([1, 2, 3], 4), unwrapOr(new Ok(10)));
+ * const result2 = pipe(findInArray([1, 2, 3], 4), unwrapOr(10));
  * console.log(result2);
  * // Output: 10
  * ```
@@ -55,13 +47,13 @@ import { unwrap } from './unwrap';
  * Overall, `unwrapOr` provides a way to handle `Result` objects in a more flexible way and handle both successful and
  * unsuccessful cases.
  *
- * @tags result, unwrap, transform, transform-result, recover, errors, left-biased
+ * @tags result, unwrap, transform, transform-result, recover, errors
  * @see https://doc.rust-lang.org/core/result/enum.Result.html#method.unwrap_or
  * @see https://jamiemason.github.io/tightrope/api/result/unwrap-or-else
  * @see https://jamiemason.github.io/tightrope/api/result/unwrap
  * @see https://jamiemason.github.io/tightrope/api/result/match
  */
-export function unwrapOr<NextOk>(nextRes: Result<NextOk>) {
-  return <OkT>(result: Result<OkT>): OkT | NextOk | never =>
-    pipe(result, or(nextRes), unwrap<OkT | NextOk>);
+export function unwrapOr<D>(defaultValue: D) {
+  return <T extends AnyResult>(result: T): ResOk<T> | D =>
+    isOk<ResOk<T>>(result) ? result.value : defaultValue;
 }

@@ -1,7 +1,7 @@
 import { expect, it } from 'vitest';
-import { Err, Ok } from '.';
-import { pipe } from '../fn/pipe';
-import { mapErr } from './map-err';
+import { Err, Ok } from './index.js';
+import { pipe } from '../fn/pipe.js';
+import { mapErr } from './map-err.js';
 
 it('map an Err for another when Err', () => {
   const a = new Error('Error: A');

@@ -1,7 +1,7 @@
-import type { Result } from '.';
-import { Ok } from '.';
-import type { AnyResult, ResErr, ResOk } from '../fn/types';
-import { isOk } from './is-ok';
+import type { Result } from './index.js';
+import { Ok } from './index.js';
+import type { AnyResult, ResErr, ResOk } from '../fn/types.js';
+import { isOk } from './is-ok.js';
 
 /**
  * Takes an array of `Result` values and returns a `Result` containing an array of `Ok` values if all the input values

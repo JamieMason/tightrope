@@ -1,6 +1,6 @@
 import { expect, it } from 'vitest';
-import { Err, Ok } from '.';
-import { fromTry } from './from-try';
+import { Err, Ok } from './index.js';
+import { fromTry } from './from-try.js';
 
 [1, 0, true, false, null].forEach((value) => {
   it(`returns an Ok<${value}> when function does not throw`, () => {

@@ -1,10 +1,22 @@
-import { curry } from '../fn/curry';
-import type { UnaryGuard } from '../fn/types';
-import { isNonEmptyArray } from './is-non-empty-array';
+import { curry } from '../fn/curry.js';
+import { isNonEmptyArray } from './is-non-empty-array.js';
 
-export type Some = {
-  <A extends any[]>(guard: UnaryGuard): { (array: A): boolean };
-  <A extends any[]>(guard: UnaryGuard, array: A): boolean;
+type Some = {
+  <Fn extends (value: any) => value is any>(
+    guard: Fn,
+  ): {
+    (
+      value: unknown,
+    ): value is Fn extends (value: any) => value is infer T
+      ? Array<T>
+      : unknown[];
+  };
+  <Fn extends (value: any) => value is any>(
+    guard: Fn,
+    value: unknown,
+  ): value is Fn extends (value: any) => value is infer T
+    ? Array<T>
+    : unknown[];
 };
 
 /**
@@ -12,8 +24,12 @@ export type Some = {
  *
  * @tags guard
  */
-export const some: Some = curry(
-  <A extends any[]>(guard: UnaryGuard, array: A): boolean =>
-    isNonEmptyArray(array) && array.some(guard),
+export const some = curry(
+  <Fn extends (value: any) => value is any>(
+    guard: Fn,
+    array: unknown,
+  ): array is Fn extends (value: any) => value is infer T
+    ? Array<T>
+    : unknown[] => isNonEmptyArray(array) && array.some(guard),
   2,
-);
+) as Some;

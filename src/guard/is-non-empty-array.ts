@@ -1,4 +1,4 @@
-import { isArray } from './is-array';
+import { isArray } from './is-array.js';
 
 /**
  * Asserts that a value is an `Array` containing at least one value.

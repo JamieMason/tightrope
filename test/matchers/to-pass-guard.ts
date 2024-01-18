@@ -1,5 +1,5 @@
 import { expect } from 'vitest';
-import type { AnyGuard } from '../../src/fn/types';
+import type { AnyGuard } from '../../src/fn/types.js';
 
 /** Get more useful output than "expected false to be true" */
 expect.extend({

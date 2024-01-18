@@ -1,5 +1,5 @@
 import { expect, it } from 'vitest';
-import { isArrayOfStrings } from './is-array-of-strings';
+import { isArrayOfStrings } from './is-array-of-strings.js';
 
 it('returns true when every value in an array is a boolean', () => {
   expect(isArrayOfStrings(['A', new String('A')])).toEqual(true);

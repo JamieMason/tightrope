@@ -1,5 +1,5 @@
 import { expect, it } from 'vitest';
-import { endsWith } from './ends-with';
+import { endsWith } from './ends-with.js';
 
 it('positive case', () => {
   expect(endsWith('bar', 'foobar')).toBe(true);

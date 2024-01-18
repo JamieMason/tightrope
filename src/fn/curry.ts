@@ -1,4 +1,4 @@
-import type { AnyFn } from './types';
+import type { AnyFn } from './types.js';
 
 export type CurriedFn2<Fn extends AnyFn> = {
   (a: Parameters<Fn>[0]): {
@@ -13,7 +13,10 @@ export type CurriedFn3<Fn extends AnyFn> = {
     b: Parameters<Fn>[1],
     c: Parameters<Fn>[2],
   ): ReturnType<Fn>;
-  (a: Parameters<Fn>[0], b: Parameters<Fn>[1]): {
+  (
+    a: Parameters<Fn>[0],
+    b: Parameters<Fn>[1],
+  ): {
     (c: Parameters<Fn>[2]): ReturnType<Fn>;
   };
   (a: Parameters<Fn>[0]): {
@@ -31,10 +34,17 @@ export type CurriedFn4<Fn extends AnyFn> = {
     c: Parameters<Fn>[2],
     d: Parameters<Fn>[3],
   ): ReturnType<Fn>;
-  (a: Parameters<Fn>[0], b: Parameters<Fn>[1], c: Parameters<Fn>[2]): {
+  (
+    a: Parameters<Fn>[0],
+    b: Parameters<Fn>[1],
+    c: Parameters<Fn>[2],
+  ): {
     (d: Parameters<Fn>[3]): ReturnType<Fn>;
   };
-  (a: Parameters<Fn>[0], b: Parameters<Fn>[1]): {
+  (
+    a: Parameters<Fn>[0],
+    b: Parameters<Fn>[1],
+  ): {
     (c: Parameters<Fn>[2]): {
       (d: Parameters<Fn>[3]): ReturnType<Fn>;
     };
@@ -46,7 +56,10 @@ export type CurriedFn4<Fn extends AnyFn> = {
       c: Parameters<Fn>[2],
       d: Parameters<Fn>[3],
     ): ReturnType<Fn>;
-    (b: Parameters<Fn>[1], c: Parameters<Fn>[2]): {
+    (
+      b: Parameters<Fn>[1],
+      c: Parameters<Fn>[2],
+    ): {
       (d: Parameters<Fn>[3]): ReturnType<Fn>;
     };
     (b: Parameters<Fn>[1]): {
@@ -74,19 +87,29 @@ export type CurriedFn5<Fn extends AnyFn> = {
   ): {
     (e: Parameters<Fn>[4]): ReturnType<Fn>;
   };
-  (a: Parameters<Fn>[0], b: Parameters<Fn>[1], c: Parameters<Fn>[2]): {
+  (
+    a: Parameters<Fn>[0],
+    b: Parameters<Fn>[1],
+    c: Parameters<Fn>[2],
+  ): {
     (d: Parameters<Fn>[3]): {
       (e: Parameters<Fn>[4]): ReturnType<Fn>;
     };
     (d: Parameters<Fn>[3], e: Parameters<Fn>[4]): ReturnType<Fn>;
   };
-  (a: Parameters<Fn>[0], b: Parameters<Fn>[1]): {
+  (
+    a: Parameters<Fn>[0],
+    b: Parameters<Fn>[1],
+  ): {
     (
       c: Parameters<Fn>[2],
       d: Parameters<Fn>[3],
       e: Parameters<Fn>[4],
     ): ReturnType<Fn>;
-    (c: Parameters<Fn>[2], d: Parameters<Fn>[3]): {
+    (
+      c: Parameters<Fn>[2],
+      d: Parameters<Fn>[3],
+    ): {
       (e: Parameters<Fn>[4]): ReturnType<Fn>;
     };
     (c: Parameters<Fn>[2]): {
@@ -103,10 +126,17 @@ export type CurriedFn5<Fn extends AnyFn> = {
       d: Parameters<Fn>[3],
       e: Parameters<Fn>[4],
     ): ReturnType<Fn>;
-    (b: Parameters<Fn>[1], c: Parameters<Fn>[2], d: Parameters<Fn>[3]): {
+    (
+      b: Parameters<Fn>[1],
+      c: Parameters<Fn>[2],
+      d: Parameters<Fn>[3],
+    ): {
       (e: Parameters<Fn>[4]): ReturnType<Fn>;
     };
-    (b: Parameters<Fn>[1], c: Parameters<Fn>[2]): {
+    (
+      b: Parameters<Fn>[1],
+      c: Parameters<Fn>[2],
+    ): {
       (d: Parameters<Fn>[3]): {
         (e: Parameters<Fn>[4]): ReturnType<Fn>;
       };
@@ -118,7 +148,10 @@ export type CurriedFn5<Fn extends AnyFn> = {
         d: Parameters<Fn>[3],
         e: Parameters<Fn>[4],
       ): ReturnType<Fn>;
-      (c: Parameters<Fn>[2], d: Parameters<Fn>[3]): {
+      (
+        c: Parameters<Fn>[2],
+        d: Parameters<Fn>[3],
+      ): {
         (e: Parameters<Fn>[4]): ReturnType<Fn>;
       };
       (c: Parameters<Fn>[2]): {
@@ -158,13 +191,20 @@ export type CurriedFn6<Fn extends AnyFn> = {
     };
     (e: Parameters<Fn>[4], f: Parameters<Fn>[5]): ReturnType<Fn>;
   };
-  (a: Parameters<Fn>[0], b: Parameters<Fn>[1], c: Parameters<Fn>[2]): {
+  (
+    a: Parameters<Fn>[0],
+    b: Parameters<Fn>[1],
+    c: Parameters<Fn>[2],
+  ): {
     (
       d: Parameters<Fn>[3],
       e: Parameters<Fn>[4],
       f: Parameters<Fn>[5],
     ): ReturnType<Fn>;
-    (d: Parameters<Fn>[3], e: Parameters<Fn>[4]): {
+    (
+      d: Parameters<Fn>[3],
+      e: Parameters<Fn>[4],
+    ): {
       (f: Parameters<Fn>[5]): ReturnType<Fn>;
     };
     (d: Parameters<Fn>[3]): {
@@ -174,17 +214,27 @@ export type CurriedFn6<Fn extends AnyFn> = {
       (e: Parameters<Fn>[4], f: Parameters<Fn>[5]): ReturnType<Fn>;
     };
   };
-  (a: Parameters<Fn>[0], b: Parameters<Fn>[1]): {
+  (
+    a: Parameters<Fn>[0],
+    b: Parameters<Fn>[1],
+  ): {
     (
       c: Parameters<Fn>[2],
       d: Parameters<Fn>[3],
       e: Parameters<Fn>[4],
       f: Parameters<Fn>[5],
     ): ReturnType<Fn>;
-    (c: Parameters<Fn>[2], d: Parameters<Fn>[3], e: Parameters<Fn>[4]): {
+    (
+      c: Parameters<Fn>[2],
+      d: Parameters<Fn>[3],
+      e: Parameters<Fn>[4],
+    ): {
       (f: Parameters<Fn>[5]): ReturnType<Fn>;
     };
-    (c: Parameters<Fn>[2], d: Parameters<Fn>[3]): {
+    (
+      c: Parameters<Fn>[2],
+      d: Parameters<Fn>[3],
+    ): {
       (e: Parameters<Fn>[4]): {
         (f: Parameters<Fn>[5]): ReturnType<Fn>;
       };
@@ -196,7 +246,10 @@ export type CurriedFn6<Fn extends AnyFn> = {
         e: Parameters<Fn>[4],
         f: Parameters<Fn>[5],
       ): ReturnType<Fn>;
-      (d: Parameters<Fn>[3], e: Parameters<Fn>[4]): {
+      (
+        d: Parameters<Fn>[3],
+        e: Parameters<Fn>[4],
+      ): {
         (f: Parameters<Fn>[5]): ReturnType<Fn>;
       };
       (d: Parameters<Fn>[3]): {
@@ -223,19 +276,29 @@ export type CurriedFn6<Fn extends AnyFn> = {
     ): {
       (f: Parameters<Fn>[5]): ReturnType<Fn>;
     };
-    (b: Parameters<Fn>[1], c: Parameters<Fn>[2], d: Parameters<Fn>[3]): {
+    (
+      b: Parameters<Fn>[1],
+      c: Parameters<Fn>[2],
+      d: Parameters<Fn>[3],
+    ): {
       (e: Parameters<Fn>[4]): {
         (f: Parameters<Fn>[5]): ReturnType<Fn>;
       };
       (e: Parameters<Fn>[4], f: Parameters<Fn>[5]): ReturnType<Fn>;
     };
-    (b: Parameters<Fn>[1], c: Parameters<Fn>[2]): {
+    (
+      b: Parameters<Fn>[1],
+      c: Parameters<Fn>[2],
+    ): {
       (
         d: Parameters<Fn>[3],
         e: Parameters<Fn>[4],
         f: Parameters<Fn>[5],
       ): ReturnType<Fn>;
-      (d: Parameters<Fn>[3], e: Parameters<Fn>[4]): {
+      (
+        d: Parameters<Fn>[3],
+        e: Parameters<Fn>[4],
+      ): {
         (f: Parameters<Fn>[5]): ReturnType<Fn>;
       };
       (d: Parameters<Fn>[3]): {
@@ -252,10 +315,17 @@ export type CurriedFn6<Fn extends AnyFn> = {
         e: Parameters<Fn>[4],
         f: Parameters<Fn>[5],
       ): ReturnType<Fn>;
-      (c: Parameters<Fn>[2], d: Parameters<Fn>[3], e: Parameters<Fn>[4]): {
+      (
+        c: Parameters<Fn>[2],
+        d: Parameters<Fn>[3],
+        e: Parameters<Fn>[4],
+      ): {
         (f: Parameters<Fn>[5]): ReturnType<Fn>;
       };
-      (c: Parameters<Fn>[2], d: Parameters<Fn>[3]): {
+      (
+        c: Parameters<Fn>[2],
+        d: Parameters<Fn>[3],
+      ): {
         (e: Parameters<Fn>[4]): {
           (f: Parameters<Fn>[5]): ReturnType<Fn>;
         };
@@ -267,7 +337,10 @@ export type CurriedFn6<Fn extends AnyFn> = {
           e: Parameters<Fn>[4],
           f: Parameters<Fn>[5],
         ): ReturnType<Fn>;
-        (d: Parameters<Fn>[3], e: Parameters<Fn>[4]): {
+        (
+          d: Parameters<Fn>[3],
+          e: Parameters<Fn>[4],
+        ): {
           (f: Parameters<Fn>[5]): ReturnType<Fn>;
         };
         (d: Parameters<Fn>[3]): {
@@ -322,7 +395,10 @@ export type CurriedFn7<Fn extends AnyFn> = {
       f: Parameters<Fn>[5],
       g: Parameters<Fn>[6],
     ): ReturnType<Fn>;
-    (e: Parameters<Fn>[4], f: Parameters<Fn>[5]): {
+    (
+      e: Parameters<Fn>[4],
+      f: Parameters<Fn>[5],
+    ): {
       (g: Parameters<Fn>[6]): ReturnType<Fn>;
     };
     (e: Parameters<Fn>[4]): {
@@ -332,17 +408,28 @@ export type CurriedFn7<Fn extends AnyFn> = {
       (f: Parameters<Fn>[5], g: Parameters<Fn>[6]): ReturnType<Fn>;
     };
   };
-  (a: Parameters<Fn>[0], b: Parameters<Fn>[1], c: Parameters<Fn>[2]): {
+  (
+    a: Parameters<Fn>[0],
+    b: Parameters<Fn>[1],
+    c: Parameters<Fn>[2],
+  ): {
     (
       d: Parameters<Fn>[3],
       e: Parameters<Fn>[4],
       f: Parameters<Fn>[5],
       g: Parameters<Fn>[6],
     ): ReturnType<Fn>;
-    (d: Parameters<Fn>[3], e: Parameters<Fn>[4], f: Parameters<Fn>[5]): {
+    (
+      d: Parameters<Fn>[3],
+      e: Parameters<Fn>[4],
+      f: Parameters<Fn>[5],
+    ): {
       (g: Parameters<Fn>[6]): ReturnType<Fn>;
     };
-    (d: Parameters<Fn>[3], e: Parameters<Fn>[4]): {
+    (
+      d: Parameters<Fn>[3],
+      e: Parameters<Fn>[4],
+    ): {
       (f: Parameters<Fn>[5]): {
         (g: Parameters<Fn>[6]): ReturnType<Fn>;
       };
@@ -354,7 +441,10 @@ export type CurriedFn7<Fn extends AnyFn> = {
         f: Parameters<Fn>[5],
         g: Parameters<Fn>[6],
       ): ReturnType<Fn>;
-      (e: Parameters<Fn>[4], f: Parameters<Fn>[5]): {
+      (
+        e: Parameters<Fn>[4],
+        f: Parameters<Fn>[5],
+      ): {
         (g: Parameters<Fn>[6]): ReturnType<Fn>;
       };
       (e: Parameters<Fn>[4]): {
@@ -365,7 +455,10 @@ export type CurriedFn7<Fn extends AnyFn> = {
       };
     };
   };
-  (a: Parameters<Fn>[0], b: Parameters<Fn>[1]): {
+  (
+    a: Parameters<Fn>[0],
+    b: Parameters<Fn>[1],
+  ): {
     (
       c: Parameters<Fn>[2],
       d: Parameters<Fn>[3],
@@ -381,19 +474,29 @@ export type CurriedFn7<Fn extends AnyFn> = {
     ): {
       (g: Parameters<Fn>[6]): ReturnType<Fn>;
     };
-    (c: Parameters<Fn>[2], d: Parameters<Fn>[3], e: Parameters<Fn>[4]): {
+    (
+      c: Parameters<Fn>[2],
+      d: Parameters<Fn>[3],
+      e: Parameters<Fn>[4],
+    ): {
       (f: Parameters<Fn>[5]): {
         (g: Parameters<Fn>[6]): ReturnType<Fn>;
       };
       (f: Parameters<Fn>[5], g: Parameters<Fn>[6]): ReturnType<Fn>;
     };
-    (c: Parameters<Fn>[2], d: Parameters<Fn>[3]): {
+    (
+      c: Parameters<Fn>[2],
+      d: Parameters<Fn>[3],
+    ): {
       (
         e: Parameters<Fn>[4],
         f: Parameters<Fn>[5],
         g: Parameters<Fn>[6],
       ): ReturnType<Fn>;
-      (e: Parameters<Fn>[4], f: Parameters<Fn>[5]): {
+      (
+        e: Parameters<Fn>[4],
+        f: Parameters<Fn>[5],
+      ): {
         (g: Parameters<Fn>[6]): ReturnType<Fn>;
       };
       (e: Parameters<Fn>[4]): {
@@ -410,10 +513,17 @@ export type CurriedFn7<Fn extends AnyFn> = {
         f: Parameters<Fn>[5],
         g: Parameters<Fn>[6],
       ): ReturnType<Fn>;
-      (d: Parameters<Fn>[3], e: Parameters<Fn>[4], f: Parameters<Fn>[5]): {
+      (
+        d: Parameters<Fn>[3],
+        e: Parameters<Fn>[4],
+        f: Parameters<Fn>[5],
+      ): {
         (g: Parameters<Fn>[6]): ReturnType<Fn>;
       };
-      (d: Parameters<Fn>[3], e: Parameters<Fn>[4]): {
+      (
+        d: Parameters<Fn>[3],
+        e: Parameters<Fn>[4],
+      ): {
         (f: Parameters<Fn>[5]): {
           (g: Parameters<Fn>[6]): ReturnType<Fn>;
         };
@@ -425,7 +535,10 @@ export type CurriedFn7<Fn extends AnyFn> = {
           f: Parameters<Fn>[5],
           g: Parameters<Fn>[6],
         ): ReturnType<Fn>;
-        (e: Parameters<Fn>[4], f: Parameters<Fn>[5]): {
+        (
+          e: Parameters<Fn>[4],
+          f: Parameters<Fn>[5],
+        ): {
           (g: Parameters<Fn>[6]): ReturnType<Fn>;
         };
         (e: Parameters<Fn>[4]): {
@@ -464,13 +577,20 @@ export type CurriedFn7<Fn extends AnyFn> = {
       };
       (f: Parameters<Fn>[5], g: Parameters<Fn>[6]): ReturnType<Fn>;
     };
-    (b: Parameters<Fn>[1], c: Parameters<Fn>[2], d: Parameters<Fn>[3]): {
+    (
+      b: Parameters<Fn>[1],
+      c: Parameters<Fn>[2],
+      d: Parameters<Fn>[3],
+    ): {
       (
         e: Parameters<Fn>[4],
         f: Parameters<Fn>[5],
         g: Parameters<Fn>[6],
       ): ReturnType<Fn>;
-      (e: Parameters<Fn>[4], f: Parameters<Fn>[5]): {
+      (
+        e: Parameters<Fn>[4],
+        f: Parameters<Fn>[5],
+      ): {
         (g: Parameters<Fn>[6]): ReturnType<Fn>;
       };
       (e: Parameters<Fn>[4]): {
@@ -480,17 +600,27 @@ export type CurriedFn7<Fn extends AnyFn> = {
         (f: Parameters<Fn>[5], g: Parameters<Fn>[6]): ReturnType<Fn>;
       };
     };
-    (b: Parameters<Fn>[1], c: Parameters<Fn>[2]): {
+    (
+      b: Parameters<Fn>[1],
+      c: Parameters<Fn>[2],
+    ): {
       (
         d: Parameters<Fn>[3],
         e: Parameters<Fn>[4],
         f: Parameters<Fn>[5],
         g: Parameters<Fn>[6],
       ): ReturnType<Fn>;
-      (d: Parameters<Fn>[3], e: Parameters<Fn>[4], f: Parameters<Fn>[5]): {
+      (
+        d: Parameters<Fn>[3],
+        e: Parameters<Fn>[4],
+        f: Parameters<Fn>[5],
+      ): {
         (g: Parameters<Fn>[6]): ReturnType<Fn>;
       };
-      (d: Parameters<Fn>[3], e: Parameters<Fn>[4]): {
+      (
+        d: Parameters<Fn>[3],
+        e: Parameters<Fn>[4],
+      ): {
         (f: Parameters<Fn>[5]): {
           (g: Parameters<Fn>[6]): ReturnType<Fn>;
         };
@@ -502,7 +632,10 @@ export type CurriedFn7<Fn extends AnyFn> = {
           f: Parameters<Fn>[5],
           g: Parameters<Fn>[6],
         ): ReturnType<Fn>;
-        (e: Parameters<Fn>[4], f: Parameters<Fn>[5]): {
+        (
+          e: Parameters<Fn>[4],
+          f: Parameters<Fn>[5],
+        ): {
           (g: Parameters<Fn>[6]): ReturnType<Fn>;
         };
         (e: Parameters<Fn>[4]): {
@@ -529,19 +662,29 @@ export type CurriedFn7<Fn extends AnyFn> = {
       ): {
         (g: Parameters<Fn>[6]): ReturnType<Fn>;
       };
-      (c: Parameters<Fn>[2], d: Parameters<Fn>[3], e: Parameters<Fn>[4]): {
+      (
+        c: Parameters<Fn>[2],
+        d: Parameters<Fn>[3],
+        e: Parameters<Fn>[4],
+      ): {
         (f: Parameters<Fn>[5]): {
           (g: Parameters<Fn>[6]): ReturnType<Fn>;
         };
         (f: Parameters<Fn>[5], g: Parameters<Fn>[6]): ReturnType<Fn>;
       };
-      (c: Parameters<Fn>[2], d: Parameters<Fn>[3]): {
+      (
+        c: Parameters<Fn>[2],
+        d: Parameters<Fn>[3],
+      ): {
         (
           e: Parameters<Fn>[4],
           f: Parameters<Fn>[5],
           g: Parameters<Fn>[6],
         ): ReturnType<Fn>;
-        (e: Parameters<Fn>[4], f: Parameters<Fn>[5]): {
+        (
+          e: Parameters<Fn>[4],
+          f: Parameters<Fn>[5],
+        ): {
           (g: Parameters<Fn>[6]): ReturnType<Fn>;
         };
         (e: Parameters<Fn>[4]): {
@@ -558,10 +701,17 @@ export type CurriedFn7<Fn extends AnyFn> = {
           f: Parameters<Fn>[5],
           g: Parameters<Fn>[6],
         ): ReturnType<Fn>;
-        (d: Parameters<Fn>[3], e: Parameters<Fn>[4], f: Parameters<Fn>[5]): {
+        (
+          d: Parameters<Fn>[3],
+          e: Parameters<Fn>[4],
+          f: Parameters<Fn>[5],
+        ): {
           (g: Parameters<Fn>[6]): ReturnType<Fn>;
         };
-        (d: Parameters<Fn>[3], e: Parameters<Fn>[4]): {
+        (
+          d: Parameters<Fn>[3],
+          e: Parameters<Fn>[4],
+        ): {
           (f: Parameters<Fn>[5]): {
             (g: Parameters<Fn>[6]): ReturnType<Fn>;
           };
@@ -573,7 +723,10 @@ export type CurriedFn7<Fn extends AnyFn> = {
             f: Parameters<Fn>[5],
             g: Parameters<Fn>[6],
           ): ReturnType<Fn>;
-          (e: Parameters<Fn>[4], f: Parameters<Fn>[5]): {
+          (
+            e: Parameters<Fn>[4],
+            f: Parameters<Fn>[5],
+          ): {
             (g: Parameters<Fn>[6]): ReturnType<Fn>;
           };
           (e: Parameters<Fn>[4]): {

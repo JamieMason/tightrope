@@ -1,9 +1,9 @@
-import type { Result } from '.';
-import { Err } from '.';
-import { curry } from '../fn/curry';
-import type { AnyResult, GuardType, UnaryGuard } from '../fn/types';
-import { isOk } from './is-ok';
-import { withCatch } from './lib/with-catch';
+import type { Result } from './index.js';
+import { Err } from './index.js';
+import { curry } from '../fn/curry.js';
+import type { AnyResult, GuardType, UnaryGuard } from '../fn/types.js';
+import { isOk } from './is-ok.js';
+import { withCatch } from './lib/with-catch.js';
 
 export type Filter = {
   <G extends UnaryGuard, Res extends AnyResult>(
@@ -11,10 +11,15 @@ export type Filter = {
     msg: string,
     res: Res,
   ): Result<GuardType<G>, Error>;
-  <G extends UnaryGuard>(guard: G, msg: string): {
+  <G extends UnaryGuard>(
+    guard: G,
+    msg: string,
+  ): {
     <Res extends AnyResult>(res: Res): Result<GuardType<G>, Error>;
   };
-  <G extends UnaryGuard>(guard: G): {
+  <G extends UnaryGuard>(
+    guard: G,
+  ): {
     (msg: string): {
       <Res extends AnyResult>(res: Res): Result<GuardType<G>, Error>;
     };

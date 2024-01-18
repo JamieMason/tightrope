@@ -1,8 +1,8 @@
 import { expect, it } from 'vitest';
 import '../../test/matchers';
-import { pipe } from '../fn/pipe';
-import { range } from './range';
-import { reduce } from './reduce';
+import { pipe } from '../fn/pipe.js';
+import { range } from './range.js';
+import { reduce } from './reduce.js';
 
 it('combines a series of values into one and yields when upstream is done', () => {
   expect(

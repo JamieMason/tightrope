@@ -1,4 +1,4 @@
-import { isObject } from './is-object';
+import { isObject } from './is-object.js';
 
 /**
  * Asserts that a value is a valid `Object` containing no instance members.

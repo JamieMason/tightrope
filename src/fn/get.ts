@@ -1,10 +1,10 @@
-import { isFunction } from '../guard/is-function';
-import { isPrimitive } from '../guard/is-primitive';
-import { isReadable } from '../guard/is-readable';
-import type { Result } from '../result';
-import { Err, Ok } from '../result';
-import { isErr } from '../result/is-err';
-import { isOk } from '../result/is-ok';
+import { isFunction } from '../guard/is-function.js';
+import { isPrimitive } from '../guard/is-primitive.js';
+import { isReadable } from '../guard/is-readable.js';
+import type { Result } from '../result/index.js';
+import { Err, Ok } from '../result/index.js';
+import { isErr } from '../result/is-err.js';
+import { isOk } from '../result/is-ok.js';
 
 /**
  * Return an `Ok` containing a deeply nested value from an object, or an `Err`.

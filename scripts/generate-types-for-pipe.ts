@@ -1,9 +1,9 @@
 /* Generate all the function overload types for pipe() */
 
-import { pipe } from '../src/fn/pipe';
-import { map } from '../src/gen/map';
-import { range } from '../src/gen/range';
-import { reduce } from '../src/gen/reduce';
+import { pipe } from '../src/fn/pipe.js';
+import { map } from '../src/gen/map.js';
+import { range } from '../src/gen/range.js';
+import { reduce } from '../src/gen/reduce.js';
 
 const typings = pipe(
   range(1, 80),

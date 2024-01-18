@@ -1,5 +1,5 @@
 import { expect, it } from 'vitest';
-import { hasProperty } from './has-property';
+import { hasProperty } from './has-property.js';
 
 it('positive case', () => {
   expect(hasProperty('foo', { foo: 'bar' })).toBe(true);

@@ -1,5 +1,5 @@
 import { expect, it } from 'vitest';
-import { isArrayIncludingAnyOf } from './is-array-including-any-of';
+import { isArrayIncludingAnyOf } from './is-array-including-any-of.js';
 
 const allowedValues = [1, 2, 3];
 const array1 = [1, 4, 5, 6];

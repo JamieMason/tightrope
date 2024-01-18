@@ -1,7 +1,7 @@
 import React from 'react';
 import clsx from 'clsx';
-import styles from './styles.module.css';
-import temp from './img/temp.svg';
+import styles from './styles.module.css.js';
+import temp from './img/temp.svg.js';
 
 type FeatureItem = {
   title: string;

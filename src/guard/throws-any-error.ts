@@ -1,5 +1,5 @@
-import type { AnyFn } from '../fn/types';
-import { isFunction } from './is-function';
+import type { AnyFn } from '../fn/types.js';
+import { isFunction } from './is-function.js';
 
 /**
  * Asserts that a value is a `Function` which throws when invoked.

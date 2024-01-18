@@ -1,5 +1,5 @@
 import { expect, it } from 'vitest';
-import { isGreaterThanOrEqualTo } from './is-greater-than-or-equal-to';
+import { isGreaterThanOrEqualTo } from './is-greater-than-or-equal-to.js';
 
 it('positive case - equal', () => {
   expect(isGreaterThanOrEqualTo(3, 3)).toBe(true);

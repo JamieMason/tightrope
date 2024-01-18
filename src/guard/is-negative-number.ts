@@ -1,4 +1,4 @@
-import { isNumber } from './is-number';
+import { isNumber } from './is-number.js';
 
 /**
  * Asserts that a value is a `Number` less than 0.

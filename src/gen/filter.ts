@@ -1,8 +1,10 @@
-import { curry } from '../fn/curry';
-import type { Gen, GenYield, UnaryGuard } from '../fn/types';
+import { curry } from '../fn/curry.js';
+import type { Gen, GenYield, UnaryGuard } from '../fn/types.js';
 
 export type Filter = {
-  <F extends UnaryGuard<GenYield<T>>, T extends Gen<any>>(guard: F): {
+  <F extends UnaryGuard<GenYield<T>>, T extends Gen<any>>(
+    guard: F,
+  ): {
     (gen: T): Gen<GenYield<T>>;
   };
   <F extends UnaryGuard<GenYield<T>>, T extends Gen<any>>(
@@ -70,5 +72,4 @@ export const filter: Filter = curry(function* filter<
       yield value;
     }
   }
-},
-2);
+}, 2);

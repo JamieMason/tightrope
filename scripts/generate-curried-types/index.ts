@@ -1,11 +1,11 @@
 /** @file Generate all the types for curried functions */
 import { resolve } from 'path';
 import { Project } from 'ts-morph';
-import { getAllCurriedFunctions } from './get-all-curried-functions';
-import { getCombinations } from './get-combinations';
+import { getAllCurriedFunctions } from './get-all-curried-functions.js';
+import { getCombinations } from './get-combinations.js';
 
 const project = new Project({
-  tsConfigFilePath: resolve(__dirname, '../../tsconfig.json'),
+  tsConfigFilePath: resolve(process.cwd(), './tsconfig.json'),
   skipAddingFilesFromTsConfig: true,
 });
 

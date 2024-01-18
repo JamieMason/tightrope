@@ -1,5 +1,5 @@
 import { expect, it } from 'vitest';
-import { isArrayOfBooleans } from './is-array-of-booleans';
+import { isArrayOfBooleans } from './is-array-of-booleans.js';
 
 it('returns true when every value in an array is a boolean', () => {
   expect(isArrayOfBooleans([true, new Boolean(true)])).toEqual(true);

@@ -1,8 +1,8 @@
 import { expect, it } from 'vitest';
-import type { Option } from '.';
-import { none, Some } from '.';
-import { pipe } from '../fn/pipe';
-import { match } from './match';
+import type { Option } from './index.js';
+import { none, Some } from './index.js';
+import { pipe } from '../fn/pipe.js';
+import { match } from './match.js';
 
 it('returns the first case which is true', () => {
   (

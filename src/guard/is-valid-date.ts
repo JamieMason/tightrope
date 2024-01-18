@@ -1,4 +1,4 @@
-import { isDate } from './is-date';
+import { isDate } from './is-date.js';
 
 /**
  * Asserts that a value is an instance of `Date` whose internal value is valid. `Date` is little like `Promise` in that

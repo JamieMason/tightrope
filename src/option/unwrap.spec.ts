@@ -1,6 +1,6 @@
 import { expect, it } from 'vitest';
-import { none, Some } from '.';
-import { unwrap } from './unwrap';
+import { none, Some } from './index.js';
+import { unwrap } from './unwrap.js';
 
 it('unwrap should return the value when Some is provided', () => {
   const someValue = new Some(5);

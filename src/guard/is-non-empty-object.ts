@@ -1,4 +1,4 @@
-import { isObject } from './is-object';
+import { isObject } from './is-object.js';
 
 /**
  * Asserts that a value is an `Object` containing at least one own member.

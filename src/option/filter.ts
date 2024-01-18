@@ -1,54 +1,41 @@
-import type { Option } from '.';
-import { none } from '.';
-import { curry } from '../fn/curry';
-import { isSome } from './is-some';
+import type { Option } from './index.js';
+import { none } from './index.js';
+import { curry } from '../fn/curry.js';
+import type { AnyOption } from '../fn/types.js';
+import { isSome } from './is-some.js';
 
 export type Filter = {
-  <T>(predicate: (value: T) => boolean): { (opt: Option<T>): Option<T> };
-  <T>(predicate: (value: T) => boolean, opt: Option<T>): Option<T>;
+  <
+    Fn extends (value: any) => value is any,
+    I extends AnyOption,
+    O = Fn extends (value: any) => value is infer O ? O : never,
+  >(
+    predicate: Fn,
+  ): { (opt: I): Option<O> };
+  <
+    Fn extends (value: any) => value is any,
+    I extends AnyOption,
+    O = Fn extends (value: any) => value is infer O ? O : never,
+  >(
+    predicate: Fn,
+    opt: I,
+  ): Option<O>;
 };
 
 /**
- * Calls the provided predicate function on the contained value T if the `Option` is `Some(T)`, and returns `Some(T)` if
+ * Calls the provided predicate function on the contained value I if the `Option` is `Some(I)`, and returns `Some(I)` if
  * the function returns `true`; otherwise, returns `None`
  *
- * ## Example
- *
- * ```ts
- * import { pipe } from 'tightrope/fn/pipe';
- * import { filter } from 'tightrope/option/filter';
- * import { none } from 'tightrope/option';
- * import { Some } from 'tightrope/option';
- *
- * const result = pipe(
- *   new Some(2),
- *   filter((value) => value % 2 === 0),
- * );
- * // result is a new Some(2)
- *
- * const result2 = pipe(
- *   none,
- *   filter((value) => value % 2 === 0),
- * );
- * // result2 is none
- * ```
- *
- * :::info
- *
- * This function is right-biased, meaning that if the input `Option` is `None`, it immediately returns `None` without
- * evaluating the predicate function.
- *
- * :::
- *
- * @param predicate The function to call on the contained value of the `Option`.
- * @param opt The `Option` to apply the filter to.
- * @returns An `Option` with the same type as the input that contains the filtered value, or `None`.
  * @tags option, filter, right-biased
  */
 export const filter: Filter = curry(
-  <T>(predicate: (value: T) => boolean, opt: Option<T>): Option<T> => {
-    if (isSome<T>(opt) && predicate(opt.value)) return opt;
-    return none;
-  },
+  <
+    Fn extends (value: any) => value is any,
+    I extends AnyOption,
+    O = Fn extends (value: any) => value is infer O ? O : never,
+  >(
+    predicate: Fn,
+    opt: I,
+  ): Option<O> => (isSome<O>(opt) && predicate(opt.value) ? opt : none),
   2,
 );

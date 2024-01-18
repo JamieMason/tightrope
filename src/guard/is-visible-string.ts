@@ -1,4 +1,4 @@
-import { isString } from './is-string';
+import { isString } from './is-string.js';
 
 /**
  * Asserts that a value is a valid `String` containing at least one character which is not whitespace.

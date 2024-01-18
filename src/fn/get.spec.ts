@@ -1,8 +1,8 @@
 import { expect, it } from 'vitest';
 import '../../test/matchers';
-import { unwrap } from '../result/unwrap';
-import { get } from './get';
-import { pipe } from './pipe';
+import { unwrap } from '../result/unwrap.js';
+import { get } from './get.js';
+import { pipe } from './pipe.js';
 
 const obj = { foo: { bar: 42 }, baz: null };
 

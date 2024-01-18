@@ -1,5 +1,5 @@
-import { isArrayOf } from './is-array-of';
-import { isObject } from './is-object';
+import { isArrayOf } from './is-array-of.js';
+import { isObject } from './is-object.js';
 
 /**
  * Asserts that a value is an `Array` containing only `Object` values.

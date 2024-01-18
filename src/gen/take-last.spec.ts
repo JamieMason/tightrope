@@ -1,10 +1,10 @@
 import { expect, it, vi } from 'vitest';
 import '../../test/matchers';
-import { pipe } from '../fn/pipe';
-import { multiply } from '../number/multiply';
-import { map } from './map';
-import { range } from './range';
-import { takeLast } from './take-last';
+import { pipe } from '../fn/pipe.js';
+import { multiply } from '../number/multiply.js';
+import { map } from './map.js';
+import { range } from './range.js';
+import { takeLast } from './take-last.js';
 
 it('yields only the last value from a generator', () => {
   const $double = vi.fn(multiply(2));

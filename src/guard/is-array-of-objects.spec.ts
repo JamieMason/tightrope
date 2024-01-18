@@ -1,5 +1,5 @@
 import { expect, it } from 'vitest';
-import { isArrayOfObjects } from './is-array-of-objects';
+import { isArrayOfObjects } from './is-array-of-objects.js';
 
 it('positive case with objects', () => {
   expect(isArrayOfObjects([{}, new Object()])).toBe(true);

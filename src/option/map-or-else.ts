@@ -1,11 +1,13 @@
-import type { Option } from '.';
-import { curry } from '../fn/curry';
-import { isSome } from './is-some';
+import type { Option } from './index.js';
+import { curry } from '../fn/curry.js';
+import { isSome } from './is-some.js';
 
 export type MapOrElse = {
   <T, U>(mapFn: (value: T) => U, defaultFn: () => U, opt: Option<T>): U;
   <T, U>(mapFn: (value: T) => U, defaultFn: () => U): { (opt: Option<T>): U };
-  <T, U>(mapFn: (value: T) => U): {
+  <T, U>(
+    mapFn: (value: T) => U,
+  ): {
     <T, U>(defaultFn: () => U): { (opt: Option<T>): U };
     <T, U>(defaultFn: () => U, opt: Option<T>): U;
   };

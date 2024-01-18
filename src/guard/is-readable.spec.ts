@@ -1,5 +1,5 @@
 import { expect, it } from 'vitest';
-import { isReadable } from './is-readable';
+import { isReadable } from './is-readable.js';
 
 it('returns true for a readable value', () => {
   expect(isReadable('hello')).toBe(true);

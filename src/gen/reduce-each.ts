@@ -1,5 +1,5 @@
-import { curry } from '../fn/curry';
-import type { Gen, GenYield, Reducer } from '../fn/types';
+import { curry } from '../fn/curry.js';
+import type { Gen, GenYield, Reducer } from '../fn/types.js';
 
 export type ReduceEach = {
   <F extends Reducer<GenYield<T>, R>, R, T extends Gen<any>>(
@@ -11,8 +11,12 @@ export type ReduceEach = {
     fn: F,
     initialValue: R,
   ): { (gen: T): Gen<R> };
-  <F extends Reducer<GenYield<T>, R>, R, T extends Gen<any>>(fn: F): {
-    <R, T extends Gen<any>>(initialValue: R): {
+  <F extends Reducer<GenYield<T>, R>, R, T extends Gen<any>>(
+    fn: F,
+  ): {
+    <R, T extends Gen<any>>(
+      initialValue: R,
+    ): {
       (gen: T): Gen<R>;
     };
     <R, T extends Gen<any>>(initialValue: R, gen: T): Gen<R>;
@@ -120,5 +124,4 @@ export const reduceEach: ReduceEach = curry(function* reduceEach<
     acc = fn(acc, value);
     yield acc;
   }
-},
-3);
+}, 3);

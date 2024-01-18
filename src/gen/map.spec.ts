@@ -1,8 +1,8 @@
 import { expect, it } from 'vitest';
 import '../../test/matchers';
-import { multiply } from '../number/multiply';
-import { map } from './map';
-import { range } from './range';
+import { multiply } from '../number/multiply.js';
+import { map } from './map.js';
+import { range } from './range.js';
 
 it('swaps each value in the series for another', () => {
   const rng = range(1, 3);

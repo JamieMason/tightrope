@@ -1,4 +1,4 @@
-import { Ok } from '.';
+import { Ok } from './index.js';
 
 /**
  * Check if value is an instance of the `Ok` class.

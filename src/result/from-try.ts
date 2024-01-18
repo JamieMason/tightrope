@@ -1,5 +1,5 @@
-import type { Result } from '.';
-import { Err, Ok } from '.';
+import type { Result } from './index.js';
+import { Err, Ok } from './index.js';
 
 /**
  * Create an `Ok` or `Err` from `try...catch`.

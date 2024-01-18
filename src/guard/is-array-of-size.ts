@@ -1,5 +1,5 @@
-import { curry } from '../fn/curry';
-import { isArray } from './is-array';
+import { curry } from '../fn/curry.js';
+import { isArray } from './is-array.js';
 
 type IsArrayOfSize = {
   (size: number): { (value: unknown): boolean };

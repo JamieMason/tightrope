@@ -1,6 +1,6 @@
-import { curry } from '../fn/curry';
-import { isGreaterThanOrEqualTo } from './is-greater-than-or-equal-to';
-import { isLessThanOrEqualTo } from './is-less-than-or-equal-to';
+import { curry } from '../fn/curry.js';
+import { isGreaterThanOrEqualTo } from './is-greater-than-or-equal-to.js';
+import { isLessThanOrEqualTo } from './is-less-than-or-equal-to.js';
 
 type IsWithinRange = {
   (floor: number, ceiling: number, value: unknown): boolean;

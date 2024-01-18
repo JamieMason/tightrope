@@ -1,5 +1,5 @@
-import { curry } from '../fn/curry';
-import { isWithinRange } from './is-within-range';
+import { curry } from '../fn/curry.js';
+import { isWithinRange } from './is-within-range.js';
 
 type IsNear = {
   (otherNumber: number, epsilon: number, value: any): boolean;

@@ -1,5 +1,5 @@
 import { expect, it } from 'vitest';
-import { isPrimitive } from './is-primitive';
+import { isPrimitive } from './is-primitive.js';
 
 it('returns true for null, undefined, numbers, strings, and booleans', () => {
   expect(isPrimitive(null)).toBe(true);

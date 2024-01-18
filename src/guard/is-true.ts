@@ -1,4 +1,4 @@
-import { isBoolean } from './is-boolean';
+import { isBoolean } from './is-boolean.js';
 
 /**
  * Asserts that a value is `true` or `new Boolean(true)`.

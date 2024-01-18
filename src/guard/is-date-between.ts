@@ -1,7 +1,7 @@
-import { curry } from '../fn/curry';
-import { isDate } from './is-date';
-import { isGreaterThanOrEqualTo } from './is-greater-than-or-equal-to';
-import { isLessThanOrEqualTo } from './is-less-than-or-equal-to';
+import { curry } from '../fn/curry.js';
+import { isDate } from './is-date.js';
+import { isGreaterThanOrEqualTo } from './is-greater-than-or-equal-to.js';
+import { isLessThanOrEqualTo } from './is-less-than-or-equal-to.js';
 
 type IsDateBetween = {
   (floor: Date, ceiling: Date, date: Date): boolean;

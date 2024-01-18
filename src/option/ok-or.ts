@@ -1,8 +1,8 @@
-import type { Option } from '.';
-import { curry } from '../fn/curry';
-import type { Result } from '../result';
-import { Err, Ok } from '../result';
-import { isSome } from './is-some';
+import type { Option } from './index.js';
+import { curry } from '../fn/curry.js';
+import type { Result } from '../result/index.js';
+import { Err, Ok } from '../result/index.js';
+import { isSome } from './is-some.js';
 
 export type OkOr = {
   <T, E>(defaultErr: E): { (option: Option<T>): Result<T, E> };

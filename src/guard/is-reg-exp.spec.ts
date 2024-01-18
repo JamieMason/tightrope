@@ -1,5 +1,5 @@
 import { expect, it } from 'vitest';
-import { isRegExp } from './is-reg-exp';
+import { isRegExp } from './is-reg-exp.js';
 
 it('positive case', () => {
   expect(isRegExp(/abc/)).toBe(true);

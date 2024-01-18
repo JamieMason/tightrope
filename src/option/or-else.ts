@@ -1,6 +1,6 @@
-import type { Option } from '.';
-import { curry } from '../fn/curry';
-import { isSome } from './is-some';
+import type { Option } from './index.js';
+import { curry } from '../fn/curry.js';
+import { isSome } from './is-some.js';
 
 export type OrElse = {
   <T>(orElseFn: () => Option<T>): { (option: Option<T>): Option<T> };

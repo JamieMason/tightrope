@@ -1,8 +1,8 @@
 import { expect, it, vi } from 'vitest';
-import { Err, Ok } from '.';
-import { pipe } from '../fn/pipe';
-import { multiply } from '../number/multiply';
-import { andThen } from './and-then';
+import { Err, Ok } from './index.js';
+import { pipe } from '../fn/pipe.js';
+import { multiply } from '../number/multiply.js';
+import { andThen } from './and-then.js';
 
 it('short-circuits when upstream is Err', () => {
   const spy = vi.fn();

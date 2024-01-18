@@ -1,5 +1,5 @@
-import { curry } from '../fn/curry';
-import { isNonEmptyString } from './is-non-empty-string';
+import { curry } from '../fn/curry.js';
+import { isNonEmptyString } from './is-non-empty-string.js';
 
 type EndsWith = {
   (otherString: unknown): { (value: unknown): boolean };

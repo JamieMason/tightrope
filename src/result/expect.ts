@@ -1,6 +1,6 @@
-import { curry } from '../fn/curry';
-import type { AnyResult, ResOk } from '../fn/types';
-import { isOk } from './is-ok';
+import { curry } from '../fn/curry.js';
+import type { AnyResult, ResOk } from '../fn/types.js';
+import { isOk } from './is-ok.js';
 
 export type Expect = {
   (msg: string): {

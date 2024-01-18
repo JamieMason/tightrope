@@ -1,5 +1,5 @@
 import { expect, it } from 'vitest';
-import { isDateBetween } from './is-date-between';
+import { isDateBetween } from './is-date-between.js';
 
 it('positive case', () => {
   const floor = new Date('2020-01-01');

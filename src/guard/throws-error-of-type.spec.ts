@@ -1,5 +1,5 @@
 import { expect, it } from 'vitest';
-import { throwsErrorOfType } from './throws-error-of-type';
+import { throwsErrorOfType } from './throws-error-of-type.js';
 
 it('positive case', () => {
   const fn = () => {

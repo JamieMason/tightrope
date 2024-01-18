@@ -1,6 +1,6 @@
 import { expect, it } from 'vitest';
-import { isArrayOf } from './is-array-of';
-import { isGreaterThan } from './is-greater-than';
+import { isArrayOf } from './is-array-of.js';
+import { isGreaterThan } from './is-greater-than.js';
 
 it('returns true when every value passes the guard', () => {
   expect(isArrayOf(isGreaterThan(2), [5, 3, 6])).toEqual(true);

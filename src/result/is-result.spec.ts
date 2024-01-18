@@ -1,6 +1,6 @@
 import { expect, it } from 'vitest';
-import { Err, Ok } from '.';
-import { isResult } from './is-result';
+import { Err, Ok } from './index.js';
+import { isResult } from './is-result.js';
 
 it('returns true if value is a Result.Ok', () => {
   expect(isResult(Ok.create(1))).toEqual(true);

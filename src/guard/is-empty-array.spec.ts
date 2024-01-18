@@ -1,5 +1,5 @@
 import { expect, it } from 'vitest';
-import { isEmptyArray } from './is-empty-array';
+import { isEmptyArray } from './is-empty-array.js';
 
 it('positive case - empty array', () => {
   expect(isEmptyArray([])).toBe(true);

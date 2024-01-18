@@ -1,6 +1,6 @@
-import type { Option } from '.';
-import { isNone } from './is-none';
-import { isSome } from './is-some';
+import type { Option } from './index.js';
+import { isNone } from './is-none.js';
+import { isSome } from './is-some.js';
 
 /**
  * Extract value from both a `Some` or a `None`.

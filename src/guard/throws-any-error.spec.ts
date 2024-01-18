@@ -1,5 +1,5 @@
 import { expect, it } from 'vitest';
-import { throwsAnyError } from './throws-any-error';
+import { throwsAnyError } from './throws-any-error.js';
 
 it('positive case', () => {
   const fn = () => {

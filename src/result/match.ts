@@ -1,6 +1,6 @@
-import type { Result } from '.';
-import { isErr } from './is-err';
-import { isOk } from './is-ok';
+import type { Result } from './index.js';
+import { isErr } from './is-err.js';
+import { isOk } from './is-ok.js';
 
 /**
  * Extract value from both an `Ok` or an `Err`.

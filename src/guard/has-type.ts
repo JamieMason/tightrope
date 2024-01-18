@@ -1,4 +1,4 @@
-import { curry } from '../fn/curry';
+import { curry } from '../fn/curry.js';
 
 export type HasType = {
   <T>(className: string): { (value: unknown): value is T };

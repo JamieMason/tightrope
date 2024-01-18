@@ -1,4 +1,4 @@
-import { curry } from '../fn/curry';
+import { curry } from '../fn/curry.js';
 
 type Multiply = {
   (multiplier: number): { (value: number): number };

@@ -1,6 +1,6 @@
 import { expect, it } from 'vitest';
-import { Err, Ok } from '.';
-import { mapOrElse } from './map-or-else';
+import { Err, Ok } from './index.js';
+import { mapOrElse } from './map-or-else.js';
 
 it('mapOrElse applies mapOkFn when input is Ok', () => {
   const result = new Ok(2);

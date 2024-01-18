@@ -1,7 +1,7 @@
-import type { Result } from '.';
-import { pipe } from '../fn/pipe';
-import { orElse } from './or-else';
-import { unwrap } from './unwrap';
+import type { Result } from './index.js';
+import { pipe } from '../fn/pipe.js';
+import { orElse } from './or-else.js';
+import { unwrap } from './unwrap.js';
 
 /**
  * Extract value from an `Ok` or from a fallback `() => Ok` if an `Err`.

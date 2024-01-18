@@ -1,5 +1,5 @@
-import { isString } from './is-string';
-import { isValidDate } from './is-valid-date';
+import { isString } from './is-string.js';
+import { isValidDate } from './is-valid-date.js';
 
 /**
  * Asserts that a value is a String which conforms to common use-cases of the ISO 8601 standard representation of dates

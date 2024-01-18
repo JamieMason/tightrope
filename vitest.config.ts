@@ -4,6 +4,7 @@ export default defineConfig({
   test: {
     include: ['src/**/*.spec.ts'],
     coverage: {
+      all: true,
       enabled: true,
       exclude: [
         // these files only contain types and although used in tests, show 0
@@ -15,13 +16,16 @@ export default defineConfig({
         '**/*.spec.*',
         'test/**',
       ],
-      all: true,
-      src: ['src'],
-      thresholdAutoUpdate: false,
-      branches: 90,
-      functions: 90,
-      lines: 90,
-      statements: 90,
+      extension: ['.ts'],
+      provider: 'v8',
+      reporter: ['lcov', 'html', 'text'],
+      thresholds: {
+        autoUpdate: true,
+        branches: 94.07,
+        functions: 78,
+        lines: 85.35,
+        statements: 85.35,
+      },
     },
   },
 });

@@ -1,4 +1,4 @@
-import { apply } from './lib/private';
+import { apply } from './lib/private.js';
 
 /**
  * ## Example

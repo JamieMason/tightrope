@@ -1,6 +1,6 @@
-import type { Result } from '.';
-import { isErr } from './is-err';
-import { isOk } from './is-ok';
+import type { Result } from './index.js';
+import { isErr } from './is-err.js';
+import { isOk } from './is-ok.js';
 
 /**
  * Check if value is an instance of either the `Ok` or `Err` classes.

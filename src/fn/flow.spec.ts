@@ -1,11 +1,11 @@
 import { expect, it } from 'vitest';
 import '../../test/matchers';
-import { isEvenNumber } from '../guard/is-even-number';
-import { multiply } from '../number/multiply';
-import { Err, Ok } from '../result';
-import { filter } from '../result/filter';
-import { map } from '../result/map';
-import { flow } from './flow';
+import { isEvenNumber } from '../guard/is-even-number.js';
+import { multiply } from '../number/multiply.js';
+import { Err, Ok } from '../result/index.js';
+import { filter } from '../result/filter.js';
+import { map } from '../result/map.js';
+import { flow } from './flow.js';
 
 it('executes functions from left to right', () => {
   const transform = flow(

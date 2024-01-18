@@ -1,8 +1,8 @@
-import { curry } from '../fn/curry';
-import { pipe } from '../fn/pipe';
-import type { Gen, GenYield, Reducer } from '../fn/types';
-import { reduceEach } from './reduce-each';
-import { takeLast } from './take-last';
+import { curry } from '../fn/curry.js';
+import { pipe } from '../fn/pipe.js';
+import type { Gen, GenYield, Reducer } from '../fn/types.js';
+import { reduceEach } from './reduce-each.js';
+import { takeLast } from './take-last.js';
 
 export type Reduce = {
   <F extends Reducer<GenYield<T>, R>, R, T extends Gen<any>>(
@@ -14,8 +14,12 @@ export type Reduce = {
     fn: F,
     initialValue: R,
   ): { (gen: T): Gen<R> };
-  <F extends Reducer<GenYield<T>, R>, R, T extends Gen<any>>(fn: F): {
-    <R, T extends Gen<any>>(initialValue: R): {
+  <F extends Reducer<GenYield<T>, R>, R, T extends Gen<any>>(
+    fn: F,
+  ): {
+    <R, T extends Gen<any>>(
+      initialValue: R,
+    ): {
       (gen: T): Gen<R>;
     };
     <R, T extends Gen<any>>(initialValue: R, gen: T): Gen<R>;
@@ -99,5 +103,4 @@ export const reduce: Reduce = curry(function* reduce<
   T extends Gen<any>,
 >(fn: F, initialValue: R, gen: T): Gen<R> {
   yield* pipe(gen, reduceEach(fn, initialValue), takeLast);
-},
-3);
+}, 3);
