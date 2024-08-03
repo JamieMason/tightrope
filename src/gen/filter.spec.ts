@@ -1,5 +1,4 @@
 import { expect, it, vi } from 'vitest';
-import '../../test/matchers';
 import { pipe } from '../fn/pipe.js';
 import { isEvenNumber } from '../guard/is-even-number.js';
 import { multiply } from '../number/multiply.js';

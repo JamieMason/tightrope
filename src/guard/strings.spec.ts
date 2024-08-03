@@ -1,6 +1,5 @@
 import * as fc from 'fast-check';
 import { expect, test } from 'vitest';
-import '../../test/matchers';
 import { isBoolean } from './is-boolean.js';
 import { isEmptyString } from './is-empty-string.js';
 import { isJsonString } from './is-json-string.js';

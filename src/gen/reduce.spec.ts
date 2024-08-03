@@ -1,5 +1,4 @@
 import { expect, it } from 'vitest';
-import '../../test/matchers';
 import { pipe } from '../fn/pipe.js';
 import { range } from './range.js';
 import { reduce } from './reduce.js';

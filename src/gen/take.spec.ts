@@ -1,5 +1,4 @@
 import { expect, it, vi } from 'vitest';
-import '../../test/matchers';
 import { pipe } from '../fn/pipe.js';
 import { multiply } from '../number/multiply.js';
 import { map } from './map.js';

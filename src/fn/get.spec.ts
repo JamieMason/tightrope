@@ -1,5 +1,4 @@
 import { expect, it } from 'vitest';
-import '../../test/matchers';
 import { unwrap } from '../result/unwrap.js';
 import { get } from './get.js';
 import { pipe } from './pipe.js';

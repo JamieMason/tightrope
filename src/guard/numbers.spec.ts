@@ -1,6 +1,5 @@
 import * as fc from 'fast-check';
 import { expect, test } from 'vitest';
-import '../../test/matchers';
 import { isArrayOfNumbers } from './is-array-of-numbers.js';
 import { isBoolean } from './is-boolean.js';
 import { isCalculable } from './is-calculable.js';
