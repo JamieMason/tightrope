@@ -7,10 +7,13 @@
   "compilerOptions": {
     "declaration": true,
     "forceConsistentCasingInFileNames": true,
+    "moduleDetection": "force",
+    "module": "NodeNext",
     "noPropertyAccessFromIndexSignature": false,
     "noUncheckedIndexedAccess": true,
     "outDir": "dist",
-    "strict": true
+    "strict": true,
+    "verbatimModuleSyntax": true
   },
   "include": ["./src/**/*.ts", "./test/**/*.ts"]
 }
