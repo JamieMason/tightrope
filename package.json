@@ -21,7 +21,6 @@
     "prettier": "3.1.1",
     "prettier-plugin-jsdoc": "1.1.1",
     "release-it": "17.0.1",
-    "terser": "5.26.0",
     "ts-morph": "21.0.1",
     "tsx": "4.6.2",
     "type-fest": "4.8.3",
@@ -35,8 +34,7 @@
   "license": "MIT",
   "repository": "JamieMason/tightrope",
   "scripts": {
-    "build": "rm -rf dist && npm run build:esm && npm run build:compress",
-    "build:compress": "tsx ./scripts/compress.ts",
+    "build": "rm -rf dist && npm run build:esm",
     "build:esm": "tsc --project tsconfig-esm.json",
     "find-curried-functions-without-arity": "tsx scripts/find-curried-functions-without-arity.ts",
     "format": "npm run format:imports && npm run format:lint && npm run format:source",
