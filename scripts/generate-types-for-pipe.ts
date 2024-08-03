@@ -6,7 +6,7 @@ import { range } from '../src/gen/range.js';
 import { reduce } from '../src/gen/reduce.js';
 
 const typings = pipe(
-  range(1, 80),
+  range(1, 30),
   map(len =>
     pipe(
       range(0, len - 1),
