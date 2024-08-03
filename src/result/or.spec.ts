@@ -1,14 +1,19 @@
-import { expect, it } from 'vitest';
+import { expect, test } from 'vitest';
 import { pipe } from '../fn/pipe.js';
-import { Err, Ok } from './index.js';
 import { or } from './or.js';
+import { Err, Ok, type Result } from './result.js';
 
-it('returns the provided Ok when Err', () => {
-  expect(pipe(Err.create(new Error('wat?')), or(Ok.create(2)))).toEqual(
-    Ok.create(2),
-  );
-});
-
-it('keeps the original Ok when Ok', () => {
-  expect(pipe(Ok.create(2), or(Ok.create(4)))).toEqual(Ok.create(2));
+test.each<
+  [Result<number, Error>, Result<number, Error>, Result<number, Error>]
+>([
+  [Ok.create(2), Err.create(new Error('wat?')), Ok.create(2)],
+  [Err.create(new Error('wat?')), Ok.create(2), Ok.create(2)],
+  [
+    Err.create(new Error('wat?')),
+    Err.create(new Error('wut?')),
+    Err.create(new Error('wut?')),
+  ],
+  [Ok.create(2), Ok.create(4), Ok.create(2)],
+])('%j || %j == %j', (a, b, expected) => {
+  expect<Result<number, Error>>(pipe(a, or(b))).toEqual(expected);
 });

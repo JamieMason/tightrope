@@ -1,9 +1,14 @@
-import { curry } from '../fn/curry.js';
-import type { Gen, GenYield } from '../fn/types.js';
+import { curry } from '../fn/lib/curry.js';
+import type { Iter } from './index.js';
 
-export type Take = {
-  <T extends Gen<any>>(amount: number): (gen: T) => Gen<GenYield<T>>;
-  <T extends Gen<any>>(amount: number, gen: T): Gen<GenYield<T>>;
+type Take = {
+  <G extends Iterable<any>>(
+    amount: number,
+  ): (gen: G) => Iterable<Iter.ValueType<G>>;
+  <G extends Iterable<any>>(
+    amount: number,
+    gen: G,
+  ): Iterable<Iter.ValueType<G>>;
 };
 
 /**
@@ -61,10 +66,10 @@ export type Take = {
  *
  * @tags generator
  */
-export const take: Take = curry(function* take<T extends Gen<any>>(
+export const take: Take = curry(function* take<G extends Iterable<any>>(
   amount: number,
-  gen: T,
-): Gen<GenYield<T>> {
+  gen: G,
+): Iterable<Iter.ValueType<G>> {
   let takeCount = 0;
   for (const value of gen) {
     if (++takeCount <= amount) {

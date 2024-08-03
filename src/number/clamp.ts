@@ -1,6 +1,6 @@
-import { curry } from '../fn/curry.js';
+import { curry } from '../fn/lib/curry.js';
 
-export type Clamp = {
+type Clamp = {
   (floor: number, ceiling: number, value: number): number;
   (floor: number, ceiling: number): (value: number) => number;
   (

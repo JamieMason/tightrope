@@ -1,20 +1,20 @@
-import type { AnyResult, ResErr, ResOk } from '../fn/types.js';
-import type { Result } from './index.js';
-import { Ok } from './index.js';
 import { isOk } from './is-ok.js';
+import type { Result } from './result.js';
+import { Ok } from './result.js';
 
 /**
- * Takes an array of `Result` values and returns a `Result` containing an array of `Ok` values if all the input values
- * are `Ok`. If any input value is an `Err`, returns the first encountered `Err`.
+ * Takes an array of `Result` values and returns a `Result` containing an array
+ * of values if all Results are `Ok`. If any input value is an `Err`, returns
+ * the first encountered `Err`.
  *
  * @tags result, array
  */
-export function sequence<Res extends AnyResult>(
-  results: Res[],
-): Result<ResOk<Res>[], ResErr<Res>> {
-  const okValues: ResOk<Res>[] = [];
+export function sequence<ResArr extends Result.Any[]>(
+  results: ResArr,
+): Result<Result.OkType<ResArr[number]>[], Result.ErrType<ResArr[number]>> {
+  const okValues: Result.OkType<ResArr[number]>[] = [];
   for (const result of results) {
-    if (isOk<ResOk<Res>>(result)) {
+    if (isOk(result)) {
       okValues.push(result.value);
     } else {
       return result;

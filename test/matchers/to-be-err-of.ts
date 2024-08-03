@@ -1,6 +1,6 @@
 import { expect } from 'vitest';
-import { Err } from '../../src/result/index.js';
 import { isErr } from '../../src/result/is-err.js';
+import { Err } from '../../src/result/result.js';
 
 expect.extend({
   toBeErrOf(actual: any, expected: any) {

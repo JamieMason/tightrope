@@ -1,24 +1,29 @@
-import { curry } from '../fn/curry.js';
+import { curry } from '../fn/lib/curry.js';
 import { pipe } from '../fn/pipe.js';
-import type { Gen, GenYield, Reducer } from '../fn/types.js';
+import type { Iter } from './index.js';
 import { reduceEach } from './reduce-each.js';
 import { takeLast } from './take-last.js';
 
-export type Reduce = {
-  <F extends Reducer<GenYield<T>, R>, R, T extends Gen<any>>(
-    fn: F,
-    initialValue: R,
-    gen: T,
-  ): Gen<R>;
-  <F extends Reducer<GenYield<T>, R>, R, T extends Gen<any>>(
-    fn: F,
-    initialValue: R,
-  ): (gen: T) => Gen<R>;
-  <F extends Reducer<GenYield<T>, R>, R, T extends Gen<any>>(
-    fn: F,
+type Reduce = {
+  <G extends Iterable<any>, Fn extends Iter.Reducer<G>>(
+    fn: Fn,
+    initialValue: ReturnType<Fn>,
+    gen: G,
+  ): Iterable<ReturnType<Fn>>;
+  <G extends Iterable<any>, Fn extends Iter.Reducer<G>>(
+    fn: Fn,
+    initialValue: ReturnType<Fn>,
+  ): (gen: G) => Iterable<ReturnType<Fn>>;
+  <G extends Iterable<any>, Fn extends Iter.Reducer<G>>(
+    fn: Fn,
   ): {
-    <R, T extends Gen<any>>(initialValue: R): (gen: T) => Gen<R>;
-    <R, T extends Gen<any>>(initialValue: R, gen: T): Gen<R>;
+    <G extends Iterable<any>, Fn extends Iter.Reducer<G>>(
+      initialValue: ReturnType<Fn>,
+    ): (gen: G) => Iterable<ReturnType<Fn>>;
+    <G extends Iterable<any>, Fn extends Iter.Reducer<G>>(
+      initialValue: ReturnType<Fn>,
+      gen: G,
+    ): Iterable<ReturnType<Fn>>;
   };
 };
 
@@ -94,9 +99,8 @@ export type Reduce = {
  * @see https://jamiemason.github.io/tightrope/api/gen/reduce-each
  */
 export const reduce: Reduce = curry(function* reduce<
-  F extends Reducer<GenYield<T>, R>,
-  R,
-  T extends Gen<any>,
->(fn: F, initialValue: R, gen: T): Gen<R> {
+  G extends Iterable<any>,
+  Fn extends Iter.Reducer<G>,
+>(fn: Fn, initialValue: ReturnType<Fn>, gen: G): Iterable<ReturnType<Fn>> {
   yield* pipe(gen, reduceEach(fn, initialValue), takeLast);
 }, 3);

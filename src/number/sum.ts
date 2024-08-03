@@ -1,4 +1,4 @@
-import { curry } from '../fn/curry.js';
+import { curry } from '../fn/lib/curry.js';
 
 type Sum = {
   (amount: number): (value: number) => number;

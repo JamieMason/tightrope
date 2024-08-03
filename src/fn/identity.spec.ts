@@ -1,7 +1,7 @@
-import { expect, it } from 'vitest';
+import { expect, test } from 'vitest';
 import { identity } from './identity.js';
 
-it('returns the same value passed as argument', () => {
+test('returns the same value passed as argument', () => {
   expect(identity('hello')).toEqual('hello');
   expect(identity(42)).toEqual(42);
   expect(identity(true)).toEqual(true);

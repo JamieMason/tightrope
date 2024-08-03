@@ -1,6 +1,6 @@
-import { curry } from '../fn/curry.js';
+import { curry } from '../fn/lib/curry.js';
 
-export type HasType = {
+type HasType = {
   <T>(className: string): (value: unknown) => value is T;
   <T>(className: string, value: unknown): value is T;
 };
@@ -48,4 +48,4 @@ export const hasType: HasType = curry(
     Object.prototype.toString.call(value) === `[object ${className}]` ||
     value?.constructor?.name === className,
   2,
-) as HasType;
+);

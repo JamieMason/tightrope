@@ -1,6 +1,19 @@
-import type { Result } from './index.js';
+import { curry } from '../fn/lib/curry.js';
 import { isErr } from './is-err.js';
 import { isOk } from './is-ok.js';
+import type { Result } from './result.js';
+
+type Cases<Res extends Result.Any> = {
+  Ok(value: Result.OkType<Res>): Result.OkType<Res>;
+  Err(err: Result.ErrType<Res>): Result.OkType<Res>;
+};
+
+type Match = {
+  <Res extends Result.Any>(
+    cases: Cases<Res>,
+  ): (result: Res) => Result.OkType<Res>;
+  <Res extends Result.Any>(cases: Cases<Res>, result: Res): Result.OkType<Res>;
+};
 
 /**
  * Extract value from both an `Ok` or an `Err`.
@@ -53,19 +66,14 @@ import { isOk } from './is-ok.js';
  *
  * @tags result, unwrap
  */
-export const match = <OkT, ErrT, NextOk>(cases: {
-  Ok(value: OkT): NextOk;
-  Err(err: ErrT): NextOk;
-}) => {
-  return (result: Result<OkT, ErrT>): NextOk => {
-    for (const key in cases) {
-      if (key === 'Ok' && isOk<OkT>(result)) {
-        return cases[key](result.value);
-      }
-      if (key === 'Err' && isErr<ErrT>(result)) {
-        return cases[key](result.value);
-      }
-    }
+export const match: Match = curry(
+  <Res extends Result.Any>(
+    cases: Cases<Res>,
+    result: Res,
+  ): Result.OkType<Res> => {
+    if (isOk(result)) return cases.Ok(result.value);
+    if (isErr(result)) return cases.Err(result.value);
     throw new Error('match() did not match any cases');
-  };
-};
+  },
+  2,
+);

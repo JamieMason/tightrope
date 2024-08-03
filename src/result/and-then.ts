@@ -1,6 +1,31 @@
-import type { Result } from './index.js';
-import { Err } from './index.js';
+import { curry } from '../fn/lib/curry.js';
+import { withSafety } from '../fn/with-safety.js';
 import { isOk } from './is-ok.js';
+import type { Result } from './result.js';
+
+type AndThen = {
+  <
+    Res extends Result.Any,
+    Fn extends (value: Result.OkType<Res>) => Result.Any,
+  >(
+    mapFn: Fn,
+  ): (
+    result: Res,
+  ) => Result<
+    Result.OkType<ReturnType<Fn>>,
+    Result.ErrType<Res> | Result.ErrType<ReturnType<Fn>>
+  >;
+  <
+    Res extends Result.Any,
+    Fn extends (value: Result.OkType<Res>) => Result.Any,
+  >(
+    mapFn: Fn,
+    result: Res,
+  ): Result<
+    Result.OkType<ReturnType<Fn>>,
+    Result.ErrType<Res> | Result.ErrType<ReturnType<Fn>>
+  >;
+};
 
 /**
  * Same as `flatMap` or `chain`, transform a `Result` with the value of another.
@@ -74,15 +99,18 @@ import { isOk } from './is-ok.js';
  * @tags result, transform, transform-result, right-biased
  * @see https://doc.rust-lang.org/core/result/enum.Result.html#method.and_then
  */
-export function andThen<OkT, ErrT, NextOk, NextErr = ErrT>(
-  mapFn: (value: OkT) => Result<NextOk, NextErr>,
-) {
-  return (res: Result<OkT, ErrT>): Result<NextOk, ErrT | NextErr> => {
-    if (!isOk(res)) return res;
-    try {
-      return mapFn(res.value);
-    } catch (err) {
-      return new Err<NextErr>(err as NextErr);
-    }
-  };
-}
+export const andThen: AndThen = curry(
+  withSafety(
+    <
+      Res extends Result.Any,
+      Fn extends (value: Result.OkType<Res>) => Result.Any,
+    >(
+      mapFn: Fn,
+      result: Res,
+    ): Result<
+      Result.OkType<ReturnType<Fn>>,
+      Result.ErrType<Res> | Result.ErrType<ReturnType<Fn>>
+    > => (isOk(result) ? mapFn(result.value) : result),
+  ),
+  2,
+);

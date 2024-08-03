@@ -1,17 +1,23 @@
+import { type Node, SyntaxKind, type ts } from 'ts-morph';
 import type { CurriedFunction } from './get-all-curried-functions.js';
 
-export function getCombinations({
-  args,
-  arity,
-  filePath,
-  exportedName,
-  typeParams,
-  returnType,
-}: CurriedFunction) {
+export function getCombinations(fn: CurriedFunction) {
+  const {
+    args,
+    arity,
+    exportedName,
+    file,
+    filePath,
+    returnType,
+    typeParams,
+    typePredicate,
+  } = fn;
+
   const pascalName = firstUp(exportedName);
-  const generics = typeParams.length
-    ? `<${typeParams.map(typeParam => typeParam.getText())}>`
-    : '';
+  const generics =
+    typeParams.length > 0
+      ? `<${typeParams.map(typeParam => typeParam.getText())}>`
+      : '';
   const typeName = `${pascalName}`;
 
   const p0 = args[0]?.getText() || '';
@@ -21,37 +27,42 @@ export function getCombinations({
   const p4 = args[4]?.getText() || '';
   const p5 = args[5]?.getText() || '';
   const p6 = args[6]?.getText() || '';
-  const r = returnType.getText();
+  const r = typePredicate || returnType.getText();
 
-  const log = (msg: string) =>
-    console.log(msg.split(/import\("[^"]+"\)\./g).join(''));
+  function getTypeName(callExpr: Node<ts.Node>): string {
+    const id = callExpr.getFirstChildByKind(SyntaxKind.Identifier);
+    return id?.getText() || '';
+  }
 
-  log(filePath);
+  function replaceType(msg: string) {
+    const typeExport = file
+      .getDescendantsOfKind(SyntaxKind.TypeAliasDeclaration)
+      .find(callExpr => getTypeName(callExpr).search(typeName) !== -1);
+
+    if (!typeExport) {
+      throw new Error(`No type export found for ${typeName} in ${filePath}`);
+    }
+
+    typeExport.replaceWithText(msg);
+    file.saveSync();
+    console.log(`Replaced ${typeName} in ${filePath}`);
+  }
 
   if (arity.curried === 2) {
-    log(`export type ${typeName} = ${curry2Generic(p0, p1, r)}`);
+    replaceType(`type ${typeName} = ${curry2Generic(p0, p1, r)}`);
   } else if (arity.curried === 3) {
-    log(`export type ${typeName} = ${curry3Generic(p0, p1, p2, r)}`);
+    replaceType(`type ${typeName} = ${curry3Generic(p0, p1, p2, r)}`);
   } else if (arity.curried === 4) {
-    log(`export type ${typeName} = ${curry4Generic(p0, p1, p2, p3, r)}`);
+    replaceType(`type ${typeName} = ${curry4Generic(p0, p1, p2, p3, r)}`);
   } else if (arity.curried === 5) {
-    log(`export type ${typeName} = ${curry5Generic(p0, p1, p2, p3, p4, r)}`);
+    replaceType(`type ${typeName} = ${curry5Generic(p0, p1, p2, p3, p4, r)}`);
   } else if (arity.curried === 6) {
-    log(
-      `export type ${typeName} = ${curry6Generic(p0, p1, p2, p3, p4, p5, r)}`,
+    replaceType(
+      `type ${typeName} = ${curry6Generic(p0, p1, p2, p3, p4, p5, r)}`,
     );
   } else if (arity.curried === 7) {
-    log(
-      `export type ${typeName} = ${curry7Generic(
-        p0,
-        p1,
-        p2,
-        p3,
-        p4,
-        p5,
-        p6,
-        r,
-      )}`,
+    replaceType(
+      `type ${typeName} = ${curry7Generic(p0, p1, p2, p3, p4, p5, p6, r)}`,
     );
   }
 

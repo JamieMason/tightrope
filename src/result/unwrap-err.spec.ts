@@ -1,15 +1,15 @@
-import { expect, it } from 'vitest';
+import { expect, test } from 'vitest';
 import { pipe } from '../fn/pipe.js';
-import { Err, Ok } from './index.js';
+import { Err, Ok } from './result.js';
 import { unwrapErr } from './unwrap-err.js';
 
-it('returns the wrapped value from an Err', () => {
+test('returns the wrapped value from an Err', () => {
   expect(pipe(Err.create(new Error('wat')), unwrapErr)).toEqual(
     new Error('wat'),
   );
 });
 
-it('throws when value is an Ok', () => {
+test('throws when value is an Ok', () => {
   expect(() => pipe(Ok.create(2), unwrapErr)).toThrow(
     new Error('unwrapErr encountered Ok<2>'),
   );

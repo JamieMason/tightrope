@@ -1,5 +1,5 @@
-import { curry } from '../fn/curry.js';
-import { isString } from './is-string.js';
+import { curry } from '../fn/lib/curry.js';
+import { isString } from '../string/is-string.js';
 
 type HasProperty = {
   (ownKeyName: string): (value: unknown) => boolean;
@@ -15,7 +15,7 @@ type HasProperty = {
  * @tags guard, objects, arrays
  */
 export const hasProperty: HasProperty = curry(
-  (ownKeyName: string, value: unknown): value is any =>
+  (ownKeyName: string, value: unknown): boolean =>
     Boolean(
       isString(ownKeyName) &&
         value &&

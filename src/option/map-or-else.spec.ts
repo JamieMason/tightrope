@@ -1,23 +1,24 @@
-import { expect, it } from 'vitest';
-import { Some, none } from './index.js';
+import { expect, test } from 'vitest';
 import { mapOrElse } from './map-or-else.js';
+import { type Option, Some, none } from './option.js';
 
-it('mapOrElse applies mapFn when input is Some', () => {
-  const opt = new Some(2);
-  const mapFn = (x: number) => x * 2;
-  const defaultFn = () => -1;
-  expect(mapOrElse(mapFn, defaultFn, opt)).toEqual(4);
+test('mapOrElse applies mapSome when input is Some', () => {
+  const opt = Some.create(2);
+  const mapSome = (x: number) => x * 2;
+  const mapNone = () => -1;
+  expect(mapOrElse(mapNone, mapSome, opt)).toEqual(4);
 });
 
-it('mapOrElse applies defaultFn when input is None', () => {
-  const mapFn = (x: number) => x * 2;
-  const defaultFn = () => -1;
-  expect(mapOrElse(mapFn, defaultFn, none)).toEqual(-1);
+test('mapOrElse applies mapNone when input is None', () => {
+  const value = none as Option<number>;
+  const mapSome = (x: number) => x * 2;
+  const mapNone = () => -1;
+  expect(mapOrElse(mapNone, mapSome, value)).toEqual(-1);
 });
 
-it('mapOrElse handles complex types', () => {
-  const opt = new Some({ value: 2 });
-  const mapFn = (obj: { value: number }) => obj.value * 2;
-  const defaultFn = () => -1;
-  expect(mapOrElse(mapFn, defaultFn, opt)).toEqual(4);
+test('mapOrElse handles complex types', () => {
+  const opt = Some.create({ value: 2 });
+  const mapSome = (obj: { value: number }) => obj.value * 2;
+  const mapNone = () => -1;
+  expect(mapOrElse(mapNone, mapSome, opt)).toEqual(4);
 });

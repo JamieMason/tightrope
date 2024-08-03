@@ -1,6 +1,19 @@
-import type { Option } from './index.js';
+import { curry } from '../fn/lib/curry.js';
 import { isNone } from './is-none.js';
 import { isSome } from './is-some.js';
+import type { Option } from './option.js';
+
+type Cases<Opt extends Option.Any> = {
+  Some(value: Option.Type<Opt>): Option.Type<Opt>;
+  None(): Option.Type<Opt>;
+};
+
+type Match = {
+  <Opt extends Option.Any>(
+    cases: Cases<Opt>,
+  ): (option: Opt) => Option.Type<Opt>;
+  <Opt extends Option.Any>(cases: Cases<Opt>, option: Opt): Option.Type<Opt>;
+};
 
 /**
  * Extract value from both a `Some` or a `None`.
@@ -10,51 +23,16 @@ import { isSome } from './is-some.js';
  * and returns the result of applying either the `Some` or `None` function to the value inside the `Option`, depending
  * on which variant it contains.
  *
- * ## Example
- *
- * In this example, `andThen` is used to transform the `Some` variant of the `Option` object.
- *
- * - If the value inside the `Some` variant is greater than `50`, a `None` variant is returned.
- * - If the value is less than or equal to `50`, a `Some` variant containing the original value is returned.
- *
- * The `match` function is then used to handle the two possible variants of the `Option` object, printing the
- * appropriate message to the console.
- *
- * ```ts
- * import { pipe } from 'tightrope/fn/pipe';
- * import { andThen } from 'tightrope/option/and-then';
- * import { None } from 'tightrope/option';
- * import { match } from 'tightrope/option/match';
- * import { Some } from 'tightrope/option';
- *
- * const option = pipe(
- *   60,
- *   Some.create,
- *   andThen((value) => (value > 50 ? new None() : new Some(value))),
- *   match({
- *     Some: (value) => `The value is ${value}`,
- *     None: () => `Error: Value too high`,
- *   }),
- * );
- *
- * console.log(option); // Outputs: "Error: Value too high"
- * ```
- *
  * @tags option, unwrap
  */
-export const match = <SomeT, Next>(cases: {
-  Some(value: SomeT): Next;
-  None(): Next;
-}) => {
-  return (option: Option<SomeT>): Next => {
-    for (const key in cases) {
-      if (key === 'Some' && isSome<SomeT>(option)) {
-        return cases[key](option.value);
-      }
-      if (key === 'None' && isNone(option)) {
-        return cases[key]();
-      }
-    }
+export const match: Match = curry(
+  <Opt extends Option.Any>(
+    cases: Cases<Opt>,
+    option: Opt,
+  ): Option.Type<Opt> => {
+    if (isSome(option)) return cases.Some(option.value);
+    if (isNone(option)) return cases.None();
     throw new Error('match() did not match any cases');
-  };
-};
+  },
+  2,
+);

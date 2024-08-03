@@ -1,11 +1,13 @@
-import { curry } from '../fn/curry.js';
-import type { AnyOption } from '../fn/types.js';
-import { none } from './index.js';
+import { curry } from '../fn/lib/curry.js';
 import { isSome } from './is-some.js';
+import type { Option } from './option.js';
+import { None } from './option.js';
 
-export type And = {
-  <A extends AnyOption, B extends AnyOption>(b: B): (a: A) => B;
-  <A extends AnyOption, B extends AnyOption>(b: B, a: A): B;
+type And = {
+  <B extends Option.Any, A extends Option.Any>(
+    b: B,
+  ): (a: A) => Option.Union<B, A>;
+  <B extends Option.Any, A extends Option.Any>(b: B, a: A): Option.Union<B, A>;
 };
 
 /**
@@ -14,7 +16,9 @@ export type And = {
  * @tags option, transform, transform-option
  */
 export const and: And = curry(
-  <A extends AnyOption, B extends AnyOption>(b: B, a: A): B =>
-    isSome(a) ? b : (none as B),
+  <B extends Option.Any, A extends Option.Any>(
+    b: B,
+    a: A,
+  ): Option.Union<B, A> => (isSome(a) ? b : None.create()),
   2,
 );

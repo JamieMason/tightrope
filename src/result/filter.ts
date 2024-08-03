@@ -1,40 +1,49 @@
-import { curry } from '../fn/curry.js';
-import type { AnyResult, GuardType, UnaryGuard } from '../fn/types.js';
-import type { Result } from './index.js';
-import { Err } from './index.js';
+import type { LazyValue } from '../fn/index.js';
+import { curry } from '../fn/lib/curry.js';
+import { withSafety } from '../fn/with-safety.js';
+import type { Guard } from '../guard/index.js';
 import { isOk } from './is-ok.js';
-import { withCatch } from './lib/with-catch.js';
+import type { Result } from './result.js';
+import { Err } from './result.js';
 
-export type Filter = {
-  <G extends UnaryGuard, Res extends AnyResult>(
-    guard: G,
-    msg: string,
+type Filter = {
+  <Res extends Result.Any, Fn extends Guard.Unary, GetErr extends LazyValue>(
+    guard: Fn,
+    getErrValue: GetErr,
     res: Res,
-  ): Result<GuardType<G>, Error>;
-  <G extends UnaryGuard>(
-    guard: G,
-    msg: string,
-  ): <Res extends AnyResult>(res: Res) => Result<GuardType<G>, Error>;
-  <G extends UnaryGuard>(
-    guard: G,
+  ): Result<Guard.UnaryType<Fn>, Error>;
+  <Res extends Result.Any, Fn extends Guard.Unary, GetErr extends LazyValue>(
+    guard: Fn,
+    getErrValue: GetErr,
+  ): (res: Res) => Result<Guard.UnaryType<Fn>, Error>;
+  <_Res extends Result.Any, Fn extends Guard.Unary, _GetErr extends LazyValue>(
+    guard: Fn,
   ): {
-    (
-      msg: string,
-    ): <Res extends AnyResult>(res: Res) => Result<GuardType<G>, Error>;
-    <Res extends AnyResult>(msg: string, res: Res): Result<GuardType<G>, Error>;
+    <Res extends Result.Any, Fn extends Guard.Unary, GetErr extends LazyValue>(
+      getErrValue: GetErr,
+    ): (res: Res) => Result<Guard.UnaryType<Fn>, Error>;
+    <Res extends Result.Any, Fn extends Guard.Unary, GetErr extends LazyValue>(
+      getErrValue: GetErr,
+      res: Res,
+    ): Result<Guard.UnaryType<Fn>, Error>;
   };
 };
 
-/** @tags result, right-biased */
+/**
+ * Keep an `Ok` if its value passes the guard function, or return an `Err`
+ * containing the result of `getErrValue()`.
+ *
+ * @tags result, right-biased
+ */
 export const filter: Filter = curry(
-  withCatch(
-    <G extends UnaryGuard, Res extends AnyResult>(
-      guard: G,
-      msg: string,
+  withSafety(
+    <Res extends Result.Any, Fn extends Guard.Unary, GetErr extends LazyValue>(
+      guard: Fn,
+      getErrValue: GetErr,
       res: Res,
-    ): Result<GuardType<G>, Error> => {
-      if (isOk<GuardType<G>>(res) && guard(res.value)) return res;
-      return new Err(new Error(`${msg}: ${res.value}`));
+    ): Result<Guard.UnaryType<Fn>, Error> => {
+      if (isOk(res) && guard(res.value)) return res;
+      return new Err(getErrValue());
     },
   ),
   3,

@@ -1,7 +1,18 @@
-import type { Result } from './index.js';
-import { Ok } from './index.js';
+import { curry } from '../fn/lib/curry.js';
+import { withSafety } from '../fn/with-safety.js';
 import { isOk } from './is-ok.js';
-import { withCatch } from './lib/with-catch.js';
+import type { Result } from './result.js';
+import { Ok } from './result.js';
+
+type Map = {
+  <Res extends Result.Any, Fn extends (value: Result.OkType<Res>) => any>(
+    mapFn: Fn,
+  ): (result: Res) => Result<ReturnType<Fn>, Result.ErrType<Res>>;
+  <Res extends Result.Any, Fn extends (value: Result.OkType<Res>) => any>(
+    mapFn: Fn,
+    result: Res,
+  ): Result<ReturnType<Fn>, Result.ErrType<Res>>;
+};
 
 /**
  * Transform the value inside the `Ok` variant of a `Result`.
@@ -61,11 +72,15 @@ import { withCatch } from './lib/with-catch.js';
  * @tags result, transform, transform-value, right-biased
  * @see https://doc.rust-lang.org/core/result/enum.Result.html#method.map
  */
-export function map<OkT, ErrT, NextOk>(mapFn: (value: OkT) => NextOk) {
-  return withCatch((result: Result<OkT, ErrT>): Result<NextOk, ErrT> => {
-    if (isOk(result)) {
-      return Ok.create(mapFn(result.value));
-    }
-    return result;
-  });
-}
+export const map: Map = curry(
+  withSafety(
+    <Res extends Result.Any, Fn extends (value: Result.OkType<Res>) => any>(
+      mapFn: Fn,
+      result: Res,
+    ): Result<ReturnType<Fn>, Result.ErrType<Res>> =>
+      isOk(result)
+        ? Ok.create<ReturnType<Fn>, Result.ErrType<Res>>(mapFn(result.value))
+        : result,
+  ),
+  2,
+);

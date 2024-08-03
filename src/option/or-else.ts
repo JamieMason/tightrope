@@ -1,10 +1,10 @@
-import { curry } from '../fn/curry.js';
-import type { Option } from './index.js';
+import { curry } from '../fn/lib/curry.js';
 import { isSome } from './is-some.js';
+import type { Option } from './option.js';
 
-export type OrElse = {
-  <T>(orElseFn: () => Option<T>): (option: Option<T>) => Option<T>;
-  <T>(orElseFn: () => Option<T>, option: Option<T>): Option<T>;
+type OrElse = {
+  <Opt extends Option.Any>(orElseFn: () => Opt): (option: Opt) => Opt;
+  <Opt extends Option.Any>(orElseFn: () => Opt, option: Opt): Opt;
 };
 
 /**
@@ -23,9 +23,9 @@ export type OrElse = {
  * import { Some } from 'tightrope/option';
  * import { orElse } from 'tightrope/option/or-else';
  *
- * const defaultOption = () => new Some(42);
+ * const defaultOption = () => Some.create(42);
  *
- * const option1 = pipe(new Some(5), orElse(defaultOption));
+ * const option1 = pipe(Some.create(5), orElse(defaultOption));
  * // Output: Some(5)
  *
  * const option2 = pipe(none, orElse(defaultOption));
@@ -48,8 +48,7 @@ export type OrElse = {
  * @tags option, transform, transform-option, recover, errors, left-biased
  */
 export const orElse: OrElse = curry(
-  <T>(orElseFn: () => Option<T>, option: Option<T>): Option<T> => {
-    return isSome(option) ? option : orElseFn();
-  },
+  <Opt extends Option.Any>(orElseFn: () => Opt, option: Opt): Opt =>
+    isSome(option) ? option : orElseFn(),
   2,
 );

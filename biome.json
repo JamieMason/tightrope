@@ -1,7 +1,8 @@
 {
-  "$schema": "https://biomejs.dev/schemas/1.8.3/schema.json",
+  "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
   "files": {
     "ignore": [
+      "**/*.astro",
       "**/coverage",
       "**/dist",
       "site/.docusaurus",
@@ -26,8 +27,23 @@
   "linter": {
     "enabled": true,
     "rules": {
-      "recommended": true,
+      "all": true,
+      "correctness": {
+        "noNodejsModules": "off"
+      },
+      "performance": {
+        "noBarrelFile": "off",
+        "noReExportAll": "off"
+      },
+      "style": {
+        "noDefaultExport": "off",
+        "noNamespace": "off",
+        "noNamespaceImport": "off",
+        "useBlockStatements": "off",
+        "useNamingConvention": "off"
+      },
       "suspicious": {
+        "noConsoleLog": "off",
         "noExplicitAny": "off"
       }
     }
@@ -44,5 +60,67 @@
       "quoteStyle": "single",
       "attributePosition": "auto"
     }
-  }
+  },
+  "overrides": [
+    {
+      "include": ["*.astro"],
+      "linter": {
+        "rules": {
+          "style": {
+            "useConst": "off",
+            "useImportType": "off"
+          }
+        }
+      }
+    },
+    {
+      "include": ["**/*.spec.ts"],
+      "linter": {
+        "rules": {
+          "performance": {
+            "useTopLevelRegex": "off"
+          },
+          "style": {
+            "useConsistentBuiltinInstantiation": "off"
+          },
+          "suspicious": {
+            "useErrorMessage": "off"
+          }
+        }
+      }
+    },
+    {
+      "include": ["site/**"],
+      "linter": {
+        "rules": {
+          "correctness": {
+            "noUndeclaredDependencies": "off"
+          }
+        }
+      }
+    },
+    {
+      "include": ["scripts/**/*.ts"],
+      "linter": {
+        "rules": {
+          "performance": {
+            "useTopLevelRegex": "off"
+          },
+          "suspicious": {
+            "noConsole": "off"
+          }
+        }
+      }
+    },
+    {
+      "include": ["site/astro.config.mjs"],
+      "linter": {
+        "rules": {
+          "correctness": {
+            "useImportExtensions": "off"
+          }
+        }
+      }
+    }
+  ]
 }

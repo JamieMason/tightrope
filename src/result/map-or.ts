@@ -1,28 +1,28 @@
-import { curry } from '../fn/curry.js';
-import type { AnyResult, ResOk } from '../fn/types.js';
+import { curry } from '../fn/lib/curry.js';
+import { withSafety } from '../fn/with-safety.js';
 import { isOk } from './is-ok.js';
-import { withCatch } from './lib/with-catch.js';
+import type { Result } from './result.js';
 
-export type MapOr = {
-  <Next, Res extends AnyResult>(
-    defaultValue: Next,
-    mapOkFn: (value: ResOk<Res>) => Next,
+type MapOr = {
+  <Res extends Result.Any, T extends Result.OkType<Res>>(
+    defaultValue: T,
+    mapOkFn: (value: T) => T,
     result: Res,
-  ): Next;
-  <Next, Res extends AnyResult>(
-    defaultValue: Next,
-    mapOkFn: (value: ResOk<Res>) => Next,
-  ): (result: Res) => Next;
-  <Next>(
-    defaultValue: Next,
+  ): T;
+  <Res extends Result.Any, T extends Result.OkType<Res>>(
+    defaultValue: T,
+    mapOkFn: (value: T) => T,
+  ): (result: Res) => T;
+  <Res extends Result.Any, T extends Result.OkType<Res>>(
+    defaultValue: T,
   ): {
-    <Res extends AnyResult>(
-      mapOkFn: (value: ResOk<Res>) => Next,
-    ): (result: Res) => Next;
-    <Res extends AnyResult>(
-      mapOkFn: (value: ResOk<Res>) => Next,
+    <Res extends Result.Any, T extends Result.OkType<Res>>(
+      mapOkFn: (value: T) => T,
+    ): (result: Res) => T;
+    <Res extends Result.Any, T extends Result.OkType<Res>>(
+      mapOkFn: (value: T) => T,
       result: Res,
-    ): Next;
+    ): T;
   };
 };
 
@@ -35,13 +35,13 @@ export type MapOr = {
  * @tags result, transform, transform-result, right-biased, unwrap
  */
 export const mapOr: MapOr = curry(
-  withCatch(
-    <Next, Res extends AnyResult>(
-      defaultValue: Next,
-      mapOkFn: (value: ResOk<Res>) => Next,
+  withSafety(
+    <Res extends Result.Any, T extends Result.OkType<Res>>(
+      defaultValue: T,
+      mapOkFn: (value: T) => T,
       result: Res,
-    ): Next => {
-      return isOk<ResOk<Res>>(result) ? mapOkFn(result.value) : defaultValue;
+    ): T => {
+      return isOk(result) ? mapOkFn(result.value) : defaultValue;
     },
   ),
   3,

@@ -1,24 +1,31 @@
-import { expect, it } from 'vitest';
-import { Err, Ok } from './index.js';
+import { expect, test } from 'vitest';
+import { pipe } from '../fn/pipe.js';
 import { mapOr } from './map-or.js';
+import { Err, Ok } from './result.js';
 
-it('mapOr applies mapOkFn when input is Ok', () => {
-  const result = new Ok(2);
-  const defaultValue = 10;
-  const mapOkFn = (value: number) => value * 2;
-  expect(mapOr(defaultValue, mapOkFn)(result)).toEqual(4);
+test('mapOr applies mapOkFn when input is Ok', () => {
+  expect(
+    pipe(
+      new Ok(2),
+      mapOr(10, value => value * 2),
+    ),
+  ).toEqual(4);
 });
 
-it('mapOr returns defaultValue when input is Err', () => {
-  const result = new Err(2);
-  const defaultValue = 10;
-  const mapOkFn = (value: number) => value * 2;
-  expect(mapOr(defaultValue, mapOkFn)(result)).toEqual(defaultValue);
+test('mapOr returns defaultValue when input is Err', () => {
+  expect(
+    pipe(
+      Err.create<Error, number>(new Error('wat?')),
+      mapOr(10, value => value * 2),
+    ),
+  ).toEqual(10);
 });
 
-it('mapOr handles complex types', () => {
-  const result = new Ok({ value: 2 });
-  const defaultValue = { value: 10 };
-  const mapOkFn = (value: { value: number }) => ({ value: value.value * 2 });
-  expect(mapOr(defaultValue, mapOkFn)(result)).toEqual({ value: 4 });
+test('mapOr handles complex types', () => {
+  expect(
+    pipe(
+      Ok.create<{ value: number }, Error>({ value: 2 }),
+      mapOr({ value: 10 }, ({ value }) => ({ value: value * 2 })),
+    ),
+  ).toEqual({ value: 4 });
 });

@@ -1,16 +1,16 @@
-import { expect, it } from 'vitest';
-import { Some, none } from './index.js';
+import { expect, test } from 'vitest';
 import { isNone } from './is-none.js';
+import { Some, none } from './option.js';
 
-it('positive case - None object', () => {
+test('positive case - None object', () => {
   expect(isNone(none)).toBe(true);
 });
 
-it('negative case - Some object', () => {
-  expect(isNone(new Some(false))).toBe(false);
+test('negative case - Some object', () => {
+  expect(isNone(Some.create(false))).toBe(false);
 });
 
-it('negative case - non-option object', () => {
+test('negative case - non-option object', () => {
   const nonOptionObj = { foo: 'bar' };
   expect(isNone(nonOptionObj)).toBe(false);
 });

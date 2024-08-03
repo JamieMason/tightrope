@@ -1,9 +1,8 @@
 import { expect } from 'vitest';
-import type { AnyGuard } from '../../src/fn/types.js';
 
 /** Get more useful output than "expected false to be true" */
 expect.extend({
-  toPassGuard(actual: any[], expected: AnyGuard) {
+  toPassGuard(actual: any[], expected: (...args: any[]) => boolean) {
     const guard = expected;
     const args = actual as any[];
     const pass = guard(...args);

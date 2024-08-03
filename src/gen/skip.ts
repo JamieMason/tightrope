@@ -1,9 +1,11 @@
-import { curry } from '../fn/curry.js';
-import type { Gen, GenYield } from '../fn/types.js';
+import { curry } from '../fn/lib/curry.js';
+import type { Iter } from './index.js';
 
-export type Skip = {
-  <T extends Gen<any>>(num: number): (gen: T) => Gen<GenYield<T>>;
-  <T extends Gen<any>>(num: number, gen: T): Gen<GenYield<T>>;
+type Skip = {
+  <G extends Iterable<any>>(
+    num: number,
+  ): (gen: G) => Iterable<Iter.ValueType<G>>;
+  <G extends Iterable<any>>(num: number, gen: G): Iterable<Iter.ValueType<G>>;
 };
 
 /**
@@ -49,10 +51,10 @@ export type Skip = {
  *
  * @tags generator
  */
-export const skip: Skip = curry(function* skip<T extends Gen<any>>(
+export const skip: Skip = curry(function* skip<G extends Iterable<any>>(
   num: number,
-  gen: T,
-): Gen<GenYield<T>> {
+  gen: G,
+): Iterable<Iter.ValueType<G>> {
   let skipCount = 0;
   for (const value of gen) {
     if (skipCount++ >= num) {

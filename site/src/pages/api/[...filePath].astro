@@ -1,0 +1,44 @@
+---
+import { Code } from "@astrojs/starlight/components";
+import StarlightPage from "@astrojs/starlight/components/StarlightPage.astro";
+import { marked } from "marked";
+import {
+  getApiDocuments,
+  type ApiDocument,
+  type ApiDocuments,
+} from "../../api";
+
+interface Props {
+  api: ApiDocument;
+}
+
+export function getStaticPaths() {
+  const apiDocs: ApiDocuments = getApiDocuments();
+  return apiDocs.all.map((api) => {
+    return {
+      params: {
+        filePath: api.slug,
+      },
+      props: {
+        api,
+      },
+    };
+  });
+}
+
+const { api } = Astro.props;
+const importExample = `import { ${api.moduleNameShort} } from 'tightrope';
+import { ${api.name} } from 'tightrope/${api.filePath.replace('/index','')}';
+${api.namespacedName} === ${api.name};
+`;
+
+const description = marked.parse(api["@description"]);
+---
+
+<StarlightPage frontmatter={{ title: api.title }}>
+    <article set:html={description} />
+    <h2>Importing</h2>
+    <p>Functions in tightrope can either be imported from the main package and <a href="https://developer.mozilla.org/en-US/docs/Glossary/Tree_shaking">tree shaken</a>, or directly from each module.</p>
+    <p>For example, the following two imports are equivalent:</p>
+    <Code code={importExample} lang="ts" />
+</StarlightPage>

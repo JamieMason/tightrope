@@ -1,16 +1,13 @@
-import { curry } from '../fn/curry.js';
-import type { AnyResult, ResErr, ResOk, ResultUnion } from '../fn/types.js';
+import { curry } from '../fn/lib/curry.js';
 import { isErr } from './is-err.js';
 import { isOk } from './is-ok.js';
+import type { Result } from './result.js';
 
-export type And = {
-  <ResultB extends AnyResult>(
-    b: ResultB,
-  ): <ResultA extends AnyResult>(a: ResultA) => ResultUnion<ResultB, ResultA>;
-  <ResultB extends AnyResult, ResultA extends AnyResult>(
-    b: ResultB,
-    a: ResultA,
-  ): ResultUnion<ResultB, ResultA>;
+type And = {
+  <B extends Result.Any, A extends Result.Any>(
+    b: B,
+  ): (a: A) => Result.Union<B, A>;
+  <B extends Result.Any, A extends Result.Any>(b: B, a: A): Result.Union<B, A>;
 };
 
 /**
@@ -68,13 +65,13 @@ export type And = {
  * @see http://jamiemason.github.io/tightrope/api/result/or
  */
 export const and: And = curry(
-  <ResultB extends AnyResult, ResultA extends AnyResult>(
-    b: ResultB,
-    a: ResultA,
-  ): ResultUnion<ResultB, ResultA> => {
-    if (isOk<ResOk<ResultA>>(a) && isErr<ResErr<ResultB>>(b)) return b;
-    if (isErr<ResErr<ResultA>>(a) && isOk(<ResOk<ResultB>>b)) return a;
-    if (isErr<ResErr<ResultA>>(a) && isErr<ResErr<ResultB>>(b)) return a;
+  <B extends Result.Any, A extends Result.Any>(
+    b: B,
+    a: A,
+  ): Result.Union<B, A> => {
+    if (isOk(a) && isErr(b)) return b;
+    if (isErr(a) && isOk(b)) return a;
+    if (isErr(a) && isErr(b)) return a;
     return b;
   },
   2,

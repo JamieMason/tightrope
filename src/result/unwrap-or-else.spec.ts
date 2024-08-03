@@ -1,22 +1,22 @@
-import { expect, it } from 'vitest';
+import { expect, test } from 'vitest';
 import { pipe } from '../fn/pipe.js';
-import { Err, Ok } from './index.js';
+import { Err, Ok } from './result.js';
 import { unwrapOrElse } from './unwrap-or-else.js';
 
-it('returns wrapped value when Ok', () => {
-  expect(
+test('returns wrapped value when Ok', () => {
+  expect<number>(
     pipe(
       Ok.create(3),
-      unwrapOrElse(() => Ok.create(6)),
+      unwrapOrElse(() => 6),
     ),
   ).toEqual(3);
 });
 
-it('returns wrapped mapped Ok when Err', () => {
-  expect(
+test('returns mapped wrapped Err value when Err', () => {
+  expect<string>(
     pipe(
-      Err.create<string, Error>(new Error('wat?')),
-      unwrapOrElse(err => Ok.create(`Recovered from: ${err.message}`)),
+      Err.create<Error, string>(new Error('wat?')),
+      unwrapOrElse(err => `Recovered from: ${err.message}`),
     ),
   ).toEqual('Recovered from: wat?');
 });

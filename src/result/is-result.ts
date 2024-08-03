@@ -1,6 +1,6 @@
-import type { Result } from './index.js';
 import { isErr } from './is-err.js';
 import { isOk } from './is-ok.js';
+import type { Result } from './result.js';
 
 /**
  * Check if value is an instance of either the `Ok` or `Err` classes.
@@ -10,8 +10,6 @@ import { isOk } from './is-ok.js';
  *
  * @tags result, guard
  */
-export function isResult<OkT, ErrT = unknown>(
-  value: unknown,
-): value is Result<OkT, ErrT> {
+export function isResult(value: unknown): value is Result.Any {
   return isOk(value) || isErr(value);
 }

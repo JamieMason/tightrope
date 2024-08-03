@@ -1,10 +1,10 @@
-import { curry } from '../fn/curry.js';
-import type { AnyResult, ResOk } from '../fn/types.js';
+import { curry } from '../fn/lib/curry.js';
 import { isOk } from './is-ok.js';
+import type { Result } from './result.js';
 
-export type Expect = {
-  (msg: string): <Res extends AnyResult>(res: Res) => ResOk<Res>;
-  <Res extends AnyResult>(msg: string, res: Res): ResOk<Res>;
+type Expect = {
+  <Res extends Result.Any>(msg: string): (res: Res) => Result.OkType<Res>;
+  <Res extends Result.Any>(msg: string, res: Res): Result.OkType<Res>;
 };
 
 /**
@@ -21,26 +21,12 @@ export type Expect = {
  *
  * :::
  *
- * ## Example
- *
- * ```ts
- * import { pipe } from 'tightrope/fn/pipe';
- * import { multiply } from 'tightrope/number/multiply';
- * import { sum } from 'tightrope/number/sum';
- * import { expect } from 'tightrope/result/expect';
- * import { Ok } from 'tightrope/result';
- *
- * const result: number = pipe(Ok.create(10), multiply(2), sum(5), expect("I can't imagine this failing"));
- *
- * // result will be 25
- * ```
- *
  * @tags result, unwrap, unsafe, right-biased
  * @see https://doc.rust-lang.org/core/result/enum.Result.html#method.expect
  */
 export const expect: Expect = curry(
-  <Res extends AnyResult>(msg: string, res: Res): ResOk<Res> => {
-    if (isOk<any>(res)) return res.value;
+  <Res extends Result.Any>(msg: string, res: Res): Result.OkType<Res> => {
+    if (isOk(res)) return res.value;
     throw new Error(`${msg}: ${res.value}`);
   },
   2,

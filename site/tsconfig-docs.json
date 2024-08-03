@@ -1,9 +1,0 @@
-{
-  "compilerOptions": {
-    "strict": false,
-    "target": "ESNext",
-    "moduleResolution": "node"
-  },
-  "include": ["../src/**/*.ts"],
-  "exclude": ["../src/**/*.spec.ts"]
-}

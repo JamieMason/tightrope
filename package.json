@@ -4,41 +4,689 @@
   "version": "0.2.0",
   "author": "Jamie Mason <jamie@foldleft.io> (https://github.com/JamieMason)",
   "bugs": "https://github.com/JamieMason/tightrope/issues",
+  "dependencies": {
+    "ts-brand": "0.2.0"
+  },
   "devDependencies": {
-    "@biomejs/biome": "1.8.3",
-    "@release-it/conventional-changelog": "8.0.1",
-    "@tsconfig/node20": "20.1.2",
-    "@tsconfig/strictest": "2.0.2",
-    "@types/node": "20.10.4",
-    "@vitest/coverage-v8": "1.0.4",
-    "auto-changelog": "2.4.0",
-    "fast-check": "3.15.0",
-    "glob": "10.3.10",
-    "release-it": "17.0.1",
-    "ts-morph": "21.0.1",
-    "tsx": "4.6.2",
-    "type-fest": "4.8.3",
-    "typescript": "5.3.3",
-    "vitest": "1.0.4"
+    "@biomejs/biome": "1.9.4",
+    "@release-it/conventional-changelog": "10.0.0",
+    "@tsconfig/node20": "20.1.4",
+    "@tsconfig/strictest": "2.0.5",
+    "@types/node": "^22.13.0",
+    "@types/semver": "7.5.8",
+    "@vitest/coverage-v8": "3.0.4",
+    "auto-changelog": "2.5.0",
+    "fast-check": "3.23.2",
+    "knip": "5.43.6",
+    "release-it": "18.1.2",
+    "semver": "7.7.0",
+    "ts-morph": "25.0.0",
+    "tsx": "4.19.2",
+    "typescript": "5.7.3",
+    "vitest": "3.0.4"
   },
   "engines": {
-    "node": ">=16"
+    "node": ">=18"
   },
+  "exports": {
+    "./array/every": {
+      "types": "./src/array/every.ts",
+      "default": "./dist/array/every.js"
+    },
+    "./array/flat": {
+      "types": "./src/array/flat.ts",
+      "default": "./dist/array/flat.js"
+    },
+    "./array": {
+      "types": "./src/array/index.ts",
+      "default": "./dist/array/index.js"
+    },
+    "./array/is-array-including-all-of": {
+      "types": "./src/array/is-array-including-all-of.ts",
+      "default": "./dist/array/is-array-including-all-of.js"
+    },
+    "./array/is-array-including-any-of": {
+      "types": "./src/array/is-array-including-any-of.ts",
+      "default": "./dist/array/is-array-including-any-of.js"
+    },
+    "./array/is-array-including-only": {
+      "types": "./src/array/is-array-including-only.ts",
+      "default": "./dist/array/is-array-including-only.js"
+    },
+    "./array/is-array-of-booleans": {
+      "types": "./src/array/is-array-of-booleans.ts",
+      "default": "./dist/array/is-array-of-booleans.js"
+    },
+    "./array/is-array-of-numbers": {
+      "types": "./src/array/is-array-of-numbers.ts",
+      "default": "./dist/array/is-array-of-numbers.js"
+    },
+    "./array/is-array-of-objects": {
+      "types": "./src/array/is-array-of-objects.ts",
+      "default": "./dist/array/is-array-of-objects.js"
+    },
+    "./array/is-array-of-size": {
+      "types": "./src/array/is-array-of-size.ts",
+      "default": "./dist/array/is-array-of-size.js"
+    },
+    "./array/is-array-of-strings": {
+      "types": "./src/array/is-array-of-strings.ts",
+      "default": "./dist/array/is-array-of-strings.js"
+    },
+    "./array/is-array-of": {
+      "types": "./src/array/is-array-of.ts",
+      "default": "./dist/array/is-array-of.js"
+    },
+    "./array/is-array": {
+      "types": "./src/array/is-array.ts",
+      "default": "./dist/array/is-array.js"
+    },
+    "./array/is-empty-array": {
+      "types": "./src/array/is-empty-array.ts",
+      "default": "./dist/array/is-empty-array.js"
+    },
+    "./array/is-non-empty-array": {
+      "types": "./src/array/is-non-empty-array.ts",
+      "default": "./dist/array/is-non-empty-array.js"
+    },
+    "./array/some": {
+      "types": "./src/array/some.ts",
+      "default": "./dist/array/some.js"
+    },
+    "./array/uniq": {
+      "types": "./src/array/uniq.ts",
+      "default": "./dist/array/uniq.js"
+    },
+    "./console": {
+      "types": "./src/console/index.ts",
+      "default": "./dist/console/index.js"
+    },
+    "./console/timer": {
+      "types": "./src/console/timer.ts",
+      "default": "./dist/console/timer.js"
+    },
+    "./date": {
+      "types": "./src/date/index.ts",
+      "default": "./dist/date/index.js"
+    },
+    "./date/is-after": {
+      "types": "./src/date/is-after.ts",
+      "default": "./dist/date/is-after.js"
+    },
+    "./date/is-before": {
+      "types": "./src/date/is-before.ts",
+      "default": "./dist/date/is-before.js"
+    },
+    "./date/is-date-between": {
+      "types": "./src/date/is-date-between.ts",
+      "default": "./dist/date/is-date-between.js"
+    },
+    "./date/is-date-in-month": {
+      "types": "./src/date/is-date-in-month.ts",
+      "default": "./dist/date/is-date-in-month.js"
+    },
+    "./date/is-date-in-year": {
+      "types": "./src/date/is-date-in-year.ts",
+      "default": "./dist/date/is-date-in-year.js"
+    },
+    "./date/is-date-on-day-of-month": {
+      "types": "./src/date/is-date-on-day-of-month.ts",
+      "default": "./dist/date/is-date-on-day-of-month.js"
+    },
+    "./date/is-date-on-day-of-week": {
+      "types": "./src/date/is-date-on-day-of-week.ts",
+      "default": "./dist/date/is-date-on-day-of-week.js"
+    },
+    "./date/is-date-on-or-after": {
+      "types": "./src/date/is-date-on-or-after.ts",
+      "default": "./dist/date/is-date-on-or-after.js"
+    },
+    "./date/is-date-on-or-before": {
+      "types": "./src/date/is-date-on-or-before.ts",
+      "default": "./dist/date/is-date-on-or-before.js"
+    },
+    "./date/is-date": {
+      "types": "./src/date/is-date.ts",
+      "default": "./dist/date/is-date.js"
+    },
+    "./date/is-valid-date": {
+      "types": "./src/date/is-valid-date.ts",
+      "default": "./dist/date/is-valid-date.js"
+    },
+    "./fn/flow": {
+      "types": "./src/fn/flow.ts",
+      "default": "./dist/fn/flow.js"
+    },
+    "./fn/get": {
+      "types": "./src/fn/get.ts",
+      "default": "./dist/fn/get.js"
+    },
+    "./fn/identity": {
+      "types": "./src/fn/identity.ts",
+      "default": "./dist/fn/identity.js"
+    },
+    "./fn": {
+      "types": "./src/fn/index.ts",
+      "default": "./dist/fn/index.js"
+    },
+    "./fn/is-async-function": {
+      "types": "./src/fn/is-async-function.ts",
+      "default": "./dist/fn/is-async-function.js"
+    },
+    "./fn/is-function": {
+      "types": "./src/fn/is-function.ts",
+      "default": "./dist/fn/is-function.js"
+    },
+    "./fn/is-generator-function": {
+      "types": "./src/fn/is-generator-function.ts",
+      "default": "./dist/fn/is-generator-function.js"
+    },
+    "./fn/lib/curry": {
+      "types": "./src/fn/lib/curry.ts",
+      "default": "./dist/fn/lib/curry.js"
+    },
+    "./fn/no-op": {
+      "types": "./src/fn/no-op.ts",
+      "default": "./dist/fn/no-op.js"
+    },
+    "./fn/pipe": {
+      "types": "./src/fn/pipe.ts",
+      "default": "./dist/fn/pipe.js"
+    },
+    "./fn/tap": {
+      "types": "./src/fn/tap.ts",
+      "default": "./dist/fn/tap.js"
+    },
+    "./fn/throws-any-error": {
+      "types": "./src/fn/throws-any-error.ts",
+      "default": "./dist/fn/throws-any-error.js"
+    },
+    "./fn/throws-error-of-type": {
+      "types": "./src/fn/throws-error-of-type.ts",
+      "default": "./dist/fn/throws-error-of-type.js"
+    },
+    "./fn/with-safety": {
+      "types": "./src/fn/with-safety.ts",
+      "default": "./dist/fn/with-safety.js"
+    },
+    "./gen/chunk": {
+      "types": "./src/gen/chunk.ts",
+      "default": "./dist/gen/chunk.js"
+    },
+    "./gen/filter": {
+      "types": "./src/gen/filter.ts",
+      "default": "./dist/gen/filter.js"
+    },
+    "./gen": {
+      "types": "./src/gen/index.ts",
+      "default": "./dist/gen/index.js"
+    },
+    "./gen/map": {
+      "types": "./src/gen/map.ts",
+      "default": "./dist/gen/map.js"
+    },
+    "./gen/range": {
+      "types": "./src/gen/range.ts",
+      "default": "./dist/gen/range.js"
+    },
+    "./gen/reduce-each": {
+      "types": "./src/gen/reduce-each.ts",
+      "default": "./dist/gen/reduce-each.js"
+    },
+    "./gen/reduce": {
+      "types": "./src/gen/reduce.ts",
+      "default": "./dist/gen/reduce.js"
+    },
+    "./gen/skip": {
+      "types": "./src/gen/skip.ts",
+      "default": "./dist/gen/skip.js"
+    },
+    "./gen/split": {
+      "types": "./src/gen/split.ts",
+      "default": "./dist/gen/split.js"
+    },
+    "./gen/take-last": {
+      "types": "./src/gen/take-last.ts",
+      "default": "./dist/gen/take-last.js"
+    },
+    "./gen/take": {
+      "types": "./src/gen/take.ts",
+      "default": "./dist/gen/take.js"
+    },
+    "./guard/has-property": {
+      "types": "./src/guard/has-property.ts",
+      "default": "./dist/guard/has-property.js"
+    },
+    "./guard/has-type": {
+      "types": "./src/guard/has-type.ts",
+      "default": "./dist/guard/has-type.js"
+    },
+    "./guard": {
+      "types": "./src/guard/index.ts",
+      "default": "./dist/guard/index.js"
+    },
+    "./guard/is-asymmetric-match": {
+      "types": "./src/guard/is-asymmetric-match.ts",
+      "default": "./dist/guard/is-asymmetric-match.js"
+    },
+    "./guard/is-asymmetric-matcher": {
+      "types": "./src/guard/is-asymmetric-matcher.ts",
+      "default": "./dist/guard/is-asymmetric-matcher.js"
+    },
+    "./guard/is-boolean": {
+      "types": "./src/guard/is-boolean.ts",
+      "default": "./dist/guard/is-boolean.js"
+    },
+    "./guard/is-false": {
+      "types": "./src/guard/is-false.ts",
+      "default": "./dist/guard/is-false.js"
+    },
+    "./guard/is-falsy": {
+      "types": "./src/guard/is-falsy.ts",
+      "default": "./dist/guard/is-falsy.js"
+    },
+    "./guard/is-nil": {
+      "types": "./src/guard/is-nil.ts",
+      "default": "./dist/guard/is-nil.js"
+    },
+    "./guard/is-primitive": {
+      "types": "./src/guard/is-primitive.ts",
+      "default": "./dist/guard/is-primitive.js"
+    },
+    "./guard/is-readable": {
+      "types": "./src/guard/is-readable.ts",
+      "default": "./dist/guard/is-readable.js"
+    },
+    "./guard/is-reg-exp": {
+      "types": "./src/guard/is-reg-exp.ts",
+      "default": "./dist/guard/is-reg-exp.js"
+    },
+    "./guard/is-true": {
+      "types": "./src/guard/is-true.ts",
+      "default": "./dist/guard/is-true.js"
+    },
+    "./guard/is-truthy": {
+      "types": "./src/guard/is-truthy.ts",
+      "default": "./dist/guard/is-truthy.js"
+    },
+    "./guard/is-undefined": {
+      "types": "./src/guard/is-undefined.ts",
+      "default": "./dist/guard/is-undefined.js"
+    },
+    "./guard/is": {
+      "types": "./src/guard/is.ts",
+      "default": "./dist/guard/is.js"
+    },
+    ".": {
+      "types": "./src/index.ts",
+      "default": "./dist/index.js"
+    },
+    "./number/clamp": {
+      "types": "./src/number/clamp.ts",
+      "default": "./dist/number/clamp.js"
+    },
+    "./number/divide": {
+      "types": "./src/number/divide.ts",
+      "default": "./dist/number/divide.js"
+    },
+    "./number": {
+      "types": "./src/number/index.ts",
+      "default": "./dist/number/index.js"
+    },
+    "./number/is-calculable": {
+      "types": "./src/number/is-calculable.ts",
+      "default": "./dist/number/is-calculable.js"
+    },
+    "./number/is-decimal-number": {
+      "types": "./src/number/is-decimal-number.ts",
+      "default": "./dist/number/is-decimal-number.js"
+    },
+    "./number/is-divisible-by": {
+      "types": "./src/number/is-divisible-by.ts",
+      "default": "./dist/number/is-divisible-by.js"
+    },
+    "./number/is-even-number": {
+      "types": "./src/number/is-even-number.ts",
+      "default": "./dist/number/is-even-number.js"
+    },
+    "./number/is-greater-than-or-equal-to": {
+      "types": "./src/number/is-greater-than-or-equal-to.ts",
+      "default": "./dist/number/is-greater-than-or-equal-to.js"
+    },
+    "./number/is-greater-than": {
+      "types": "./src/number/is-greater-than.ts",
+      "default": "./dist/number/is-greater-than.js"
+    },
+    "./number/is-js-nan": {
+      "types": "./src/number/is-js-nan.ts",
+      "default": "./dist/number/is-js-nan.js"
+    },
+    "./number/is-less-than-or-equal-to": {
+      "types": "./src/number/is-less-than-or-equal-to.ts",
+      "default": "./dist/number/is-less-than-or-equal-to.js"
+    },
+    "./number/is-less-than": {
+      "types": "./src/number/is-less-than.ts",
+      "default": "./dist/number/is-less-than.js"
+    },
+    "./number/is-near": {
+      "types": "./src/number/is-near.ts",
+      "default": "./dist/number/is-near.js"
+    },
+    "./number/is-negative-number": {
+      "types": "./src/number/is-negative-number.ts",
+      "default": "./dist/number/is-negative-number.js"
+    },
+    "./number/is-number": {
+      "types": "./src/number/is-number.ts",
+      "default": "./dist/number/is-number.js"
+    },
+    "./number/is-odd-number": {
+      "types": "./src/number/is-odd-number.ts",
+      "default": "./dist/number/is-odd-number.js"
+    },
+    "./number/is-positive-number": {
+      "types": "./src/number/is-positive-number.ts",
+      "default": "./dist/number/is-positive-number.js"
+    },
+    "./number/is-whole-number": {
+      "types": "./src/number/is-whole-number.ts",
+      "default": "./dist/number/is-whole-number.js"
+    },
+    "./number/is-within-range": {
+      "types": "./src/number/is-within-range.ts",
+      "default": "./dist/number/is-within-range.js"
+    },
+    "./number/multiply": {
+      "types": "./src/number/multiply.ts",
+      "default": "./dist/number/multiply.js"
+    },
+    "./number/square": {
+      "types": "./src/number/square.ts",
+      "default": "./dist/number/square.js"
+    },
+    "./number/subtract": {
+      "types": "./src/number/subtract.ts",
+      "default": "./dist/number/subtract.js"
+    },
+    "./number/sum": {
+      "types": "./src/number/sum.ts",
+      "default": "./dist/number/sum.js"
+    },
+    "./object": {
+      "types": "./src/object/index.ts",
+      "default": "./dist/object/index.js"
+    },
+    "./object/is-empty-object": {
+      "types": "./src/object/is-empty-object.ts",
+      "default": "./dist/object/is-empty-object.js"
+    },
+    "./object/is-non-empty-object": {
+      "types": "./src/object/is-non-empty-object.ts",
+      "default": "./dist/object/is-non-empty-object.js"
+    },
+    "./object/is-null": {
+      "types": "./src/object/is-null.ts",
+      "default": "./dist/object/is-null.js"
+    },
+    "./object/is-object": {
+      "types": "./src/object/is-object.ts",
+      "default": "./dist/object/is-object.js"
+    },
+    "./option/and-then": {
+      "types": "./src/option/and-then.ts",
+      "default": "./dist/option/and-then.js"
+    },
+    "./option/and": {
+      "types": "./src/option/and.ts",
+      "default": "./dist/option/and.js"
+    },
+    "./option/expect": {
+      "types": "./src/option/expect.ts",
+      "default": "./dist/option/expect.js"
+    },
+    "./option/filter": {
+      "types": "./src/option/filter.ts",
+      "default": "./dist/option/filter.js"
+    },
+    "./option/flatten": {
+      "types": "./src/option/flatten.ts",
+      "default": "./dist/option/flatten.js"
+    },
+    "./option/from-guard": {
+      "types": "./src/option/from-guard.ts",
+      "default": "./dist/option/from-guard.js"
+    },
+    "./option": {
+      "types": "./src/option/index.ts",
+      "default": "./dist/option/index.js"
+    },
+    "./option/is-none": {
+      "types": "./src/option/is-none.ts",
+      "default": "./dist/option/is-none.js"
+    },
+    "./option/is-some": {
+      "types": "./src/option/is-some.ts",
+      "default": "./dist/option/is-some.js"
+    },
+    "./option/map-or-else": {
+      "types": "./src/option/map-or-else.ts",
+      "default": "./dist/option/map-or-else.js"
+    },
+    "./option/map-or": {
+      "types": "./src/option/map-or.ts",
+      "default": "./dist/option/map-or.js"
+    },
+    "./option/map": {
+      "types": "./src/option/map.ts",
+      "default": "./dist/option/map.js"
+    },
+    "./option/match": {
+      "types": "./src/option/match.ts",
+      "default": "./dist/option/match.js"
+    },
+    "./option/ok-or-else": {
+      "types": "./src/option/ok-or-else.ts",
+      "default": "./dist/option/ok-or-else.js"
+    },
+    "./option/ok-or": {
+      "types": "./src/option/ok-or.ts",
+      "default": "./dist/option/ok-or.js"
+    },
+    "./option/option": {
+      "types": "./src/option/option.ts",
+      "default": "./dist/option/option.js"
+    },
+    "./option/or-else": {
+      "types": "./src/option/or-else.ts",
+      "default": "./dist/option/or-else.js"
+    },
+    "./option/or": {
+      "types": "./src/option/or.ts",
+      "default": "./dist/option/or.js"
+    },
+    "./option/unwrap-or-else": {
+      "types": "./src/option/unwrap-or-else.ts",
+      "default": "./dist/option/unwrap-or-else.js"
+    },
+    "./option/unwrap-or": {
+      "types": "./src/option/unwrap-or.ts",
+      "default": "./dist/option/unwrap-or.js"
+    },
+    "./option/unwrap": {
+      "types": "./src/option/unwrap.ts",
+      "default": "./dist/option/unwrap.js"
+    },
+    "./result/all": {
+      "types": "./src/result/all.ts",
+      "default": "./dist/result/all.js"
+    },
+    "./result/and-then": {
+      "types": "./src/result/and-then.ts",
+      "default": "./dist/result/and-then.js"
+    },
+    "./result/and": {
+      "types": "./src/result/and.ts",
+      "default": "./dist/result/and.js"
+    },
+    "./result/expect-err": {
+      "types": "./src/result/expect-err.ts",
+      "default": "./dist/result/expect-err.js"
+    },
+    "./result/expect": {
+      "types": "./src/result/expect.ts",
+      "default": "./dist/result/expect.js"
+    },
+    "./result/filter": {
+      "types": "./src/result/filter.ts",
+      "default": "./dist/result/filter.js"
+    },
+    "./result/flatten": {
+      "types": "./src/result/flatten.ts",
+      "default": "./dist/result/flatten.js"
+    },
+    "./result/from-guard": {
+      "types": "./src/result/from-guard.ts",
+      "default": "./dist/result/from-guard.js"
+    },
+    "./result/from-try": {
+      "types": "./src/result/from-try.ts",
+      "default": "./dist/result/from-try.js"
+    },
+    "./result": {
+      "types": "./src/result/index.ts",
+      "default": "./dist/result/index.js"
+    },
+    "./result/is-err": {
+      "types": "./src/result/is-err.ts",
+      "default": "./dist/result/is-err.js"
+    },
+    "./result/is-ok": {
+      "types": "./src/result/is-ok.ts",
+      "default": "./dist/result/is-ok.js"
+    },
+    "./result/is-result": {
+      "types": "./src/result/is-result.ts",
+      "default": "./dist/result/is-result.js"
+    },
+    "./result/map-err": {
+      "types": "./src/result/map-err.ts",
+      "default": "./dist/result/map-err.js"
+    },
+    "./result/map-or-else": {
+      "types": "./src/result/map-or-else.ts",
+      "default": "./dist/result/map-or-else.js"
+    },
+    "./result/map-or": {
+      "types": "./src/result/map-or.ts",
+      "default": "./dist/result/map-or.js"
+    },
+    "./result/map": {
+      "types": "./src/result/map.ts",
+      "default": "./dist/result/map.js"
+    },
+    "./result/match": {
+      "types": "./src/result/match.ts",
+      "default": "./dist/result/match.js"
+    },
+    "./result/ok": {
+      "types": "./src/result/ok.ts",
+      "default": "./dist/result/ok.js"
+    },
+    "./result/or-else": {
+      "types": "./src/result/or-else.ts",
+      "default": "./dist/result/or-else.js"
+    },
+    "./result/or": {
+      "types": "./src/result/or.ts",
+      "default": "./dist/result/or.js"
+    },
+    "./result/result": {
+      "types": "./src/result/result.ts",
+      "default": "./dist/result/result.js"
+    },
+    "./result/sequence": {
+      "types": "./src/result/sequence.ts",
+      "default": "./dist/result/sequence.js"
+    },
+    "./result/tap": {
+      "types": "./src/result/tap.ts",
+      "default": "./dist/result/tap.js"
+    },
+    "./result/unwrap-err": {
+      "types": "./src/result/unwrap-err.ts",
+      "default": "./dist/result/unwrap-err.js"
+    },
+    "./result/unwrap-or-else": {
+      "types": "./src/result/unwrap-or-else.ts",
+      "default": "./dist/result/unwrap-or-else.js"
+    },
+    "./result/unwrap-or": {
+      "types": "./src/result/unwrap-or.ts",
+      "default": "./dist/result/unwrap-or.js"
+    },
+    "./result/unwrap": {
+      "types": "./src/result/unwrap.ts",
+      "default": "./dist/result/unwrap.js"
+    },
+    "./string/ends-with": {
+      "types": "./src/string/ends-with.ts",
+      "default": "./dist/string/ends-with.js"
+    },
+    "./string": {
+      "types": "./src/string/index.ts",
+      "default": "./dist/string/index.js"
+    },
+    "./string/is-empty-string": {
+      "types": "./src/string/is-empty-string.ts",
+      "default": "./dist/string/is-empty-string.js"
+    },
+    "./string/is-iso8601": {
+      "types": "./src/string/is-iso8601.ts",
+      "default": "./dist/string/is-iso8601.js"
+    },
+    "./string/is-json-string": {
+      "types": "./src/string/is-json-string.ts",
+      "default": "./dist/string/is-json-string.js"
+    },
+    "./string/is-non-empty-string": {
+      "types": "./src/string/is-non-empty-string.ts",
+      "default": "./dist/string/is-non-empty-string.js"
+    },
+    "./string/is-string": {
+      "types": "./src/string/is-string.ts",
+      "default": "./dist/string/is-string.js"
+    },
+    "./string/is-visible-string": {
+      "types": "./src/string/is-visible-string.ts",
+      "default": "./dist/string/is-visible-string.js"
+    },
+    "./string/is-whitespace": {
+      "types": "./src/string/is-whitespace.ts",
+      "default": "./dist/string/is-whitespace.js"
+    },
+    "./string/starts-with": {
+      "types": "./src/string/starts-with.ts",
+      "default": "./dist/string/starts-with.js"
+    }
+  },
+  "files": ["dist"],
   "homepage": "https://github.com/JamieMason/tightrope#readme",
   "license": "MIT",
   "repository": "JamieMason/tightrope",
   "scripts": {
-    "build": "rm -rf dist && npm run build:esm",
-    "build:esm": "tsc --project tsconfig-esm.json",
+    "build": "rm -rf dist && tsc --project tsconfig-build.json",
     "find-curried-functions-without-arity": "tsx scripts/find-curried-functions-without-arity.ts",
-    "format": "biome check --write --unsafe",
-    "generate-curried-types": "tsx scripts/generate-curried-types/index.ts",
+    "format": "biome check --write",
+    "generate-api-docs": "tsx scripts/generate-api-docs.ts",
+    "generate-curried-types": "tsx scripts/generate-curried-types/index.ts && npm run format",
     "generate-types-for-get": "tsx scripts/generate-types-for-get.ts",
     "generate-types-for-pipe": "tsx scripts/generate-types-for-pipe.ts",
-    "lint": "biome check",
-    "package": "npm run build && cd dist && npm pack",
-    "prepack": "echo 'Publish from ./dist'; exit 1",
+    "knip": "knip",
+    "lint": "biome check && tsc --noEmit",
+    "prepack": "npm run build",
     "release": "release-it",
+    "set-exports": "tsx scripts/set-exports.ts",
     "test": "vitest run --coverage src",
     "test:watch": "vitest run --no-coverage --watch"
   },

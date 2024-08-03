@@ -1,23 +1,23 @@
-import { it, expect as vExpect } from 'vitest';
-import { expect } from './expect.js';
-import { Some, none } from './index.js';
+import { expect, test } from 'vitest';
+import { expect as expectSome } from './expect.js';
+import { Some, none } from './option.js';
 
-it('expect returns value when input is Some', () => {
-  const opt = new Some(2);
+test('expect returns value when input is Some', () => {
+  const opt = Some.create(2);
   const msg = 'Error: Expected a Some but received None';
-  const output = expect(msg, opt);
-  vExpect<number>(output).toEqual(2);
+  const output = expectSome(msg, opt);
+  expect<number>(output).toEqual(2);
 });
 
-it('expect throws an error with the provided message when input is None', () => {
+test('expect throws an error with the provided message when input is None', () => {
   const msg = 'Error: Expected a Some but received None';
-  vExpect(() => expect(msg, none)).toThrow(msg);
+  expect(() => expectSome(msg, none)).toThrow(msg);
 });
 
-it('expect handles complex types', () => {
+test('expect handles complex types', () => {
   type Obj = { value: number };
-  const opt = new Some({ value: 2 });
+  const opt = Some.create({ value: 2 });
   const msg = 'Error: Expected a Some but received None';
-  const output = expect(msg, opt);
-  vExpect<Obj>(output).toEqual({ value: 2 });
+  const output = expectSome(msg, opt);
+  expect<Obj>(output).toEqual({ value: 2 });
 });

@@ -1,8 +1,8 @@
-import { curry } from '../fn/curry.js';
+import { curry } from '../fn/lib/curry.js';
 
-export type Is = {
-  <T>(b: T): (a: unknown) => boolean;
-  <T>(b: T, a: unknown): boolean;
+type Is = {
+  <T>(b: T): (a: unknown) => a is T;
+  <T>(b: T, a: unknown): a is T;
 };
 
 /**

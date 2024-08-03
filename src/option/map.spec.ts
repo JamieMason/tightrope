@@ -1,14 +1,18 @@
-import { expect, it } from 'vitest';
-import { Some, none } from './index.js';
+import { expect, test } from 'vitest';
+import { pipe } from '../fn/pipe.js';
 import { map } from './map.js';
+import { Some, none } from './option.js';
 
-it('map should map a Some value using the provided function', () => {
-  const someValue = new Some(5);
-  const result = map((x: number) => x * 2, someValue);
-  expect(result).toEqual(new Some(10));
+test('map should map a Some value using the provided function', () => {
+  expect(
+    pipe(
+      Some.create(5),
+      map((x: number) => x * 2),
+    ),
+  ).toEqual(Some.create(10));
 });
 
-it('map should return None when None is provided', () => {
+test('map should return None when None is provided', () => {
   const result = map((x: string) => x.toUpperCase(), none);
   expect(result).toBe(none);
 });

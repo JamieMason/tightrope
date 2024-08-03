@@ -7,7 +7,7 @@
       "packages": [
         "**"
       ],
-      "pinVersion": "^20.0.0"
+      "pinVersion": "^22.0.0"
     }
   ]
 }

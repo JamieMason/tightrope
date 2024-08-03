@@ -1,8 +1,8 @@
-import { curry } from '../fn/curry.js';
-import type { Result } from '../result/index.js';
-import { Err, Ok } from '../result/index.js';
+import { curry } from '../fn/lib/curry.js';
+import type { Result } from '../result/result.js';
+import { Err, Ok } from '../result/result.js';
 
-export type Divide = {
+type Divide = {
   (divisor: number): (value: number) => Result<number, Error>;
   (divisor: number, value: number): Result<number, Error>;
 };

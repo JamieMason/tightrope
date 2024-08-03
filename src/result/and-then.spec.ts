@@ -1,17 +1,17 @@
-import { expect, it, vi } from 'vitest';
+import { expect, test, vi } from 'vitest';
 import { pipe } from '../fn/pipe.js';
 import { multiply } from '../number/multiply.js';
 import { andThen } from './and-then.js';
-import { Err, Ok } from './index.js';
+import { Err, Ok } from './result.js';
 
-it('short-circuits when upstream is Err', () => {
+test('short-circuits when upstream is Err', () => {
   const spy = vi.fn();
   const err = new Error('wat');
   expect(pipe(Err.create(err), andThen(spy))).toEqual(new Err(err));
   expect(spy).not.toHaveBeenCalled();
 });
 
-it('returns mapped Ok when upstream is Ok', () => {
+test('returns mapped Ok when upstream is Ok', () => {
   expect(
     pipe(
       Ok.create(3),
@@ -20,7 +20,7 @@ it('returns mapped Ok when upstream is Ok', () => {
   ).toEqual(new Ok(6));
 });
 
-it('returns mapped Err when upstream is Ok', () => {
+test('returns mapped Err when upstream is Ok', () => {
   const spy = vi.fn();
   const err = new Error('wat');
   expect(
@@ -33,7 +33,7 @@ it('returns mapped Err when upstream is Ok', () => {
   expect(spy).not.toHaveBeenCalled();
 });
 
-it('returns Err when map function throws', () => {
+test('returns Err when map function throws', () => {
   const spy = vi.fn();
   const err = new Error('wat');
   expect(

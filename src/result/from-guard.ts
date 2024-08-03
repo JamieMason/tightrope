@@ -1,35 +1,64 @@
-import { curry } from '../fn/curry.js';
-import type { UnaryGuard } from '../fn/types.js';
-import type { Result } from './index.js';
-import { Err, Ok } from './index.js';
-import { withCatch } from './lib/with-catch.js';
+import { curry } from '../fn/lib/curry.js';
+import { withSafety } from '../fn/with-safety.js';
+import type { Guard } from '../guard/index.js';
+import type { Result } from './result.js';
+import { Err, Ok } from './result.js';
 
-export type FromGuard = {
-  <OkT, ErrT, Fn extends UnaryGuard<any>>(
+type FromGuard = {
+  <
+    Fn extends Guard.Unary,
+    E = unknown,
+    T = Fn extends (value: unknown) => value is infer T ? T : unknown,
+  >(
     guard: Fn,
-    error: ErrT,
-    value: OkT,
-  ): Result<OkT, ErrT>;
-  <OkT, ErrT, Fn extends UnaryGuard<any>>(
+    error: E,
+    value: unknown,
+  ): Result<T, E>;
+  <
+    Fn extends Guard.Unary,
+    E = unknown,
+    T = Fn extends (value: unknown) => value is infer T ? T : unknown,
+  >(
     guard: Fn,
-    error: ErrT,
-  ): (value: OkT) => Result<OkT, ErrT>;
-  <Fn extends UnaryGuard<any>>(
+    error: E,
+  ): (value: unknown) => Result<T, E>;
+  <
+    Fn extends Guard.Unary,
+    _E = unknown,
+    _T = Fn extends (value: unknown) => value is infer T ? T : unknown,
+  >(
     guard: Fn,
   ): {
-    <OkT, ErrT>(error: ErrT): (value: OkT) => Result<OkT, ErrT>;
-    <OkT, ErrT>(error: ErrT, value: OkT): Result<OkT, ErrT>;
+    <
+      Fn extends Guard.Unary,
+      E = unknown,
+      T = Fn extends (value: unknown) => value is infer T ? T : unknown,
+    >(
+      error: E,
+    ): (value: unknown) => Result<T, E>;
+    <
+      Fn extends Guard.Unary,
+      E = unknown,
+      T = Fn extends (value: unknown) => value is infer T ? T : unknown,
+    >(
+      error: E,
+      value: unknown,
+    ): Result<T, E>;
   };
 };
 
 /** @tags result, wrap, invoke */
 export const fromGuard: FromGuard = curry(
-  withCatch(function fromGuard<OkT, ErrT, Fn extends UnaryGuard<any>>(
-    guard: Fn,
-    error: ErrT,
-    value: OkT,
-  ): Result<OkT, ErrT> {
-    return guard(value) ? new Ok<OkT>(value) : new Err<ErrT>(error);
-  }),
+  withSafety(
+    <
+      Fn extends Guard.Unary,
+      E = unknown,
+      T = Fn extends (value: unknown) => value is infer T ? T : unknown,
+    >(
+      guard: Fn,
+      error: E,
+      value: unknown,
+    ): Result<T, E> => (guard(value) ? new Ok<T>(value) : new Err<E>(error)),
+  ),
   3,
 );

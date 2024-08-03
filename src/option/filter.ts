@@ -1,25 +1,17 @@
-import { curry } from '../fn/curry.js';
-import type { AnyOption } from '../fn/types.js';
-import type { Option } from './index.js';
-import { none } from './index.js';
+import { curry } from '../fn/lib/curry.js';
+import type { Guard } from '../guard/index.js';
 import { isSome } from './is-some.js';
+import type { Option } from './option.js';
+import { none } from './option.js';
 
-export type Filter = {
-  <
-    Fn extends (value: any) => value is any,
-    I extends AnyOption,
-    O = Fn extends (value: any) => value is infer O ? O : never,
-  >(
-    predicate: Fn,
-  ): (opt: I) => Option<O>;
-  <
-    Fn extends (value: any) => value is any,
-    I extends AnyOption,
-    O = Fn extends (value: any) => value is infer O ? O : never,
-  >(
-    predicate: Fn,
-    opt: I,
-  ): Option<O>;
+type Filter = {
+  <Opt extends Option.Any, Fn extends Guard.Unary>(
+    guard: Fn,
+  ): (option: Opt) => Option<Guard.UnaryType<Fn>>;
+  <Opt extends Option.Any, Fn extends Guard.Unary>(
+    guard: Fn,
+    option: Opt,
+  ): Option<Guard.UnaryType<Fn>>;
 };
 
 /**
@@ -29,13 +21,10 @@ export type Filter = {
  * @tags option, filter, right-biased
  */
 export const filter: Filter = curry(
-  <
-    Fn extends (value: any) => value is any,
-    I extends AnyOption,
-    O = Fn extends (value: any) => value is infer O ? O : never,
-  >(
-    predicate: Fn,
-    opt: I,
-  ): Option<O> => (isSome<O>(opt) && predicate(opt.value) ? opt : none),
+  <Opt extends Option.Any, Fn extends Guard.Unary>(
+    guard: Fn,
+    option: Opt,
+  ): Option<Guard.UnaryType<Fn>> =>
+    isSome(option) && guard(option.value) ? option : none,
   2,
 );

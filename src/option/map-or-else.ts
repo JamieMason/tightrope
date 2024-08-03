@@ -1,53 +1,53 @@
-import { curry } from '../fn/curry.js';
-import type { Option } from './index.js';
+import { curry } from '../fn/lib/curry.js';
 import { isSome } from './is-some.js';
+import type { Option } from './option.js';
 
-export type MapOrElse = {
-  <T, U>(mapFn: (value: T) => U, defaultFn: () => U, opt: Option<T>): U;
-  <T, U>(mapFn: (value: T) => U, defaultFn: () => U): (opt: Option<T>) => U;
-  <T, U>(
-    mapFn: (value: T) => U,
+type MapOrElse = {
+  <
+    MapNoneFn extends () => any,
+    MapSomeFn extends (value: any) => ReturnType<MapNoneFn>,
+    Opt extends Option<Parameters<MapSomeFn>[0]>,
+  >(
+    mapNoneFn: MapNoneFn,
+    mapSomeFn: MapSomeFn,
+    option: Opt,
+  ): ReturnType<MapNoneFn>;
+  <
+    MapNoneFn extends () => any,
+    MapSomeFn extends (value: any) => ReturnType<MapNoneFn>,
+    Opt extends Option<Parameters<MapSomeFn>[0]>,
+  >(
+    mapNoneFn: MapNoneFn,
+    mapSomeFn: MapSomeFn,
+  ): (option: Opt) => ReturnType<MapNoneFn>;
+  <
+    MapNoneFn extends () => any,
+    MapSomeFn extends (value: any) => ReturnType<MapNoneFn>,
+    _Opt extends Option<Parameters<MapSomeFn>[0]>,
+  >(
+    mapNoneFn: MapNoneFn,
   ): {
-    <T, U>(defaultFn: () => U): (opt: Option<T>) => U;
-    <T, U>(defaultFn: () => U, opt: Option<T>): U;
+    <
+      MapNoneFn extends () => any,
+      MapSomeFn extends (value: any) => ReturnType<MapNoneFn>,
+      Opt extends Option<Parameters<MapSomeFn>[0]>,
+    >(
+      mapSomeFn: MapSomeFn,
+    ): (option: Opt) => ReturnType<MapNoneFn>;
+    <
+      MapNoneFn extends () => any,
+      MapSomeFn extends (value: any) => ReturnType<MapNoneFn>,
+      Opt extends Option<Parameters<MapSomeFn>[0]>,
+    >(
+      mapSomeFn: MapSomeFn,
+      option: Opt,
+    ): ReturnType<MapNoneFn>;
   };
 };
 
 /**
  * Applies the provided function to the contained value of `Some`, or returns the result of evaluating the provided
  * fallback function if the `Option` is `None`
- *
- * ## Example
- *
- * ```ts
- * import { pipe } from 'tightrope/fn/pipe';
- * import { mapOrElse } from 'tightrope/option/map-or-else';
- * import { Some } from 'tightrope/option';
- * import { none } from 'tightrope/option';
- *
- * pipe(
- *   new Some('hello'),
- *   mapOrElse(
- *     (value) => value.toUpperCase(),
- *     () => 'default',
- *   ),
- * ); // 'HELLO'
- *
- * pipe(
- *   none,
- *   mapOrElse(
- *     (value) => value.toUpperCase(),
- *     () => 'default',
- *   ),
- * ); // 'default'
- * ```
- *
- * :::info
- *
- * This function is right-biased, meaning that it returns the result of evaluating the fallback function without
- * applying the provided function if the input `Option` is `None`.
- *
- * :::
  *
  * @param mapFn The function to apply to the contained value of `Some`.
  * @param defaultFn The fallback function to evaluate if the `Option` is `None`.
@@ -57,8 +57,15 @@ export type MapOrElse = {
  * @tags option, transform, transform-option, right-biased, unwrap, result
  */
 export const mapOrElse: MapOrElse = curry(
-  <T, U>(mapFn: (value: T) => U, defaultFn: () => U, opt: Option<T>): U => {
-    return isSome<T>(opt) ? mapFn(opt.value) : defaultFn();
-  },
+  <
+    MapNoneFn extends () => any,
+    MapSomeFn extends (value: any) => ReturnType<MapNoneFn>,
+    Opt extends Option<Parameters<MapSomeFn>[0]>,
+  >(
+    mapNoneFn: MapNoneFn,
+    mapSomeFn: MapSomeFn,
+    option: Opt,
+  ): ReturnType<MapNoneFn> =>
+    isSome(option) ? mapSomeFn(option.value) : mapNoneFn(),
   3,
 );

@@ -1,23 +1,26 @@
-import { expect, it } from 'vitest';
+import { expect, expectTypeOf, test } from 'vitest';
 import { pipe } from '../fn/pipe.js';
-import { isEvenNumber } from '../guard/is-even-number.js';
 import { fromGuard } from './from-guard.js';
-import { Err, Ok } from './index.js';
+import { Err, Ok, type Result } from './result.js';
 
-it('creates Ok when guard is passed', () => {
-  expect(
-    pipe(
-      100,
-      fromGuard(isEvenNumber, new Error('Initial value is not an even number')),
-    ),
-  ).toEqual(new Ok(100));
+interface Person {
+  name: string;
+}
+
+function isPerson(value: unknown): value is Person {
+  return typeof value === 'object' && value !== null && 'name' in value;
+}
+
+test('creates Ok when guard is passed', () => {
+  const value: unknown = { name: 'Guybrush' };
+  const result = pipe(value, fromGuard(isPerson, new Error('not a Person')));
+  expect(result).toEqual(new Ok(value));
+  expectTypeOf(result).toEqualTypeOf<Result<Person, Error>>();
 });
 
-it('creates Err when guard fails', () => {
-  expect(
-    pipe(
-      3,
-      fromGuard(isEvenNumber, new Error('Initial value is not an even number')),
-    ),
-  ).toEqual(new Err(new Error('Initial value is not an even number')));
+test('creates Err when guard fails', () => {
+  const value: unknown = { age: 23 };
+  const result = pipe(value, fromGuard(isPerson, new Error('not a Person')));
+  expect(result).toEqual(new Err(new Error('not a Person')));
+  expectTypeOf(result).toEqualTypeOf<Result<Person, Error>>();
 });

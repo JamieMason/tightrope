@@ -1,0 +1,31 @@
+---
+import StarlightPage from "@astrojs/starlight/components/StarlightPage.astro";
+import { type ApiDocument, getApiDocuments } from "../../api";
+
+interface Props {
+  tag: string;
+  docs: ApiDocument[];
+}
+
+export function getStaticPaths() {
+  const apiDocs = getApiDocuments();
+  return Object.entries(apiDocs.byTag).map(([tag, docs]) => {
+    console.log(tag);
+    return {
+      params: { tag },
+      props: { tag, docs },
+    };
+  });
+}
+
+const { docs, tag } = Astro.props;
+---
+
+<StarlightPage frontmatter={{ title: tag }}>
+  <ul>
+  {docs.map(doc => <li>
+  <a href={`/api/${doc.slug}`}>{doc.namespacedName}</a>
+  </li>)}
+  </ul>
+
+</StarlightPage>

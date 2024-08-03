@@ -1,24 +1,37 @@
-import { expect, it } from 'vitest';
-import { Err, Ok } from './index.js';
+import { expect, test, vi } from 'vitest';
+import { pipe } from '../fn/pipe.js';
 import { mapOrElse } from './map-or-else.js';
+import { Err, Ok } from './result.js';
 
-it('mapOrElse applies mapOkFn when input is Ok', () => {
-  const result = new Ok(2);
-  const mapErrFn = (err: number) => err * 3;
-  const mapOkFn = (value: number) => value * 2;
-  expect(mapOrElse(mapErrFn, mapOkFn)(result)).toEqual(4);
+test('mapOrElse applies mapOkFn when input is Ok', () => {
+  const spy = vi.fn();
+  expect(
+    pipe(
+      Ok.create(2),
+      mapOrElse(spy, value => value * 2),
+    ),
+  ).toEqual(4);
+  expect(spy).not.toHaveBeenCalled();
 });
 
-it('mapOrElse applies mapErrFn when input is Err', () => {
-  const result = new Err(2);
-  const mapErrFn = (err: number) => err * 3;
-  const mapOkFn = (value: number) => value * 2;
-  expect(mapOrElse(mapErrFn, mapOkFn)(result)).toEqual(6);
+test('mapOrElse applies mapErrFn when input is Err', () => {
+  const spy = vi.fn();
+  expect(
+    pipe(
+      Err.create(2),
+      mapOrElse(err => err * 3, spy),
+    ),
+  ).toEqual(6);
+  expect(spy).not.toHaveBeenCalled();
 });
 
-it('mapOrElse handles complex types', () => {
-  const result = new Ok({ value: 2 });
-  const mapErrFn = (err: { value: number }) => ({ value: err.value * 3 });
-  const mapOkFn = (value: { value: number }) => ({ value: value.value * 2 });
-  expect(mapOrElse(mapErrFn, mapOkFn)(result)).toEqual({ value: 4 });
+test('mapOrElse handles complex types', () => {
+  const spy = vi.fn();
+  expect(
+    pipe(
+      Ok.create({ value: 2 }),
+      mapOrElse(spy, value => ({ value: value.value * 2 })),
+    ),
+  ).toEqual({ value: 4 });
+  expect(spy).not.toHaveBeenCalled();
 });

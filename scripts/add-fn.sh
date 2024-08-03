@@ -39,7 +39,7 @@ spec="src/$dirName/$filename.spec.ts"
 
 touch $src
 
-echo "import { expect, it, vi } from 'vitest';
+echo "import { expect, test, vi } from 'vitest';
 
 it.todo('implement $filename')
 " >$spec

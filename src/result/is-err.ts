@@ -1,4 +1,5 @@
-import { Err } from './index.js';
+import type { Result } from './result.js';
+import { Err } from './result.js';
 
 /**
  * Check if value is an instance of the `Err` class.
@@ -14,6 +15,6 @@ import { Err } from './index.js';
  * @tags result, guard, errors
  * @see https://doc.rust-lang.org/core/result/enum.Result.html#method.is_err
  */
-export function isErr<T>(value: unknown): value is Err<T> {
+export function isErr(value: unknown): value is Result.AnyErr {
   return value instanceof Err && value._tag === 'Err';
 }

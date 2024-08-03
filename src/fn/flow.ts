@@ -1,4 +1,4 @@
-import type { AnyFn } from './types.js';
+import type { AnyFn } from './index.js';
 
 /**
  * Creates a function which pipes its input through a sequence of functions in left-to-right order.
@@ -42,29 +42,29 @@ import type { AnyFn } from './types.js';
  */
 export function flow(): never;
 
-export function flow<A extends Array<unknown>, B>(
+export function flow<A extends unknown[], B>(
   fn1: (...args: A) => B,
 ): (...args: A) => B;
 
-export function flow<A extends Array<unknown>, B, C>(
+export function flow<A extends unknown[], B, C>(
   fn1: (...args: A) => B,
   fn2: (arg: B) => C,
 ): (...args: A) => C;
 
-export function flow<A extends Array<unknown>, B, C, D>(
+export function flow<A extends unknown[], B, C, D>(
   fn1: (...args: A) => B,
   fn2: (arg: B) => C,
   fn3: (arg: C) => D,
 ): (...args: A) => D;
 
-export function flow<A extends Array<unknown>, B, C, D, E>(
+export function flow<A extends unknown[], B, C, D, E>(
   fn1: (...args: A) => B,
   fn2: (arg: B) => C,
   fn3: (arg: C) => D,
   fn4: (arg: D) => E,
 ): (...args: A) => E;
 
-export function flow<A extends Array<unknown>, B, C, D, E, F>(
+export function flow<A extends unknown[], B, C, D, E, F>(
   fn1: (...args: A) => B,
   fn2: (arg: B) => C,
   fn3: (arg: C) => D,
@@ -72,7 +72,7 @@ export function flow<A extends Array<unknown>, B, C, D, E, F>(
   fn5: (arg: E) => F,
 ): (...args: A) => F;
 
-export function flow<A extends Array<unknown>, B, C, D, E, F, G>(
+export function flow<A extends unknown[], B, C, D, E, F, G>(
   fn1: (...args: A) => B,
   fn2: (arg: B) => C,
   fn3: (arg: C) => D,
@@ -81,7 +81,7 @@ export function flow<A extends Array<unknown>, B, C, D, E, F, G>(
   fn6: (arg: F) => G,
 ): (...args: A) => G;
 
-export function flow<A extends Array<unknown>, B, C, D, E, F, G, H>(
+export function flow<A extends unknown[], B, C, D, E, F, G, H>(
   fn1: (...args: A) => B,
   fn2: (arg: B) => C,
   fn3: (arg: C) => D,
@@ -91,7 +91,7 @@ export function flow<A extends Array<unknown>, B, C, D, E, F, G, H>(
   fn7: (arg: G) => H,
 ): (...args: A) => H;
 
-export function flow<A extends Array<unknown>, B, C, D, E, F, G, H, I>(
+export function flow<A extends unknown[], B, C, D, E, F, G, H, I>(
   fn1: (...args: A) => B,
   fn2: (arg: B) => C,
   fn3: (arg: C) => D,
@@ -102,7 +102,7 @@ export function flow<A extends Array<unknown>, B, C, D, E, F, G, H, I>(
   fn8: (arg: H) => I,
 ): (...args: A) => I;
 
-export function flow<A extends Array<unknown>, B, C, D, E, F, G, H, I, J>(
+export function flow<A extends unknown[], B, C, D, E, F, G, H, I, J>(
   fn1: (...args: A) => B,
   fn2: (arg: B) => C,
   fn3: (arg: C) => D,

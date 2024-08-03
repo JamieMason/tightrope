@@ -1,28 +1,23 @@
-import { curry } from '../fn/curry.js';
-import type { UnaryGuard } from '../fn/types.js';
-import type { Option } from './index.js';
-import { Some, none } from './index.js';
+import { curry } from '../fn/lib/curry.js';
+import type { Guard } from '../guard/index.js';
+import type { Option } from './option.js';
+import { Some, none } from './option.js';
 
-export type FromGuard = {
-  <
-    Fn extends UnaryGuard,
-    O = Fn extends (value: any) => value is infer O ? O : never,
-  >(
+type FromGuard = {
+  <Fn extends Guard.Unary, T = Guard.UnaryType<Fn>>(
     guard: Fn,
-  ): (value: unknown) => Option<O>;
-  <
-    Fn extends UnaryGuard,
-    O = Fn extends (value: any) => value is infer O ? O : never,
-  >(
+  ): (value: unknown) => Option<T>;
+  <Fn extends Guard.Unary, T = Guard.UnaryType<Fn>>(
     guard: Fn,
     value: unknown,
-  ): Option<O>;
+  ): Option<T>;
 };
 
 /** @tags option, wrap, invoke */
-export const fromGuard: FromGuard = curry(function fromGuard<
-  Fn extends UnaryGuard,
-  O = Fn extends (value: any) => value is infer O ? O : never,
->(guard: Fn, value: unknown): Option<O> {
-  return guard(value) ? new Some<O>(value) : none;
-}, 2);
+export const fromGuard: FromGuard = curry(
+  <Fn extends Guard.Unary, T = Guard.UnaryType<Fn>>(
+    guard: Fn,
+    value: unknown,
+  ): Option<T> => (guard(value) ? Some.create(value) : none),
+  2,
+);

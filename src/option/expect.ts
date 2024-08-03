@@ -1,10 +1,15 @@
-import { curry } from '../fn/curry.js';
-import type { Option } from './index.js';
+import { curry } from '../fn/lib/curry.js';
 import { isSome } from './is-some.js';
+import type { Option } from './option.js';
 
-export type Expect = {
-  <T>(msg: string): (option: Option<T>) => T;
-  <T>(msg: string, option: Option<T>): T;
+type Expect = {
+  <Opt extends Option.Any>(
+    msg: string,
+  ): (option: Opt) => Opt extends Option<infer T> ? T : never;
+  <Opt extends Option.Any>(
+    msg: string,
+    option: Opt,
+  ): Opt extends Option<infer T> ? T : never;
 };
 
 /**
@@ -13,7 +18,13 @@ export type Expect = {
  *
  * @tags option, unwrap, unsafe, right-biased
  */
-export const expect: Expect = curry(<T>(msg: string, option: Option<T>): T => {
-  if (isSome<T>(option)) return option.value;
-  throw new Error(msg);
-}, 2);
+export const expect: Expect = curry(
+  <Opt extends Option.Any>(
+    msg: string,
+    option: Opt,
+  ): Opt extends Option<infer T> ? T : never => {
+    if (isSome(option)) return option.value;
+    throw new Error(msg);
+  },
+  2,
+);

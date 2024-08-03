@@ -1,29 +1,26 @@
-import { expect, it } from 'vitest';
+import { expect, test } from 'vitest';
 import { flatten } from './flatten.js';
-import { Err, Ok } from './index.js';
+import { Err, Ok } from './result.js';
 
-it('returns flat Ok unchanged', () => {
+test('returns flat Ok unchanged', () => {
   const res = new Ok(1);
   expect(flatten(res)).toBe(res);
 });
 
-it('returns nested Ok', () => {
-  const innermost = new Ok(1);
-  const inner = new Ok(innermost);
+test('returns nested Ok', () => {
+  const inner = new Ok(1);
   const outer = new Ok(inner);
-  expect(flatten(outer)).toBe(innermost);
+  expect(flatten(outer)).toBe(inner);
 });
 
-it('returns nested Err', () => {
-  const innermost = new Err(new Error('innermost'));
-  const inner = new Err(innermost);
+test('returns nested Err', () => {
+  const inner = new Err(new Error('innermost'));
   const outer = new Err(inner);
-  expect(flatten(outer)).toBe(innermost);
+  expect(flatten(outer)).toBe(inner);
 });
 
-it('throws if value is not an Ok or an Err', () => {
-  const err = new Error('flatten() called with non Result value: 2');
+test('throws if value is not an Ok or an Err', () => {
   expect(() => {
-    flatten(2);
-  }).toThrow(err);
+    flatten(2 as any);
+  }).toThrow(new Error('flatten() called with non Result value: 2'));
 });

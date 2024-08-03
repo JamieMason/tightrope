@@ -1,7 +1,7 @@
-import { expect, it } from 'vitest';
+import { expect, test } from 'vitest';
 import { isPrimitive } from './is-primitive.js';
 
-it('returns true for null, undefined, numbers, strings, and booleans', () => {
+test('returns true for null, undefined, numbers, strings, and booleans', () => {
   expect(isPrimitive(null)).toBe(true);
   expect(isPrimitive(undefined)).toBe(true);
   expect(isPrimitive(0)).toBe(true);
@@ -13,7 +13,7 @@ it('returns true for null, undefined, numbers, strings, and booleans', () => {
   expect(isPrimitive(false)).toBe(true);
 });
 
-it('returns false for objects, arrays, and functions', () => {
+test('returns false for objects, arrays, and functions', () => {
   expect(isPrimitive({})).toBe(false);
   expect(isPrimitive([])).toBe(false);
   expect(

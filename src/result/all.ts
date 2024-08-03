@@ -1,6 +1,6 @@
-import type { Result } from './index.js';
-import { Err, Ok } from './index.js';
 import { isOk } from './is-ok.js';
+import type { Result } from './result.js';
+import { Err, Ok } from './result.js';
 
 /**
  * Takes an array of `Result` values and returns a `Result` containing an array of `Ok` values if all input values are
@@ -8,11 +8,11 @@ import { isOk } from './is-ok.js';
  *
  * @tags result, array
  */
-export function all<OkT, ErrT>(
-  results: Result<OkT, ErrT>[],
-): Result<OkT[], ErrT[]> {
-  const okValues: OkT[] = [];
-  const errValues: ErrT[] = [];
+export function all<ResArr extends Result.Any[]>(
+  results: ResArr,
+): Result<Result.OkType<ResArr[number]>[], Result.ErrType<ResArr[number]>[]> {
+  const okValues: Result.OkType<ResArr[number]>[] = [];
+  const errValues: Result.ErrType<ResArr[number]>[] = [];
 
   for (const result of results) {
     if (isOk(result)) {

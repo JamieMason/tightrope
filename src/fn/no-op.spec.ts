@@ -1,6 +1,6 @@
-import { expect, it } from 'vitest';
+import { expect, test } from 'vitest';
 import { noOp } from './no-op.js';
 
-it('is a placeholder function that does nothing', () => {
+test('is a placeholder function that does nothing', () => {
   expect(noOp()).toBeUndefined();
 });

@@ -1,10 +1,10 @@
-import { expect, it } from 'vitest';
+import { expect, test } from 'vitest';
 import { pipe } from '../fn/pipe.js';
-import type { Gen } from '../fn/types.js';
+import type { Gen } from './index.js';
 import { split } from './split.js';
 
-it('collects a string yielded by a generator and yields split portions of it', () => {
-  function* stringOverTime(): Gen<string> {
+test('collects a string yielded by a generator and yields split portions of it', () => {
+  function* stringOverTime(): Gen.Of<string> {
     yield 'Th';
     yield 'e qu';
     yield 'i';
@@ -29,22 +29,22 @@ it('collects a string yielded by a generator and yields split portions of it', (
   ]);
 });
 
-it('handles case where string to be split is last', () => {
-  function* stringOverTime(): Gen<string> {
+test('handles case where string to be split is last', () => {
+  function* stringOverTime(): Gen.Of<string> {
     yield 'Word ';
   }
   expect(pipe(stringOverTime(), split(' '))).toProduce(['Word']);
 });
 
-it('handles case where string to be split is first', () => {
-  function* stringOverTime(): Gen<string> {
+test('handles case where string to be split is first', () => {
+  function* stringOverTime(): Gen.Of<string> {
     yield ' Word';
   }
   expect(pipe(stringOverTime(), split(' '))).toProduce(['Word']);
 });
 
-it('yields entire string if split is not present', () => {
-  function* stringOverTime(): Gen<string> {
+test('yields entire string if split is not present', () => {
+  function* stringOverTime(): Gen.Of<string> {
     yield 'Two Words';
   }
   expect(pipe(stringOverTime(), split('X'))).toProduce(['Two Words']);

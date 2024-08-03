@@ -1,55 +1,25 @@
-import { curry } from '../fn/curry.js';
-import type { Option } from './index.js';
-import { isSome } from './is-some.js';
+import { curry } from '../fn/lib/curry.js';
+import { isNone } from './index.js';
+import type { Option } from './option.js';
 
-export type Or = {
-  <T>(defaultOption: Option<T>): (option: Option<T>) => Option<T>;
-  <T>(defaultOption: Option<T>, option: Option<T>): Option<T>;
+type Or = {
+  <Opt extends Option.Any>(b: Opt): (a: Opt) => Opt;
+  <Opt extends Option.Any>(b: Opt, a: Opt): Opt;
 };
 
 /**
- * Transforms `Some(v)` to `Some(v)`, and `None` to the provided default `Option`.
+ * Like the `||` operator, but applied to `Option` types.
  *
- * The `or` function takes a default `Option` object and an input `Option` object as its arguments. If the input
- * `Option` object is a `Some`, it returns the same `Some` object. If the input `Option` object is a `None`, it returns
- * the provided default `Option` object.
- *
- * ## Example
- *
- * ```ts
- * import { pipe } from 'tightrope/fn/pipe';
- * import { Option } from 'tightrope/option';
- * import { none } from 'tightrope/option';
- * import { Some } from 'tightrope/option';
- * import { or } from 'tightrope/option/or';
- *
- * const defaultOption = new Some(42);
- *
- * pipe(new Some(5), or(defaultOption));
- * // Output: Some(5)
- *
- * pipe(none, or(defaultOption));
- * // Output: Some(42)
- * ```
- *
- * ## Use Cases
- *
- * The `or` function is useful when you want to provide a fallback `Option` object in case the input `Option` is a
- * `None`. It allows you to handle both cases of `Some` and `None` in a more flexible way.
- *
- * Some use cases of `or` include:
- *
- * - Providing a default value for cases when a value is not found in a collection or when an operation fails.
- * - Mapping over a collection and returning the first element that meets a specific criteria. If no element is found,
- *   returning a default `Option`.
- * - Handling errors in a way that gracefully falls back to a default value, such as when making API calls and the server
- *   returns an error response.
+ * | Scenario         | Pseudocode               | Outcome                   |
+ * | :--------------- | :----------------------- | ------------------------- |
+ * | `Some OR None`   | `pipe(Some, or(None))`   | `Some`                    |
+ * | `None OR Some`   | `pipe(None, or(Some))`   | `Some`                    |
+ * | `None1 OR None2` | `pipe(None1, or(None2))` | `None2`                   |
+ * | `Some1 OR Some2` | `pipe(Some1, or(Some2))` | `Some1` (first Some wins) |
  *
  * @tags option, transform, transform-option, recover, errors, left-biased
  */
 export const or: Or = curry(
-  <T>(defaultOption: Option<T>, option: Option<T>): Option<T> => {
-    return isSome(option) ? option : defaultOption;
-  },
+  <Opt extends Option.Any>(b: Opt, a: Opt): Opt => (isNone(a) ? b : a),
   2,
 );

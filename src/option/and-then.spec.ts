@@ -1,25 +1,26 @@
-import { expect, it } from 'vitest';
+import { expect, test } from 'vitest';
 import { andThen } from './and-then.js';
-import type { Option } from './index.js';
-import { Some, none } from './index.js';
+import type { Option } from './option.js';
+import { None, Some, none } from './option.js';
 
-it('andThen applies mapFn when input is Some', () => {
-  const opt = new Some(2);
-  const mapFn = (value: number) => new Some(`Answer: ${value * 2}`);
+test('andThen applies mapFn when input is Some', () => {
+  const opt = Some.create(2);
+  const mapFn = (value: number) => Some.create(`Answer: ${value * 2}`);
   const output = andThen(mapFn)(opt);
-  expect<Option<string>>(output).toEqual(new Some('Answer: 4'));
+  expect<Option<string>>(output).toEqual(Some.create('Answer: 4'));
 });
 
-it('andThen returns none when input is None', () => {
-  const mapFn = (value: number) => new Some(value * 2);
-  const output = andThen(mapFn)(none);
+test('andThen returns none when input is None', () => {
+  const mapFn = (value: number) => Some.create(value * 2);
+  const value = None.create<number>();
+  const output = andThen(mapFn, value);
   expect<Option<number>>(output).toEqual(none);
 });
 
-it('andThen handles complex types', () => {
+test('andThen handles complex types', () => {
   type Obj = { value: number };
-  const opt = new Some({ value: 2 });
-  const mapFn = (value: Obj) => new Some({ value: value.value * 2 });
-  const output = andThen(mapFn)(opt);
-  expect<Option<Obj>>(output).toEqual(new Some({ value: 4 }));
+  const opt = Some.create({ value: 2 });
+  const mapFn = (value: Obj) => Some.create({ value: value.value * 2 });
+  const output = andThen(mapFn, opt);
+  expect<Option<Obj>>(output).toEqual(Some.create({ value: 4 }));
 });

@@ -1,14 +1,14 @@
-import { expect, it } from 'vitest';
+import { expect, test } from 'vitest';
 import { isRegExp } from './is-reg-exp.js';
 
-it('positive case', () => {
+test('positive case', () => {
   expect(isRegExp(/abc/)).toBe(true);
 });
 
-it('positive case with new RegExp', () => {
+test('positive case with new RegExp', () => {
   expect(isRegExp(/abc/)).toBe(true);
 });
 
-it('negative case', () => {
+test('negative case', () => {
   expect(isRegExp('abc' as any)).toBe(false);
 });

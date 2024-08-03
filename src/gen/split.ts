@@ -1,16 +1,15 @@
-import { curry } from '../fn/curry.js';
-import type { Gen } from '../fn/types.js';
+import { curry } from '../fn/lib/curry.js';
 
-export type Split = {
-  (char: string): (chunks: Gen<string>) => Gen<string>;
-  (char: string, chunks: Gen<string>): Gen<string>;
+type Split = {
+  (char: string): (chunks: Iterable<string>) => Iterable<string>;
+  (char: string, chunks: Iterable<string>): Iterable<string>;
 };
 
 /** @tags transformer, generator */
 export const split: Split = curry(function* split(
   char: string,
-  chunks: Gen<string>,
-): Gen<string> {
+  chunks: Iterable<string>,
+): Iterable<string> {
   const len = char.length;
   let previous = '';
 

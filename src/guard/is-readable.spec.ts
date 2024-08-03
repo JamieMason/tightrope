@@ -1,15 +1,15 @@
-import { expect, it } from 'vitest';
+import { expect, test } from 'vitest';
 import { isReadable } from './is-readable.js';
 
-it('returns true for a readable value', () => {
+test('returns true for a readable value', () => {
   expect(isReadable('hello')).toBe(true);
 });
 
-it('returns false for a non-readable value', () => {
+test('returns false for a non-readable value', () => {
   expect(isReadable(null)).toBe(false);
 });
 
-it('returns true for a readable object property', () => {
+test('returns true for a readable object property', () => {
   const person: Record<string, string | number> = {
     name: 'John',
     age: 30,
@@ -17,7 +17,7 @@ it('returns true for a readable object property', () => {
   expect(isReadable(person.name)).toBe(true);
 });
 
-it('returns false for a non-readable object property', () => {
+test('returns false for a non-readable object property', () => {
   const person: Record<string, string | number> = {
     name: 'John',
     age: 30,

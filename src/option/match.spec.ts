@@ -1,10 +1,10 @@
-import { expect, it } from 'vitest';
+import { expect, test } from 'vitest';
 import { pipe } from '../fn/pipe.js';
-import type { Option } from './index.js';
-import { Some, none } from './index.js';
 import { match } from './match.js';
+import type { Option } from './option.js';
+import { Some, none } from './option.js';
 
-it.each([
+test.each([
   [Some.create('Hi'), 'Hi!'],
   [none, 'Value is missing'],
 ])('returns the first case which is true', (option, expected) => {
@@ -12,19 +12,19 @@ it.each([
     pipe(
       option,
       match({
-        Some: value => `${value}!`,
+        Some: (value: string) => `${value}!`,
         None: () => 'Value is missing',
       }),
     ),
   ).toEqual(expected);
 });
 
-it('throws when no case is matched', () => {
+test('throws when no case is matched', () => {
   expect(() => {
     pipe(
-      null as unknown as Option<null>,
+      null as unknown as Option<string>,
       match({
-        Some: value => `${value}!`,
+        Some: (value: string) => `${value}!`,
         None: () => 'Value is missing',
       }),
     );

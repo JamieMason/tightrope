@@ -1,7 +1,6 @@
-import type { AnyOption } from '../fn/types.js';
-import type { Option } from './index.js';
-import { none } from './index.js';
 import { isSome } from './is-some.js';
+import type { Option } from './option.js';
+import { none } from './option.js';
 
 /**
  * Removes one level of nesting from an `Option<Option<T>>`
@@ -9,9 +8,9 @@ import { isSome } from './is-some.js';
  * @tags option, transform, transform-option
  */
 export function flatten<
-  Opt extends Option<AnyOption>,
-  Value = Opt extends Option<Option<infer Value>> ? Value : never,
->(opt: Opt): Option<Value> {
-  if (isSome<Option<Value>>(opt)) return opt.value;
+  Opt extends Option<Option.Any>,
+  T = Opt extends Option<Option<infer T>> ? T : unknown,
+>(opt: Opt): Option<T> {
+  if (isSome<Option<T>>(opt)) return opt.value;
   return none;
 }

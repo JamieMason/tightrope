@@ -1,14 +1,15 @@
-import { expect, it } from 'vitest';
-import { Some, none } from './index.js';
+import { expect, test } from 'vitest';
+import { None, Some } from './option.js';
 import { or } from './or.js';
 
-it('returns the original Some when Some is provided', () => {
-  const someValue = new Some(5);
-  const result = or(new Some(10), someValue);
+test('returns the original Some when Some is provided', () => {
+  const someValue = Some.create(5);
+  const result = or(Some.create(10), someValue);
   expect(result).toEqual(someValue);
 });
 
-it('returns the default Option when None is provided', () => {
-  const result = or(new Some(10), none);
-  expect(result).toEqual(new Some(10));
+test('returns the default Option when None is provided', () => {
+  const value = None.create<number>();
+  const result = or(Some.create(10), value);
+  expect(result).toEqual(Some.create(10));
 });

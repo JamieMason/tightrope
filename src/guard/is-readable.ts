@@ -1,5 +1,4 @@
-import type { JsonValue } from 'fast-check';
-import { isNull } from './is-null.js';
+import { isNull } from '../object/is-null.js';
 import { isUndefined } from './is-undefined.js';
 
 /**
@@ -9,18 +8,8 @@ import { isUndefined } from './is-undefined.js';
  *
  * ## Example
  *
- * @tags guard. objects, arrays
+ * @tags guard, objects, arrays
  */
-export function isReadable<T extends null>(value: T): false;
-export function isReadable<T extends undefined>(value: T): false;
-export function isReadable<T extends null | undefined>(value: T): false;
-export function isReadable<T extends JsonValue>(
-  value: T,
-): value is Exclude<T, null | undefined>;
-export function isReadable(
-  value: unknown,
-): value is Exclude<JsonValue, null | undefined>;
-
-export function isReadable(value: unknown): boolean {
-  return !isNull(value) && !isUndefined(value);
+export function isReadable(value: unknown): value is object {
+  return !(isNull(value) || isUndefined(value));
 }

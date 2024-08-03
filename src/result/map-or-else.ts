@@ -1,28 +1,28 @@
-import { curry } from '../fn/curry.js';
-import type { AnyResult, ResErr, ResOk } from '../fn/types.js';
+import { curry } from '../fn/lib/curry.js';
+import { withSafety } from '../fn/with-safety.js';
 import { isOk } from './is-ok.js';
-import { withCatch } from './lib/with-catch.js';
+import type { Result } from './result.js';
 
-export type MapOrElse = {
-  <Res extends AnyResult, Next>(
-    mapErrFn: (err: ResErr<Res>) => Next,
-    mapOkFn: (value: ResOk<Res>) => Next,
+type MapOrElse = {
+  <Res extends Result.Any, T>(
+    mapErrFn: (err: Result.ErrType<Res>) => T,
+    mapOkFn: (value: Result.OkType<Res>) => T,
     result: Res,
-  ): Next;
-  <Res extends AnyResult, Next>(
-    mapErrFn: (err: ResErr<Res>) => Next,
-    mapOkFn: (value: ResOk<Res>) => Next,
-  ): (result: Res) => Next;
-  <Res extends AnyResult, Next>(
-    mapErrFn: (err: ResErr<Res>) => Next,
+  ): T;
+  <Res extends Result.Any, T>(
+    mapErrFn: (err: Result.ErrType<Res>) => T,
+    mapOkFn: (value: Result.OkType<Res>) => T,
+  ): (result: Res) => T;
+  <Res extends Result.Any, T>(
+    mapErrFn: (err: Result.ErrType<Res>) => T,
   ): {
-    <Res extends AnyResult, Next>(
-      mapOkFn: (value: ResOk<Res>) => Next,
-    ): (result: Res) => Next;
-    <Res extends AnyResult, Next>(
-      mapOkFn: (value: ResOk<Res>) => Next,
+    <Res extends Result.Any, T>(
+      mapOkFn: (value: Result.OkType<Res>) => T,
+    ): (result: Res) => T;
+    <Res extends Result.Any, T>(
+      mapOkFn: (value: Result.OkType<Res>) => T,
       result: Res,
-    ): Next;
+    ): T;
   };
 };
 
@@ -35,16 +35,12 @@ export type MapOrElse = {
  * @tags result, transform, transform-result, right-biased, unwrap
  */
 export const mapOrElse: MapOrElse = curry(
-  withCatch(
-    <Res extends AnyResult, Next>(
-      mapErrFn: (err: ResErr<Res>) => Next,
-      mapOkFn: (value: ResOk<Res>) => Next,
+  withSafety(
+    <Res extends Result.Any, T>(
+      mapErrFn: (err: Result.ErrType<Res>) => T,
+      mapOkFn: (value: Result.OkType<Res>) => T,
       result: Res,
-    ): Next => {
-      return isOk<ResOk<Res>>(result)
-        ? mapOkFn(result.value)
-        : mapErrFn(result.value);
-    },
+    ): T => (isOk(result) ? mapOkFn(result.value) : mapErrFn(result.value)),
   ),
   3,
 );

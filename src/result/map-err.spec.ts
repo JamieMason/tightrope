@@ -1,26 +1,20 @@
-import { expect, it } from 'vitest';
+import { expect, test, vi } from 'vitest';
 import { pipe } from '../fn/pipe.js';
-import { Err, Ok } from './index.js';
 import { mapErr } from './map-err.js';
+import { Err, Ok } from './result.js';
 
-it('map an Err for another when Err', () => {
-  const a = new Error('Error: A');
-  const b = new Error('Error: B');
+test('map an Err for another when Err', () => {
   expect(
     pipe(
-      Err.create(a),
-      mapErr(() => b),
+      Err.create(new Error('Error: A')),
+      mapErr(err => new Error(`${err.message} + B`)),
     ),
-  ).toEqual(Err.create(b));
+  ).toEqual(Err.create(new Error('Error: A + B')));
 });
 
-it('leave Ok untouched', () => {
+test('leave Ok untouched when Ok', () => {
   const a = Ok.create(1);
-  const b = new Error('Error: B');
-  expect(
-    pipe(
-      a,
-      mapErr(() => b),
-    ),
-  ).toBe(a);
+  const spy = vi.fn();
+  expect(pipe(a, mapErr(spy))).toBe(a);
+  expect(spy).not.toHaveBeenCalled();
 });
