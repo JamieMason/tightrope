@@ -4,7 +4,7 @@ import { hasType } from './has-type.js';
 import { isFunction } from './is-function.js';
 
 type ThrowsErrorOfType = {
-  (typeName: string): { (value: AnyFn): boolean };
+  (typeName: string): (value: AnyFn) => boolean;
   (typeName: string, value: AnyFn): boolean;
 };
 

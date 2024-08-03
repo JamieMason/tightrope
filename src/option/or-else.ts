@@ -1,9 +1,9 @@
-import type { Option } from './index.js';
 import { curry } from '../fn/curry.js';
+import type { Option } from './index.js';
 import { isSome } from './is-some.js';
 
 export type OrElse = {
-  <T>(orElseFn: () => Option<T>): { (option: Option<T>): Option<T> };
+  <T>(orElseFn: () => Option<T>): (option: Option<T>) => Option<T>;
   <T>(orElseFn: () => Option<T>, option: Option<T>): Option<T>;
 };
 

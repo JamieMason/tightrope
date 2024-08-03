@@ -3,7 +3,7 @@ import { isDate } from './is-date.js';
 import { isNumber } from './is-number.js';
 
 type IsDateInMonth = {
-  (index: number): { (value: unknown): boolean };
+  (index: number): (value: unknown) => boolean;
   (index: number, value: unknown): boolean;
 };
 

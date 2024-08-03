@@ -6,9 +6,7 @@ import { isOk } from './is-ok.js';
 export type And = {
   <ResultB extends AnyResult>(
     b: ResultB,
-  ): {
-    <ResultA extends AnyResult>(a: ResultA): ResultUnion<ResultB, ResultA>;
-  };
+  ): <ResultA extends AnyResult>(a: ResultA) => ResultUnion<ResultB, ResultA>;
   <ResultB extends AnyResult, ResultA extends AnyResult>(
     b: ResultB,
     a: ResultA,

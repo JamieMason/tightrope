@@ -1,6 +1,6 @@
-import { expect as vExpect, it } from 'vitest';
-import { none, Some } from './index.js';
+import { it, expect as vExpect } from 'vitest';
 import { expect } from './expect.js';
+import { Some, none } from './index.js';
 
 it('expect returns value when input is Some', () => {
   const opt = new Some(2);

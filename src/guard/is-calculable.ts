@@ -5,4 +5,4 @@
  * @tags guard, strings, numbers
  */
 export const isCalculable = <T = any>(value: any): value is T =>
-  !isNaN(value * 2);
+  !Number.isNaN(value * 2);

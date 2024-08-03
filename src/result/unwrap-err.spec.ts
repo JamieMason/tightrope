@@ -1,6 +1,6 @@
 import { expect, it } from 'vitest';
-import { Err, Ok } from './index.js';
 import { pipe } from '../fn/pipe.js';
+import { Err, Ok } from './index.js';
 import { unwrapErr } from './unwrap-err.js';
 
 it('returns the wrapped value from an Err', () => {

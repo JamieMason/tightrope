@@ -2,7 +2,7 @@ import { curry } from '../fn/curry.js';
 import { isString } from './is-string.js';
 
 type HasProperty = {
-  (ownKeyName: string): { (value: unknown): boolean };
+  (ownKeyName: string): (value: unknown) => boolean;
   (ownKeyName: string, value: unknown): boolean;
 };
 

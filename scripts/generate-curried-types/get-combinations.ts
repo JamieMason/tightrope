@@ -10,7 +10,7 @@ export function getCombinations({
 }: CurriedFunction) {
   const pascalName = firstUp(exportedName);
   const generics = typeParams.length
-    ? `<${typeParams.map((typeParam) => typeParam.getText())}>`
+    ? `<${typeParams.map(typeParam => typeParam.getText())}>`
     : '';
   const typeName = `${pascalName}`;
 

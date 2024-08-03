@@ -9,16 +9,14 @@ it('only returns true if value is a Result.Ok', () => {
   expect(isOk(new Ok(null))).toEqual(true);
 });
 
-it('returns false unless value is a Result.Ok', () => {
-  [
-    undefined,
-    null,
-    false,
-    0,
-    new Error(''),
-    Err.create(1),
-    Err.create(new Error('')),
-  ].forEach((value) => {
-    expect(isOk(value)).toEqual(false);
-  });
+it.each([
+  [undefined],
+  [null],
+  [false],
+  [0],
+  [new Error('')],
+  [Err.create(1)],
+  [Err.create(new Error(''))],
+])('returns false unless value is a Result.Ok', value => {
+  expect(isOk(value)).toEqual(false);
 });

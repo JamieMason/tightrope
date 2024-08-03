@@ -4,9 +4,7 @@ import type { Gen, GenYield, UnaryGuard } from '../fn/types.js';
 export type Filter = {
   <F extends UnaryGuard<GenYield<T>>, T extends Gen<any>>(
     guard: F,
-  ): {
-    (gen: T): Gen<GenYield<T>>;
-  };
+  ): (gen: T) => Gen<GenYield<T>>;
   <F extends UnaryGuard<GenYield<T>>, T extends Gen<any>>(
     guard: F,
     gen: T,

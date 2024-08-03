@@ -3,7 +3,7 @@ import { isDate } from './is-date.js';
 import { isNumber } from './is-number.js';
 
 type IsDateOnDayOfWeek = {
-  (index: number): { (value: unknown): boolean };
+  (index: number): (value: unknown) => boolean;
   (index: number, value: unknown): boolean;
 };
 

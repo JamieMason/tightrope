@@ -5,9 +5,11 @@ import { isLessThanOrEqualTo } from './is-less-than-or-equal-to.js';
 
 type IsDateBetween = {
   (floor: Date, ceiling: Date, date: Date): boolean;
-  (floor: Date, ceiling: Date): { (date: Date): boolean };
-  (floor: Date): {
-    (ceiling: Date): { (date: Date): boolean };
+  (floor: Date, ceiling: Date): (date: Date) => boolean;
+  (
+    floor: Date,
+  ): {
+    (ceiling: Date): (date: Date) => boolean;
     (ceiling: Date, date: Date): boolean;
   };
 };

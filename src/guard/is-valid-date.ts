@@ -8,4 +8,4 @@ import { isDate } from './is-date.js';
  * @tags guard, dates
  */
 export const isValidDate = (value: unknown): value is Date =>
-  isDate(value) && !isNaN(value.getTime());
+  isDate(value) && !Number.isNaN(value.getTime());

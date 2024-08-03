@@ -1,7 +1,7 @@
-import type { Option } from './index.js';
-import { none } from './index.js';
 import { curry } from '../fn/curry.js';
 import type { AnyOption } from '../fn/types.js';
+import type { Option } from './index.js';
+import { none } from './index.js';
 import { isSome } from './is-some.js';
 
 export type Filter = {
@@ -11,7 +11,7 @@ export type Filter = {
     O = Fn extends (value: any) => value is infer O ? O : never,
   >(
     predicate: Fn,
-  ): { (opt: I): Option<O> };
+  ): (opt: I) => Option<O>;
   <
     Fn extends (value: any) => value is any,
     I extends AnyOption,

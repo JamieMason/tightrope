@@ -3,7 +3,7 @@ import type { Result } from '../result/index.js';
 import { Err, Ok } from '../result/index.js';
 
 export type Divide = {
-  (divisor: number): { (value: number): Result<number, Error> };
+  (divisor: number): (value: number) => Result<number, Error>;
   (divisor: number, value: number): Result<number, Error>;
 };
 

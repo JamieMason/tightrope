@@ -1,5 +1,5 @@
 import { expect, it } from 'vitest';
-import { none, Some } from './index.js';
+import { Some, none } from './index.js';
 import { map } from './map.js';
 
 it('map should map a Some value using the provided function', () => {

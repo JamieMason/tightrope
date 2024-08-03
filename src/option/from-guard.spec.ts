@@ -1,9 +1,9 @@
 import { expect, it } from 'vitest';
-import type { Option } from './index.js';
-import { none, Some } from './index.js';
 import { pipe } from '../fn/pipe.js';
 import { isNumber } from '../guard/is-number.js';
 import { fromGuard } from './from-guard.js';
+import type { Option } from './index.js';
+import { Some, none } from './index.js';
 
 it('returns Some if the value passes the guard', () => {
   const someNumber = fromGuard(isNumber, 42);

@@ -13,15 +13,11 @@ export type Reduce = {
   <F extends Reducer<GenYield<T>, R>, R, T extends Gen<any>>(
     fn: F,
     initialValue: R,
-  ): { (gen: T): Gen<R> };
+  ): (gen: T) => Gen<R>;
   <F extends Reducer<GenYield<T>, R>, R, T extends Gen<any>>(
     fn: F,
   ): {
-    <R, T extends Gen<any>>(
-      initialValue: R,
-    ): {
-      (gen: T): Gen<R>;
-    };
+    <R, T extends Gen<any>>(initialValue: R): (gen: T) => Gen<R>;
     <R, T extends Gen<any>>(initialValue: R, gen: T): Gen<R>;
   };
 };

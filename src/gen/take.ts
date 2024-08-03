@@ -2,11 +2,7 @@ import { curry } from '../fn/curry.js';
 import type { Gen, GenYield } from '../fn/types.js';
 
 export type Take = {
-  <T extends Gen<any>>(
-    amount: number,
-  ): {
-    (gen: T): Gen<GenYield<T>>;
-  };
+  <T extends Gen<any>>(amount: number): (gen: T) => Gen<GenYield<T>>;
   <T extends Gen<any>>(amount: number, gen: T): Gen<GenYield<T>>;
 };
 

@@ -6,10 +6,10 @@ import { isBoolean } from './is-boolean.js';
 import { isCalculable } from './is-calculable.js';
 import { isDecimalNumber } from './is-decimal-number.js';
 import { isEvenNumber } from './is-even-number.js';
-import { isGreaterThan } from './is-greater-than.js';
 import { isGreaterThanOrEqualTo } from './is-greater-than-or-equal-to.js';
-import { isLessThan } from './is-less-than.js';
+import { isGreaterThan } from './is-greater-than.js';
 import { isLessThanOrEqualTo } from './is-less-than-or-equal-to.js';
+import { isLessThan } from './is-less-than.js';
 import { isNegativeNumber } from './is-negative-number.js';
 import { isNumber } from './is-number.js';
 import { isOddNumber } from './is-odd-number.js';
@@ -28,7 +28,7 @@ test('numbers', () => {
         fc.float({ noNaN: true }),
         fc.double({ noNaN: true }),
       ),
-      (value) => {
+      value => {
         expect([[value]]).toPassGuard(isArrayOfNumbers);
         expect([value]).toPassGuard(isNumber);
         expect([`${value}`]).toPassGuard(isCalculable);
@@ -44,7 +44,7 @@ test('whole numbers', () => {
   fc.assert(
     fc.property(
       fc.oneof(fc.integer(), fc.maxSafeInteger(), fc.maxSafeNat()),
-      (value) => {
+      value => {
         expect([value]).toPassGuard(isWholeNumber);
         expect([value]).not.toPassGuard(isDecimalNumber);
       },
@@ -56,7 +56,7 @@ test('whole numbers', () => {
 /* eslint-disable-next-line */
 test.skip('decimal numbers', () => {
   fc.assert(
-    fc.property(fc.float(), (value) => {
+    fc.property(fc.float(), value => {
       fc.pre(value !== 0);
       expect([value]).toPassGuard(isDecimalNumber);
       expect([value]).not.toPassGuard(isWholeNumber);
@@ -75,7 +75,7 @@ test('positive numbers', () => {
         fc.float(),
         fc.double(),
       ),
-      (n) => {
+      n => {
         fc.pre(n > 0);
         expect([n]).toPassGuard(isPositiveNumber);
         expect([n]).not.toPassGuard(isNegativeNumber);

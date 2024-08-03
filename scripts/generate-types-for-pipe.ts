@@ -7,7 +7,7 @@ import { reduce } from '../src/gen/reduce.js';
 
 const typings = pipe(
   range(1, 80),
-  map((len) =>
+  map(len =>
     pipe(
       range(0, len - 1),
       reduce(
@@ -18,7 +18,7 @@ const typings = pipe(
         },
         { generics: ['A0'] as string[], fns: [] as string[] },
       ),
-      map((all) => {
+      map(all => {
         const fns = all.fns.join(', ');
         const generics = all.generics.join(', ');
         return `export function pipe<${generics}>(value: A0, ${fns}): A${len};`;

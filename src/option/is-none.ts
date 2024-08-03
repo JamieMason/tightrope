@@ -1,5 +1,5 @@
-import type { None } from './index.js';
 import { isObject } from '../guard/is-object.js';
+import type { None } from './index.js';
 
 /**
  * Returns true if the given value is a `None` instance, false otherwise.

@@ -1,11 +1,9 @@
-import type { Option } from './index.js';
 import { curry } from '../fn/curry.js';
+import type { Option } from './index.js';
 import { isSome } from './is-some.js';
 
 export type Or = {
-  <T>(defaultOption: Option<T>): {
-    (option: Option<T>): Option<T>;
-  };
+  <T>(defaultOption: Option<T>): (option: Option<T>) => Option<T>;
   <T>(defaultOption: Option<T>, option: Option<T>): Option<T>;
 };
 

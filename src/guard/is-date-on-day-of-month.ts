@@ -3,7 +3,7 @@ import { isDate } from './is-date.js';
 import { isNumber } from './is-number.js';
 
 type IsDateOnDayOfMonth = {
-  (dayOfMonth: number): { (value: unknown): boolean };
+  (dayOfMonth: number): (value: unknown) => boolean;
   (dayOfMonth: number, value: unknown): boolean;
 };
 

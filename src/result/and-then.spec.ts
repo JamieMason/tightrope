@@ -1,8 +1,8 @@
 import { expect, it, vi } from 'vitest';
-import { Err, Ok } from './index.js';
 import { pipe } from '../fn/pipe.js';
 import { multiply } from '../number/multiply.js';
 import { andThen } from './and-then.js';
+import { Err, Ok } from './index.js';
 
 it('short-circuits when upstream is Err', () => {
   const spy = vi.fn();
@@ -15,7 +15,7 @@ it('returns mapped Ok when upstream is Ok', () => {
   expect(
     pipe(
       Ok.create(3),
-      andThen((num) => Ok.create(multiply(2, num))),
+      andThen(num => Ok.create(multiply(2, num))),
     ),
   ).toEqual(new Ok(6));
 });

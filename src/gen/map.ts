@@ -4,9 +4,7 @@ import type { Gen, GenYield } from '../fn/types.js';
 export type Map = {
   <F extends (input: GenYield<T>) => any, T extends Gen<any>>(
     fn: F,
-  ): {
-    (gen: T): Gen<ReturnType<F>>;
-  };
+  ): (gen: T) => Gen<ReturnType<F>>;
   <F extends (input: GenYield<T>) => any, T extends Gen<any>>(
     fn: F,
     gen: T,

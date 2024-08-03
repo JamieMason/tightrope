@@ -6,7 +6,7 @@ import { withCatch } from './lib/with-catch.js';
 export type OrElse = {
   <Res extends AnyResult, NextRes extends AnyResult>(
     mapFn: (err: ResErr<Res>) => NextRes,
-  ): { (result: Res): ResultUnion<Res, NextRes> };
+  ): (result: Res) => ResultUnion<Res, NextRes>;
   <Res extends AnyResult, NextRes extends AnyResult>(
     mapFn: (err: ResErr<Res>) => NextRes,
     result: Res,

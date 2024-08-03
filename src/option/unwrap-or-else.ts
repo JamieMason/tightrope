@@ -1,9 +1,9 @@
-import type { Option } from './index.js';
 import { curry } from '../fn/curry.js';
+import type { Option } from './index.js';
 import { isSome } from './is-some.js';
 
 export type UnwrapOrElse = {
-  <T>(orElseFn: () => T): { (option: Option<T>): T };
+  <T>(orElseFn: () => T): (option: Option<T>) => T;
   <T>(orElseFn: () => T, option: Option<T>): T;
 };
 

@@ -1,11 +1,11 @@
-import type { Option } from './index.js';
 import { curry } from '../fn/curry.js';
 import type { Result } from '../result/index.js';
 import { Err, Ok } from '../result/index.js';
+import type { Option } from './index.js';
 import { isSome } from './is-some.js';
 
 export type OkOrElse = {
-  <T, E>(orElseFn: () => E): { (option: Option<T>): Result<T, E> };
+  <T, E>(orElseFn: () => E): (option: Option<T>) => Result<T, E>;
   <T, E>(orElseFn: () => E, option: Option<T>): Result<T, E>;
 };
 

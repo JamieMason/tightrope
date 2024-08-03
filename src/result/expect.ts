@@ -3,9 +3,7 @@ import type { AnyResult, ResOk } from '../fn/types.js';
 import { isOk } from './is-ok.js';
 
 export type Expect = {
-  (msg: string): {
-    <Res extends AnyResult>(res: Res): ResOk<Res>;
-  };
+  (msg: string): <Res extends AnyResult>(res: Res) => ResOk<Res>;
   <Res extends AnyResult>(msg: string, res: Res): ResOk<Res>;
 };
 

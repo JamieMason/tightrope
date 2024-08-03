@@ -2,7 +2,7 @@ import { curry } from './curry.js';
 import type { AnyFn } from './types.js';
 
 export type Tap = {
-  <Fn extends AnyFn>(fn: Fn): { <T>(value: T): T };
+  <Fn extends AnyFn>(fn: Fn): <T>(value: T) => T;
   <T, Fn extends AnyFn>(fn: Fn, value: T): T;
 };
 

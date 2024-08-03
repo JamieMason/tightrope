@@ -3,7 +3,7 @@ import type { UnaryGuard } from '../fn/types.js';
 import { isNonEmptyArray } from './is-non-empty-array.js';
 
 type IsArrayOf = {
-  (guard: UnaryGuard): { (values: unknown): boolean };
+  (guard: UnaryGuard): (values: unknown) => boolean;
   (guard: UnaryGuard, values: unknown): boolean;
 };
 
@@ -20,6 +20,6 @@ type IsArrayOf = {
  */
 export const isArrayOf: IsArrayOf = curry(
   (guard: UnaryGuard, values: unknown) =>
-    isNonEmptyArray(values) && values.every((value) => guard(value)),
+    isNonEmptyArray(values) && values.every(value => guard(value)),
   2,
 );

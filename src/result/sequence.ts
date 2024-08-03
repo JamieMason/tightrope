@@ -1,6 +1,6 @@
+import type { AnyResult, ResErr, ResOk } from '../fn/types.js';
 import type { Result } from './index.js';
 import { Ok } from './index.js';
-import type { AnyResult, ResErr, ResOk } from '../fn/types.js';
 import { isOk } from './is-ok.js';
 
 /**

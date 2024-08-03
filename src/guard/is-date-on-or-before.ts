@@ -3,7 +3,7 @@ import { isDate } from './is-date.js';
 import { isLessThanOrEqualTo } from './is-less-than-or-equal-to.js';
 
 type IsDateOnOrBefore = {
-  (other: unknown): { (value: unknown): boolean };
+  (other: unknown): (value: unknown) => boolean;
   (other: unknown, value: unknown): boolean;
 };
 

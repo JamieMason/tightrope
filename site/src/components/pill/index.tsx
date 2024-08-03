@@ -1,5 +1,5 @@
 import React from 'react';
-import css from './styles.module.css.js';
+import css from './styles.module.css';
 
 export default function Pills({ required, optional }) {
   return (

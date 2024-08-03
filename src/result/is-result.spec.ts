@@ -14,8 +14,15 @@ it('returns true if value is a Result.Err', () => {
   expect(isResult(new Err(new Error('wat?')))).toEqual(true);
 });
 
-it('returns false unless value is a Result', () => {
-  [undefined, null, false, 0, 1, true, {}, new Error('')].forEach((value) => {
-    expect(isResult(value)).toEqual(false);
-  });
+it.each([
+  [undefined],
+  [null],
+  [false],
+  [0],
+  [1],
+  [true],
+  [{}],
+  [new Error('')],
+])('returns false unless value is a Result (%j)', value => {
+  expect(isResult(value)).toEqual(false);
 });

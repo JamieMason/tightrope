@@ -2,7 +2,7 @@ import { curry } from '../fn/curry.js';
 import { isDate } from './is-date.js';
 
 type IsAfter = {
-  (otherDate: Date): { (date: Date): boolean };
+  (otherDate: Date): (date: Date) => boolean;
   (otherDate: Date, date: Date): boolean;
 };
 

@@ -1,7 +1,7 @@
 import { curry } from '../fn/curry.js';
 
 type Sum = {
-  (amount: number): { (value: number): number };
+  (amount: number): (value: number) => number;
   (amount: number, value: number): number;
 };
 

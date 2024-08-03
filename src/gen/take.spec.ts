@@ -8,7 +8,7 @@ import { take } from './take.js';
 
 it('takes the first n elements of a generator and short-circuits', () => {
   const $double = vi.fn(multiply(2));
-  expect(pipe(range(0, 100), take(3), (x) => x, map($double))).toProduce([
+  expect(pipe(range(0, 100), take(3), x => x, map($double))).toProduce([
     0, 2, 4,
   ]);
   expect($double).toHaveBeenCalledTimes(3);

@@ -1,7 +1,7 @@
 import { expect, it } from 'vitest';
-import type { Option } from './index.js';
-import { none, Some } from './index.js';
 import { filter } from './filter.js';
+import type { Option } from './index.js';
+import { Some, none } from './index.js';
 
 it('filter returns Some when predicate is true', () => {
   const opt = new Some<string | number>('hello');

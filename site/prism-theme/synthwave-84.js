@@ -1,5 +1,5 @@
 /** @type {import('prism-react-renderer/themes/types').PrismTheme} */
-var theme = {
+const theme = {
   plain: {
     backgroundColor: '#2a2139',
     color: '#f92aad',

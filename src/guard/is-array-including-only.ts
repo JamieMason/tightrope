@@ -5,7 +5,7 @@ import { isJestEqual } from './is-jest-equal.js';
 import { some } from './some.js';
 
 export type IsArrayIncludingOnly = {
-  <T extends any[]>(allowedValues: T): { (value: unknown): value is T };
+  <T extends any[]>(allowedValues: T): (value: unknown) => value is T;
   <T extends any[]>(allowedValues: T, value: unknown): value is T;
 };
 

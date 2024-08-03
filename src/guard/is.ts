@@ -1,7 +1,7 @@
 import { curry } from '../fn/curry.js';
 
 export type Is = {
-  <T>(b: T): { (a: unknown): boolean };
+  <T>(b: T): (a: unknown) => boolean;
   <T>(b: T, a: unknown): boolean;
 };
 

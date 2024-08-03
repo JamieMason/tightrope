@@ -4,7 +4,7 @@ import { isOk } from './is-ok.js';
 import { withCatch } from './lib/with-catch.js';
 
 export type Tap = {
-  <Fn extends AnyFn>(fn: Fn): { <T extends AnyResult>(value: T): T };
+  <Fn extends AnyFn>(fn: Fn): <T extends AnyResult>(value: T) => T;
   <Fn extends AnyFn, T extends AnyResult>(fn: Fn, value: T): T;
 };
 

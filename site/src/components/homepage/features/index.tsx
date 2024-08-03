@@ -1,7 +1,7 @@
-import React from 'react';
 import clsx from 'clsx';
-import styles from './styles.module.css.js';
-import temp from './img/temp.svg.js';
+import type React from 'react';
+import temp from './img/temp.svg';
+import styles from './styles.module.css';
 
 type FeatureItem = {
   title: string;
@@ -66,8 +66,13 @@ export default function HomepageFeatures(): JSX.Element {
     <section className={styles.features}>
       <div className="container">
         <div className="row">
-          {FeatureList.map((props, idx) => (
-            <Feature key={idx} {...props} />
+          {FeatureList.map(({ title, description, Svg }) => (
+            <Feature
+              key={title}
+              title={title}
+              description={description}
+              Svg={Svg}
+            />
           ))}
         </div>
       </div>

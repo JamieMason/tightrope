@@ -1,5 +1,5 @@
 /** @file Generate all the types for curried functions */
-import { resolve } from 'path';
+import { resolve } from 'node:path';
 import { Project } from 'ts-morph';
 import { getAllCurriedFunctions } from './get-all-curried-functions.js';
 import { getCombinations } from './get-combinations.js';

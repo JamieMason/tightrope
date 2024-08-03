@@ -1,7 +1,7 @@
 import { curry } from '../fn/curry.js';
 
 type Subtract = {
-  (amount: number): { (value: number): number };
+  (amount: number): (value: number) => number;
   (amount: number, value: number): number;
 };
 

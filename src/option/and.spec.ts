@@ -1,8 +1,8 @@
 import { expect, it } from 'vitest';
-import type { Option } from './index.js';
-import { none, Some } from './index.js';
 import { pipe } from '../fn/pipe.js';
 import { and } from './and.js';
+import type { Option } from './index.js';
+import { Some, none } from './index.js';
 
 it('returns None when Some && None', () => {
   const a = new Some(1);

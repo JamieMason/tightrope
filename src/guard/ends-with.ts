@@ -2,7 +2,7 @@ import { curry } from '../fn/curry.js';
 import { isNonEmptyString } from './is-non-empty-string.js';
 
 type EndsWith = {
-  (otherString: unknown): { (value: unknown): boolean };
+  (otherString: unknown): (value: unknown) => boolean;
   (otherString: unknown, value: unknown): boolean;
 };
 

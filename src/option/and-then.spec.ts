@@ -1,7 +1,7 @@
 import { expect, it } from 'vitest';
-import type { Option } from './index.js';
-import { none, Some } from './index.js';
 import { andThen } from './and-then.js';
+import type { Option } from './index.js';
+import { Some, none } from './index.js';
 
 it('andThen applies mapFn when input is Some', () => {
   const opt = new Some(2);

@@ -11,7 +11,7 @@ import { isWhitespace } from './is-whitespace.js';
 
 test('strings', () => {
   fc.assert(
-    fc.property(fc.string(), (value) => {
+    fc.property(fc.string(), value => {
       expect([value]).toPassGuard(isString);
       expect([isNonEmptyString(value)]).toPassGuard(isBoolean);
       expect([isEmptyString(value)]).toPassGuard(isBoolean);
@@ -22,7 +22,7 @@ test('strings', () => {
 
 test('JSON strings', () => {
   fc.assert(
-    fc.property(fc.oneof(fc.json(), fc.unicodeJson()), (value) => {
+    fc.property(fc.oneof(fc.json(), fc.unicodeJson()), value => {
       fc.pre(value !== 'null');
       expect([value]).toPassGuard(isJsonString);
     }),
@@ -31,7 +31,7 @@ test('JSON strings', () => {
 
 test('invisible strings', () => {
   const whitespaceChars = Object.values({
-    'Space': 32,
+    Space: 32,
     'No-Break Space': 160,
     'En Quad': 8192,
     'Em Quad': 8193,
@@ -47,10 +47,10 @@ test('invisible strings', () => {
     'Line Separator': 8232,
     'Medium Mathematical Space': 8287,
     'Ideographic Space': 12288,
-  }).map((code) => String.fromCharCode(code));
+  }).map(code => String.fromCharCode(code));
 
   fc.assert(
-    fc.property(fc.stringOf(fc.constantFrom(...whitespaceChars)), (value) => {
+    fc.property(fc.stringOf(fc.constantFrom(...whitespaceChars)), value => {
       expect([value]).toPassGuard(isWhitespace);
       expect([value]).not.toPassGuard(isVisibleString);
     }),

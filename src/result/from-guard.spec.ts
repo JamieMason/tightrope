@@ -1,8 +1,8 @@
 import { expect, it } from 'vitest';
-import { Err, Ok } from './index.js';
 import { pipe } from '../fn/pipe.js';
 import { isEvenNumber } from '../guard/is-even-number.js';
 import { fromGuard } from './from-guard.js';
+import { Err, Ok } from './index.js';
 
 it('creates Ok when guard is passed', () => {
   expect(

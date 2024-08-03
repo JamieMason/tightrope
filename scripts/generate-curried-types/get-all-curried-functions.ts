@@ -5,10 +5,10 @@ import type {
   Project,
   Signature,
   SourceFile,
-  ts,
   Type,
   TypeAliasDeclaration,
   TypeParameterDeclaration,
+  ts,
 } from 'ts-morph';
 import { SyntaxKind } from 'ts-morph';
 import { isCalculable } from '../../src/guard/is-calculable.js';
@@ -38,7 +38,7 @@ export interface CurriedFunction {
 export function getAllCurriedFunctions(project: Project): CurriedFunction[] {
   return project
     .getSourceFiles()
-    .flatMap((file) => getCurriedFunctions(file))
+    .flatMap(file => getCurriedFunctions(file))
     .reduce<CurriedFunction[]>((all, callExpr) => {
       const func =
         callExpr.getFirstChildByKind(SyntaxKind.ArrowFunction) ||

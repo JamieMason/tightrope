@@ -1,7 +1,7 @@
 import { expect, it } from 'vitest';
-import type { Option } from './index.js';
-import { none, Some } from './index.js';
 import { flatten } from './flatten.js';
+import type { Option } from './index.js';
+import { Some, none } from './index.js';
 
 it('flatten returns inner Some when input is Some(Some)', () => {
   const opt = new Some(new Some(2));

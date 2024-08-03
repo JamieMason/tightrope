@@ -4,9 +4,11 @@ import { isLessThanOrEqualTo } from './is-less-than-or-equal-to.js';
 
 type IsWithinRange = {
   (floor: number, ceiling: number, value: unknown): boolean;
-  (floor: number, ceiling: number): { (value: unknown): boolean };
-  (floor: number): {
-    (ceiling: number): { (value: unknown): boolean };
+  (floor: number, ceiling: number): (value: unknown) => boolean;
+  (
+    floor: number,
+  ): {
+    (ceiling: number): (value: unknown) => boolean;
     (ceiling: number, value: unknown): boolean;
   };
 };

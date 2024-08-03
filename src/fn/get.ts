@@ -43,23 +43,20 @@ import { isOk } from '../result/is-ok.js';
  * @tags read, objects, arrays, result
  */
 // prettier-ignore
-export function get<
-  T,
-  P1 extends keyof NonNullable<T>
->(
+export function get<T, P1 extends keyof NonNullable<T>>(
   obj: T,
-  prop1: P1
+  prop1: P1,
 ): Result<NonNullable<T>[P1], Error>;
 
 // prettier-ignore
 export function get<
   T,
   P1 extends keyof NonNullable<T>,
-  P2 extends keyof NonNullable<NonNullable<T>[P1]>
+  P2 extends keyof NonNullable<NonNullable<T>[P1]>,
 >(
   obj: T,
   prop1: P1,
-  prop2: P2
+  prop2: P2,
 ): Result<NonNullable<NonNullable<T>[P1]>[P2], Error>;
 
 // prettier-ignore
@@ -67,12 +64,12 @@ export function get<
   T,
   P1 extends keyof NonNullable<T>,
   P2 extends keyof NonNullable<NonNullable<T>[P1]>,
-  P3 extends keyof NonNullable<NonNullable<NonNullable<T>[P1]>[P2]>
+  P3 extends keyof NonNullable<NonNullable<NonNullable<T>[P1]>[P2]>,
 >(
   obj: T,
   prop1: P1,
   prop2: P2,
-  prop3: P3
+  prop3: P3,
 ): Result<NonNullable<NonNullable<NonNullable<T>[P1]>[P2]>[P3], Error>;
 
 // prettier-ignore
@@ -81,31 +78,19 @@ export function get<
   P1 extends keyof NonNullable<T>,
   P2 extends keyof NonNullable<NonNullable<T>[P1]>,
   P3 extends keyof NonNullable<NonNullable<NonNullable<T>[P1]>[P2]>,
-  P4 extends keyof NonNullable<NonNullable<NonNullable<NonNullable<T>[P1]>[P2]>[P3]>
->(
-  obj: T,
-  prop1: P1,
-  prop2: P2,
-  prop3: P3,
-  prop4: P4
-): Result<NonNullable<NonNullable<NonNullable<NonNullable<T>[P1]>[P2]>[P3]>[P4], Error>;
-
-// prettier-ignore
-export function get<
-  T,
-  P1 extends keyof NonNullable<T>,
-  P2 extends keyof NonNullable<NonNullable<T>[P1]>,
-  P3 extends keyof NonNullable<NonNullable<NonNullable<T>[P1]>[P2]>,
-  P4 extends keyof NonNullable<NonNullable<NonNullable<NonNullable<T>[P1]>[P2]>[P3]>,
-  P5 extends keyof NonNullable<NonNullable<NonNullable<NonNullable<NonNullable<T>[P1]>[P2]>[P3]>[P4]>
+  P4 extends keyof NonNullable<
+    NonNullable<NonNullable<NonNullable<T>[P1]>[P2]>[P3]
+  >,
 >(
   obj: T,
   prop1: P1,
   prop2: P2,
   prop3: P3,
   prop4: P4,
-  prop5: P5
-): Result<NonNullable<NonNullable<NonNullable<NonNullable<NonNullable<T>[P1]>[P2]>[P3]>[P4]>[P5], Error>;
+): Result<
+  NonNullable<NonNullable<NonNullable<NonNullable<T>[P1]>[P2]>[P3]>[P4],
+  Error
+>;
 
 // prettier-ignore
 export function get<
@@ -113,9 +98,12 @@ export function get<
   P1 extends keyof NonNullable<T>,
   P2 extends keyof NonNullable<NonNullable<T>[P1]>,
   P3 extends keyof NonNullable<NonNullable<NonNullable<T>[P1]>[P2]>,
-  P4 extends keyof NonNullable<NonNullable<NonNullable<NonNullable<T>[P1]>[P2]>[P3]>,
-  P5 extends keyof NonNullable<NonNullable<NonNullable<NonNullable<NonNullable<T>[P1]>[P2]>[P3]>[P4]>,
-  P6 extends keyof NonNullable<NonNullable<NonNullable<NonNullable<NonNullable<NonNullable<T>[P1]>[P2]>[P3]>[P4]>[P5]>
+  P4 extends keyof NonNullable<
+    NonNullable<NonNullable<NonNullable<T>[P1]>[P2]>[P3]
+  >,
+  P5 extends keyof NonNullable<
+    NonNullable<NonNullable<NonNullable<NonNullable<T>[P1]>[P2]>[P3]>[P4]
+  >,
 >(
   obj: T,
   prop1: P1,
@@ -123,8 +111,12 @@ export function get<
   prop3: P3,
   prop4: P4,
   prop5: P5,
-  prop6: P6
-): Result<NonNullable<NonNullable<NonNullable<NonNullable<NonNullable<NonNullable<T>[P1]>[P2]>[P3]>[P4]>[P5]>[P6], Error>;
+): Result<
+  NonNullable<
+    NonNullable<NonNullable<NonNullable<NonNullable<T>[P1]>[P2]>[P3]>[P4]
+  >[P5],
+  Error
+>;
 
 // prettier-ignore
 export function get<
@@ -132,10 +124,17 @@ export function get<
   P1 extends keyof NonNullable<T>,
   P2 extends keyof NonNullable<NonNullable<T>[P1]>,
   P3 extends keyof NonNullable<NonNullable<NonNullable<T>[P1]>[P2]>,
-  P4 extends keyof NonNullable<NonNullable<NonNullable<NonNullable<T>[P1]>[P2]>[P3]>,
-  P5 extends keyof NonNullable<NonNullable<NonNullable<NonNullable<NonNullable<T>[P1]>[P2]>[P3]>[P4]>,
-  P6 extends keyof NonNullable<NonNullable<NonNullable<NonNullable<NonNullable<NonNullable<T>[P1]>[P2]>[P3]>[P4]>[P5]>,
-  P7 extends keyof NonNullable<NonNullable<NonNullable<NonNullable<NonNullable<NonNullable<NonNullable<T>[P1]>[P2]>[P3]>[P4]>[P5]>[P6]>
+  P4 extends keyof NonNullable<
+    NonNullable<NonNullable<NonNullable<T>[P1]>[P2]>[P3]
+  >,
+  P5 extends keyof NonNullable<
+    NonNullable<NonNullable<NonNullable<NonNullable<T>[P1]>[P2]>[P3]>[P4]
+  >,
+  P6 extends keyof NonNullable<
+    NonNullable<
+      NonNullable<NonNullable<NonNullable<NonNullable<T>[P1]>[P2]>[P3]>[P4]
+    >[P5]
+  >,
 >(
   obj: T,
   prop1: P1,
@@ -144,8 +143,14 @@ export function get<
   prop4: P4,
   prop5: P5,
   prop6: P6,
-  prop7: P7
-): Result<NonNullable<NonNullable<NonNullable<NonNullable<NonNullable<NonNullable<NonNullable<T>[P1]>[P2]>[P3]>[P4]>[P5]>[P6]>[P7], Error>;
+): Result<
+  NonNullable<
+    NonNullable<
+      NonNullable<NonNullable<NonNullable<NonNullable<T>[P1]>[P2]>[P3]>[P4]
+    >[P5]
+  >[P6],
+  Error
+>;
 
 // prettier-ignore
 export function get<
@@ -153,11 +158,24 @@ export function get<
   P1 extends keyof NonNullable<T>,
   P2 extends keyof NonNullable<NonNullable<T>[P1]>,
   P3 extends keyof NonNullable<NonNullable<NonNullable<T>[P1]>[P2]>,
-  P4 extends keyof NonNullable<NonNullable<NonNullable<NonNullable<T>[P1]>[P2]>[P3]>,
-  P5 extends keyof NonNullable<NonNullable<NonNullable<NonNullable<NonNullable<T>[P1]>[P2]>[P3]>[P4]>,
-  P6 extends keyof NonNullable<NonNullable<NonNullable<NonNullable<NonNullable<NonNullable<T>[P1]>[P2]>[P3]>[P4]>[P5]>,
-  P7 extends keyof NonNullable<NonNullable<NonNullable<NonNullable<NonNullable<NonNullable<NonNullable<T>[P1]>[P2]>[P3]>[P4]>[P5]>[P6]>,
-  P8 extends keyof NonNullable<NonNullable<NonNullable<NonNullable<NonNullable<NonNullable<NonNullable<NonNullable<T>[P1]>[P2]>[P3]>[P4]>[P5]>[P6]>[P7]>
+  P4 extends keyof NonNullable<
+    NonNullable<NonNullable<NonNullable<T>[P1]>[P2]>[P3]
+  >,
+  P5 extends keyof NonNullable<
+    NonNullable<NonNullable<NonNullable<NonNullable<T>[P1]>[P2]>[P3]>[P4]
+  >,
+  P6 extends keyof NonNullable<
+    NonNullable<
+      NonNullable<NonNullable<NonNullable<NonNullable<T>[P1]>[P2]>[P3]>[P4]
+    >[P5]
+  >,
+  P7 extends keyof NonNullable<
+    NonNullable<
+      NonNullable<
+        NonNullable<NonNullable<NonNullable<NonNullable<T>[P1]>[P2]>[P3]>[P4]
+      >[P5]
+    >[P6]
+  >,
 >(
   obj: T,
   prop1: P1,
@@ -167,8 +185,16 @@ export function get<
   prop5: P5,
   prop6: P6,
   prop7: P7,
-  prop8: P8
-): Result<NonNullable<NonNullable<NonNullable<NonNullable<NonNullable<NonNullable<NonNullable<NonNullable<T>[P1]>[P2]>[P3]>[P4]>[P5]>[P6]>[P7]>[P8], Error>;
+): Result<
+  NonNullable<
+    NonNullable<
+      NonNullable<
+        NonNullable<NonNullable<NonNullable<NonNullable<T>[P1]>[P2]>[P3]>[P4]
+      >[P5]
+    >[P6]
+  >[P7],
+  Error
+>;
 
 // prettier-ignore
 export function get<
@@ -176,12 +202,33 @@ export function get<
   P1 extends keyof NonNullable<T>,
   P2 extends keyof NonNullable<NonNullable<T>[P1]>,
   P3 extends keyof NonNullable<NonNullable<NonNullable<T>[P1]>[P2]>,
-  P4 extends keyof NonNullable<NonNullable<NonNullable<NonNullable<T>[P1]>[P2]>[P3]>,
-  P5 extends keyof NonNullable<NonNullable<NonNullable<NonNullable<NonNullable<T>[P1]>[P2]>[P3]>[P4]>,
-  P6 extends keyof NonNullable<NonNullable<NonNullable<NonNullable<NonNullable<NonNullable<T>[P1]>[P2]>[P3]>[P4]>[P5]>,
-  P7 extends keyof NonNullable<NonNullable<NonNullable<NonNullable<NonNullable<NonNullable<NonNullable<T>[P1]>[P2]>[P3]>[P4]>[P5]>[P6]>,
-  P8 extends keyof NonNullable<NonNullable<NonNullable<NonNullable<NonNullable<NonNullable<NonNullable<NonNullable<T>[P1]>[P2]>[P3]>[P4]>[P5]>[P6]>[P7]>,
-  P9 extends keyof NonNullable<NonNullable<NonNullable<NonNullable<NonNullable<NonNullable<NonNullable<NonNullable<NonNullable<T>[P1]>[P2]>[P3]>[P4]>[P5]>[P6]>[P7]>[P8]>
+  P4 extends keyof NonNullable<
+    NonNullable<NonNullable<NonNullable<T>[P1]>[P2]>[P3]
+  >,
+  P5 extends keyof NonNullable<
+    NonNullable<NonNullable<NonNullable<NonNullable<T>[P1]>[P2]>[P3]>[P4]
+  >,
+  P6 extends keyof NonNullable<
+    NonNullable<
+      NonNullable<NonNullable<NonNullable<NonNullable<T>[P1]>[P2]>[P3]>[P4]
+    >[P5]
+  >,
+  P7 extends keyof NonNullable<
+    NonNullable<
+      NonNullable<
+        NonNullable<NonNullable<NonNullable<NonNullable<T>[P1]>[P2]>[P3]>[P4]
+      >[P5]
+    >[P6]
+  >,
+  P8 extends keyof NonNullable<
+    NonNullable<
+      NonNullable<
+        NonNullable<
+          NonNullable<NonNullable<NonNullable<NonNullable<T>[P1]>[P2]>[P3]>[P4]
+        >[P5]
+      >[P6]
+    >[P7]
+  >,
 >(
   obj: T,
   prop1: P1,
@@ -192,8 +239,92 @@ export function get<
   prop6: P6,
   prop7: P7,
   prop8: P8,
-  prop9: P9
-): Result<NonNullable<NonNullable<NonNullable<NonNullable<NonNullable<NonNullable<NonNullable<NonNullable<NonNullable<T>[P1]>[P2]>[P3]>[P4]>[P5]>[P6]>[P7]>[P8]>[P9], Error>;
+): Result<
+  NonNullable<
+    NonNullable<
+      NonNullable<
+        NonNullable<
+          NonNullable<NonNullable<NonNullable<NonNullable<T>[P1]>[P2]>[P3]>[P4]
+        >[P5]
+      >[P6]
+    >[P7]
+  >[P8],
+  Error
+>;
+
+// prettier-ignore
+export function get<
+  T,
+  P1 extends keyof NonNullable<T>,
+  P2 extends keyof NonNullable<NonNullable<T>[P1]>,
+  P3 extends keyof NonNullable<NonNullable<NonNullable<T>[P1]>[P2]>,
+  P4 extends keyof NonNullable<
+    NonNullable<NonNullable<NonNullable<T>[P1]>[P2]>[P3]
+  >,
+  P5 extends keyof NonNullable<
+    NonNullable<NonNullable<NonNullable<NonNullable<T>[P1]>[P2]>[P3]>[P4]
+  >,
+  P6 extends keyof NonNullable<
+    NonNullable<
+      NonNullable<NonNullable<NonNullable<NonNullable<T>[P1]>[P2]>[P3]>[P4]
+    >[P5]
+  >,
+  P7 extends keyof NonNullable<
+    NonNullable<
+      NonNullable<
+        NonNullable<NonNullable<NonNullable<NonNullable<T>[P1]>[P2]>[P3]>[P4]
+      >[P5]
+    >[P6]
+  >,
+  P8 extends keyof NonNullable<
+    NonNullable<
+      NonNullable<
+        NonNullable<
+          NonNullable<NonNullable<NonNullable<NonNullable<T>[P1]>[P2]>[P3]>[P4]
+        >[P5]
+      >[P6]
+    >[P7]
+  >,
+  P9 extends keyof NonNullable<
+    NonNullable<
+      NonNullable<
+        NonNullable<
+          NonNullable<
+            NonNullable<
+              NonNullable<NonNullable<NonNullable<T>[P1]>[P2]>[P3]
+            >[P4]
+          >[P5]
+        >[P6]
+      >[P7]
+    >[P8]
+  >,
+>(
+  obj: T,
+  prop1: P1,
+  prop2: P2,
+  prop3: P3,
+  prop4: P4,
+  prop5: P5,
+  prop6: P6,
+  prop7: P7,
+  prop8: P8,
+  prop9: P9,
+): Result<
+  NonNullable<
+    NonNullable<
+      NonNullable<
+        NonNullable<
+          NonNullable<
+            NonNullable<
+              NonNullable<NonNullable<NonNullable<T>[P1]>[P2]>[P3]
+            >[P4]
+          >[P5]
+        >[P6]
+      >[P7]
+    >[P8]
+  >[P9],
+  Error
+>;
 
 export function get<T>(obj: T, ...props: any[]): Result<unknown, Error>;
 

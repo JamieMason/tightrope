@@ -6,7 +6,7 @@ it('positive case', () => {
 });
 
 it('positive case with new RegExp', () => {
-  expect(isRegExp(new RegExp('abc'))).toBe(true);
+  expect(isRegExp(/abc/)).toBe(true);
 });
 
 it('negative case', () => {

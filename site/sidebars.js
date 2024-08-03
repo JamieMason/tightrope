@@ -1,18 +1,23 @@
 // @ts-check
 
 const { globSync } = require('glob');
-const path = require('path');
+const path = require('node:path');
 
 const files = globSync('**/*.ts', { cwd: path.resolve(__dirname, '../src') })
-  .filter((file) => !file.endsWith('.spec.ts') && !file.includes('/lib/'))
-  .map((file) => file.replace('.ts', ''));
+  .filter(
+    file =>
+      !file.endsWith('.spec.ts') &&
+      !file.endsWith('/index.ts') &&
+      !file.includes('/lib/'),
+  )
+  .map(file => file.replace('.ts', ''));
 
 function getIds(name) {
   return files
-    .filter((file) => file.startsWith(`${name}/`))
-    .map((file) => `api/${file}`)
+    .filter(file => file.startsWith(`${name}/`))
+    .map(file => `api/${file}`)
     .sort()
-    .map((id) => ({
+    .map(id => ({
       id,
       className: `sidebar-api sidebar-api-${name}`,
       type: 'doc',

@@ -1,7 +1,7 @@
-import type { Option } from './index.js';
-import { none } from './index.js';
 import { curry } from '../fn/curry.js';
 import type { AnyOption, OptionType } from '../fn/types.js';
+import type { Option } from './index.js';
+import { none } from './index.js';
 import { isSome } from './is-some.js';
 
 export type AndThen = {
@@ -12,7 +12,7 @@ export type AndThen = {
     O = Fn extends (value: V) => Option<infer O> ? Option<O> : never,
   >(
     mapFn: Fn,
-  ): { (option: I): O };
+  ): (option: I) => O;
   <
     Fn extends (value: any) => AnyOption,
     I extends AnyOption,

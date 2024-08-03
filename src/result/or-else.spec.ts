@@ -1,6 +1,6 @@
 import { expect, it, vi } from 'vitest';
-import { Err, Ok } from './index.js';
 import { pipe } from '../fn/pipe.js';
+import { Err, Ok } from './index.js';
 import { orElse } from './or-else.js';
 
 it('returns original Ok when Ok', () => {
@@ -17,7 +17,7 @@ it('returns mapped Ok when Err', () => {
   expect(
     pipe(
       Err.create<string, Error>(new Error('wat?')),
-      orElse((err) => Ok.create(`Recovered from: ${err.message}`)),
+      orElse(err => Ok.create(`Recovered from: ${err.message}`)),
       orElse(spy),
     ),
   ).toEqual(Ok.create('Recovered from: wat?'));

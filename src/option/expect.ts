@@ -1,9 +1,9 @@
-import type { Option } from './index.js';
 import { curry } from '../fn/curry.js';
+import type { Option } from './index.js';
 import { isSome } from './is-some.js';
 
 export type Expect = {
-  <T>(msg: string): { (option: Option<T>): T };
+  <T>(msg: string): (option: Option<T>) => T;
   <T>(msg: string, option: Option<T>): T;
 };
 

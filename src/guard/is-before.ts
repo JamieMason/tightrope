@@ -2,7 +2,7 @@ import { curry } from '../fn/curry.js';
 import { isAfter } from './is-after.js';
 
 type IsBefore = {
-  (other: Date): { (value: Date): boolean };
+  (other: Date): (value: Date) => boolean;
   (other: Date, value: Date): boolean;
 };
 

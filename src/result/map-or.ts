@@ -12,13 +12,13 @@ export type MapOr = {
   <Next, Res extends AnyResult>(
     defaultValue: Next,
     mapOkFn: (value: ResOk<Res>) => Next,
-  ): { (result: Res): Next };
-  <Next>(defaultValue: Next): {
+  ): (result: Res) => Next;
+  <Next>(
+    defaultValue: Next,
+  ): {
     <Res extends AnyResult>(
       mapOkFn: (value: ResOk<Res>) => Next,
-    ): {
-      (result: Res): Next;
-    };
+    ): (result: Res) => Next;
     <Res extends AnyResult>(
       mapOkFn: (value: ResOk<Res>) => Next,
       result: Res,

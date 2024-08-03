@@ -8,5 +8,5 @@ export function getCallExpressionsByName(
 ): CallExpression<ts.CallExpression>[] {
   return file
     .getDescendantsOfKind(SyntaxKind.CallExpression)
-    .filter((callExpr) => getCallExpressionName(callExpr).search(name) !== -1);
+    .filter(callExpr => getCallExpressionName(callExpr).search(name) !== -1);
 }

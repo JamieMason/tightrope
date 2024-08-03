@@ -1,5 +1,5 @@
-import type { Result } from './index.js';
 import { pipe } from '../fn/pipe.js';
+import type { Result } from './index.js';
 import { orElse } from './or-else.js';
 import { unwrap } from './unwrap.js';
 

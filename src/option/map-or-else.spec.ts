@@ -1,5 +1,5 @@
 import { expect, it } from 'vitest';
-import { none, Some } from './index.js';
+import { Some, none } from './index.js';
 import { mapOrElse } from './map-or-else.js';
 
 it('mapOrElse applies mapFn when input is Some', () => {

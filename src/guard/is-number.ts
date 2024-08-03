@@ -6,4 +6,5 @@ import { hasType } from './has-type.js';
  * @tags guard, numbers
  */
 export const isNumber = (value: unknown): value is number =>
-  hasType<number>('Number')(value) && !isNaN(parseFloat(String(value)));
+  hasType<number>('Number')(value) &&
+  !Number.isNaN(Number.parseFloat(String(value)));

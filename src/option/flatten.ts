@@ -1,6 +1,6 @@
+import type { AnyOption } from '../fn/types.js';
 import type { Option } from './index.js';
 import { none } from './index.js';
-import type { AnyOption } from '../fn/types.js';
 import { isSome } from './is-some.js';
 
 /**

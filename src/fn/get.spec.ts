@@ -56,7 +56,7 @@ it('returns Err for paths deeper than the object', () => {
 
 it('returns Ok for properties of primitives', () => {
   const obj = { foo: 'hello' };
-  expect(pipe(get(obj, 'foo', 'toUpperCase'), unwrap, (fn) => fn())).toEqual(
+  expect(pipe(get(obj, 'foo', 'toUpperCase'), unwrap, fn => fn())).toEqual(
     'HELLO',
   );
 });

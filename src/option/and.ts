@@ -1,10 +1,10 @@
-import { none } from './index.js';
 import { curry } from '../fn/curry.js';
 import type { AnyOption } from '../fn/types.js';
+import { none } from './index.js';
 import { isSome } from './is-some.js';
 
 export type And = {
-  <A extends AnyOption, B extends AnyOption>(b: B): { (a: A): B };
+  <A extends AnyOption, B extends AnyOption>(b: B): (a: A) => B;
   <A extends AnyOption, B extends AnyOption>(b: B, a: A): B;
 };
 

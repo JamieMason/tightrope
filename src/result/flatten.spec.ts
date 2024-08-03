@@ -1,6 +1,6 @@
 import { expect, it } from 'vitest';
-import { Err, Ok } from './index.js';
 import { flatten } from './flatten.js';
+import { Err, Ok } from './index.js';
 
 it('returns flat Ok unchanged', () => {
   const res = new Ok(1);

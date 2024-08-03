@@ -2,7 +2,7 @@ import { curry } from '../fn/curry.js';
 import { isArray } from './is-array.js';
 
 type IsArrayOfSize = {
-  (size: number): { (value: unknown): boolean };
+  (size: number): (value: unknown) => boolean;
   (size: number, value: unknown): boolean;
 };
 

@@ -1,6 +1,6 @@
 import { expect, it } from 'vitest';
-import { Err, Ok } from './index.js';
 import { pipe } from '../fn/pipe.js';
+import { Err, Ok } from './index.js';
 import { map } from './map.js';
 
 it('map an Ok for another when Ok', () => {
@@ -8,10 +8,10 @@ it('map an Ok for another when Ok', () => {
   expect(
     pipe(
       Ok.create<number>(a),
-      map((num) => num * 2),
-      map((str) => `${str}!`),
+      map(num => num * 2),
+      map(str => `${str}!`),
     ),
-  ).toEqual(Ok.create(`200!`));
+  ).toEqual(Ok.create('200!'));
 });
 
 it('leave Err untouched', () => {

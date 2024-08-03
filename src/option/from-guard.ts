@@ -1,7 +1,7 @@
-import type { Option } from './index.js';
-import { none, Some } from './index.js';
 import { curry } from '../fn/curry.js';
 import type { UnaryGuard } from '../fn/types.js';
+import type { Option } from './index.js';
+import { Some, none } from './index.js';
 
 export type FromGuard = {
   <
@@ -9,7 +9,7 @@ export type FromGuard = {
     O = Fn extends (value: any) => value is infer O ? O : never,
   >(
     guard: Fn,
-  ): { (value: unknown): Option<O> };
+  ): (value: unknown) => Option<O>;
   <
     Fn extends UnaryGuard,
     O = Fn extends (value: any) => value is infer O ? O : never,

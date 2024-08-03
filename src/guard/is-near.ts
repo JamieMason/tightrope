@@ -3,9 +3,11 @@ import { isWithinRange } from './is-within-range.js';
 
 type IsNear = {
   (otherNumber: number, epsilon: number, value: any): boolean;
-  (otherNumber: number, epsilon: number): { (value: any): boolean };
-  (otherNumber: number): {
-    (epsilon: number): { (value: any): boolean };
+  (otherNumber: number, epsilon: number): (value: any) => boolean;
+  (
+    otherNumber: number,
+  ): {
+    (epsilon: number): (value: any) => boolean;
     (epsilon: number, value: any): boolean;
   };
 };

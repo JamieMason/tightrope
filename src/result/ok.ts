@@ -1,6 +1,6 @@
 import type { AnyResult, ResOk } from '../fn/types.js';
 import type { Option } from '../option/index.js';
-import { none, Some } from '../option/index.js';
+import { Some, none } from '../option/index.js';
 import { isOk } from './is-ok.js';
 
 /**

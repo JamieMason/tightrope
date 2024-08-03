@@ -1,6 +1,6 @@
 import { expect, it } from 'vitest';
-import { none, Some } from './index.js';
 import { Err, Ok } from '../result/index.js';
+import { Some, none } from './index.js';
 import { okOrElse } from './ok-or-else.js';
 
 it('okOrElse should return Ok with the value of Some when Some is provided', () => {

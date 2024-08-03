@@ -1,10 +1,10 @@
-import type { Option } from './index.js';
-import { none, Some } from './index.js';
 import { curry } from '../fn/curry.js';
+import type { Option } from './index.js';
+import { Some, none } from './index.js';
 import { isSome } from './is-some.js';
 
 export type Map = {
-  <T, U>(mapFn: (value: T) => U): { (option: Option<T>): Option<U> };
+  <T, U>(mapFn: (value: T) => U): (option: Option<T>) => Option<U>;
   <T, U>(mapFn: (value: T) => U, option: Option<T>): Option<U>;
 };
 

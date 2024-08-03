@@ -2,7 +2,7 @@ import { curry } from '../fn/curry.js';
 import { isNumber } from './is-number.js';
 
 type IsLessThan = {
-  (other: number): { (value: unknown): boolean };
+  (other: number): (value: unknown) => boolean;
   (other: number, value: unknown): boolean;
 };
 

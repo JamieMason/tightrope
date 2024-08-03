@@ -2,7 +2,7 @@ import { curry } from '../fn/curry.js';
 import type { Gen } from '../fn/types.js';
 
 export type Split = {
-  (char: string): { (chunks: Gen<string>): Gen<string> };
+  (char: string): (chunks: Gen<string>) => Gen<string>;
   (char: string, chunks: Gen<string>): Gen<string>;
 };
 
@@ -15,10 +15,12 @@ export const split: Split = curry(function* split(
   let previous = '';
 
   for (const chunk of chunks) {
-    let index;
+    let index: number;
     previous += chunk;
 
-    while ((index = previous.indexOf(char)) >= 0) {
+    while (true) {
+      index = previous.indexOf(char);
+      if (index === -1) break;
       const line = previous.slice(0, index);
       if (line.length > 0) yield line;
       previous = previous.slice(index + len);

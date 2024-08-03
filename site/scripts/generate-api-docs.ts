@@ -1,5 +1,5 @@
-import { mkdirSync, writeFileSync } from 'fs';
-import { basename, dirname, join, resolve } from 'path';
+import { mkdirSync, writeFileSync } from 'node:fs';
+import { basename, dirname, join, resolve } from 'node:path';
 import type {
   ClassDeclaration,
   FunctionDeclaration,
@@ -41,7 +41,7 @@ project.addSourceFilesAtPaths([
 // export const
 const variableStatements = project
   .getSourceFiles()
-  .flatMap((file) => file.getDescendantsOfKind(SyntaxKind.VariableStatement))
+  .flatMap(file => file.getDescendantsOfKind(SyntaxKind.VariableStatement))
   .map((node): Doc => {
     const data = getDataFromVariableStatement(node);
     if (!data) return;
@@ -56,7 +56,7 @@ const variableStatements = project
 // export class
 const classDeclarations = project
   .getSourceFiles()
-  .flatMap((file) => file.getDescendantsOfKind(SyntaxKind.ClassDeclaration))
+  .flatMap(file => file.getDescendantsOfKind(SyntaxKind.ClassDeclaration))
   .map((node): Doc => {
     const data = getDataFromClassDeclaration(node);
     if (!data) return;
@@ -71,7 +71,7 @@ const classDeclarations = project
 // export function
 const functionDeclarations = project
   .getSourceFiles()
-  .flatMap((file) => file.getDescendantsOfKind(SyntaxKind.FunctionDeclaration))
+  .flatMap(file => file.getDescendantsOfKind(SyntaxKind.FunctionDeclaration))
   .map((node): Doc => {
     const data = getDataFromFunctionDeclaration(node);
     if (!data) return;
@@ -86,7 +86,7 @@ const functionDeclarations = project
 // export type
 const typeAliasDeclarations = project
   .getSourceFiles()
-  .flatMap((file) => file.getDescendantsOfKind(SyntaxKind.TypeAliasDeclaration))
+  .flatMap(file => file.getDescendantsOfKind(SyntaxKind.TypeAliasDeclaration))
   .map((node): Doc => {
     const data = getDataFromTypeAliasDeclaration(node);
     if (!data) return;
@@ -107,7 +107,7 @@ const all = [
 
 const byDocsPath: Record<string, Doc[]> = groupBy('docsPath')(all);
 
-Object.entries(byDocsPath).forEach(([docsPath, docs]) => {
+for (const [docsPath, docs] of Object.entries(byDocsPath)) {
   mkdirSync(dirname(docsPath), { recursive: true });
   if (docs.length === 1) {
     const contents = docs[0].contents;
@@ -124,18 +124,17 @@ Object.entries(byDocsPath).forEach(([docsPath, docs]) => {
       .join('\n');
     writeFileSync(docsPath, contents);
   }
-});
+}
 
 // ====
 
 function groupBy(key) {
-  return function (array) {
-    return array.reduce((objectsByKeyValue, obj) => {
+  return array =>
+    array.reduce((objectsByKeyValue, obj) => {
       const value = obj[key];
       objectsByKeyValue[value] = (objectsByKeyValue[value] || []).concat(obj);
       return objectsByKeyValue;
     }, {});
-  };
 }
 
 function getDataFromClassDeclaration(
@@ -238,18 +237,18 @@ function getDataFromTypeAliasDeclaration(
 }
 
 function isExported(node: ModifierableNode) {
-  return node.getModifiers().some((mod) => mod.getText() === 'export');
+  return node.getModifiers().some(mod => mod.getText() === 'export');
 }
 
 function isIgnored(jsDoc: JSDoc) {
-  return jsDoc.getTags().some((tag) => tag.getTagName() === 'ignore');
+  return jsDoc.getTags().some(tag => tag.getTagName() === 'ignore');
 }
 
 function getRelatedLinks(jsDoc: JSDoc) {
   const links = jsDoc
     .getTags()
-    .filter((tag) => tag.getTagName() === 'see')
-    .map((tag) =>
+    .filter(tag => tag.getTagName() === 'see')
+    .map(tag =>
       tag
         .getText()
         .replace('{https} ', 'https')
@@ -257,7 +256,7 @@ function getRelatedLinks(jsDoc: JSDoc) {
         .replace(/[ *]/g, '')
         .trim(),
     )
-    .map((url) => `- [${url}](${url})`)
+    .map(url => `- [${url}](${url})`)
     .join('\n');
   return links
     ? `
@@ -315,8 +314,8 @@ function getTags(jsDoc: JSDoc): string[] {
     new Set(
       jsDoc
         .getTags()
-        .filter((tag) => tag.getTagName() === 'tags')
-        .flatMap((tag) =>
+        .filter(tag => tag.getTagName() === 'tags')
+        .flatMap(tag =>
           tag
             .getText()
             .replace('@tags ', '')

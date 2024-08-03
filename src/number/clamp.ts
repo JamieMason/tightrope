@@ -2,9 +2,11 @@ import { curry } from '../fn/curry.js';
 
 export type Clamp = {
   (floor: number, ceiling: number, value: number): number;
-  (floor: number, ceiling: number): { (value: number): number };
-  (floor: number): {
-    (ceiling: number): { (value: number): number };
+  (floor: number, ceiling: number): (value: number) => number;
+  (
+    floor: number,
+  ): {
+    (ceiling: number): (value: number) => number;
     (ceiling: number, value: number): number;
   };
 };

@@ -3,7 +3,7 @@ import { isDate } from './is-date.js';
 import { isNumber } from './is-number.js';
 
 type IsDateInYear = {
-  (year: number): { (value: unknown): boolean };
+  (year: number): (value: unknown) => boolean;
   (year: number, value: unknown): boolean;
 };
 

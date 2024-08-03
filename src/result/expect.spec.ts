@@ -1,7 +1,7 @@
 import { expect, it } from 'vitest';
-import { Err, Ok } from './index.js';
 import { pipe } from '../fn/pipe.js';
 import { expect as expectFn } from './expect.js';
+import { Err, Ok } from './index.js';
 
 it('throws if value is Err', () => {
   expect(() => {
