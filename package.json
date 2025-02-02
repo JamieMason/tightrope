@@ -1,7 +1,7 @@
 {
   "name": "tightrope",
   "description": "Point-free functional utility library",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "author": "Jamie Mason <jamie@foldleft.io> (https://github.com/JamieMason)",
   "bugs": "https://github.com/JamieMason/tightrope/issues",
   "dependencies": {
@@ -670,7 +670,9 @@
       "default": "./dist/string/starts-with.js"
     }
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "homepage": "https://github.com/JamieMason/tightrope#readme",
   "license": "MIT",
   "repository": "JamieMason/tightrope",
