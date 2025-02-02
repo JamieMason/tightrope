@@ -7,8 +7,8 @@ const apiDocs = getApiDocuments();
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://jamiemason.github.io/tightrope',
-  base: '/tightrope',
+  site: 'https://jamiemason.github.io',
+  base: 'tightrope',
   integrations: [
     starlight({
       title: 'tightrope',
