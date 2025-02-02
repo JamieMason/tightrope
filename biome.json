@@ -5,9 +5,11 @@
       "**/*.astro",
       "**/coverage",
       "**/dist",
+      "package.json",
       "site/.docusaurus",
       "site/build",
       "site/docs/api",
+      "site/src/api.json",
       "test/fixtures"
     ]
   },

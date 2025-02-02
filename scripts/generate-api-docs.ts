@@ -129,6 +129,12 @@ function createApiDocument(
     '@see': getJsDocSee(jsDocs[0]),
     '@tags': getJsDocTags(jsDocs[0]),
   };
+
+  if (!api['@description']) {
+    console.log('Skipped', api.slug, 'in', file.getFilePath());
+    return api;
+  }
+
   apiDocuments.all.push(api);
   for (const tag of api['@tags']) {
     if (!apiDocuments.byTag[tag]) {
