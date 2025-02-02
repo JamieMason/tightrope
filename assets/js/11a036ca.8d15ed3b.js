@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunksite=self.webpackChunksite||[]).push([[8954],{9854:t=>{t.exports=JSON.parse('{"title":"Docs","description":" ","slug":"/docs","permalink":"/tightrope/docs","navigation":{"next":{"title":"Installation","permalink":"/tightrope/docs/installation"}}}')}}]);
